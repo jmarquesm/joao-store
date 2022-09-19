@@ -91,7 +91,7 @@ export function Header() {
             <Popover.Target>
               <Burger opened={opened} onClick={toggle} size="sm" />
             </Popover.Target>
-            <Popover.Dropdown>
+            <Popover.Dropdown p={0} ml={8}>
               <NavBar />
             </Popover.Dropdown>
           </Popover>
