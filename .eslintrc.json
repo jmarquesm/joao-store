@@ -1,3 +1,17 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["eslint:recommended","next","next/core-web-vitals"],
+  "rules": {
+    // Javascript rules
+    "no-debugger": "warn",
+    "no-unused-vars": "warn",
+    "no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "spaced-comment": ["warn", "always"],
+
+    // React rules
+    "react/jsx-key": "warn",
+
+    // Next rules
+    "@next/next/no-img-element": "off",
+    "@next/next/no-html-link-for-pages": "off"
+  }
 }
