@@ -13,7 +13,7 @@ function ProductsPage() {
 
   useEffect(() => {
     if (categoryid && subCategoryid)
-      fetch(`http://localhost:3000/api/product/${categoryid}/${subCategoryid}`)
+      fetch(`/api/product/${categoryid}/${subCategoryid}`)
         .then((response) => response.json())
         .then((categoryData) => {
           setCategory(categoryData);

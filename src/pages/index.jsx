@@ -8,7 +8,7 @@ function HomePage() {
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/estatistica`)
+    fetch(`/api/estatistica`)
       .then((response) => response.json())
       .then((statsData) => {
         setStats(statsData);
