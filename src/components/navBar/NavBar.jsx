@@ -132,7 +132,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function NavbarNested() {
+export function NavBar() {
   const { classes } = useStyles();
   const links = mockdata.map((item) => (
     <LinksGroup {...item} key={item.label} />

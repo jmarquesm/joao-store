@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons";
-import { NavbarNested } from "./navBar/simple-navbar";
+import { NavBar } from "./navBar/NavBar";
 import { DarkThemeButton } from "./DarkThemeButton";
 import Link from "next/link";
 import { MenuBox } from "./MenuBox";
@@ -92,7 +92,7 @@ export function Header() {
               <Burger opened={opened} onClick={toggle} size="sm" />
             </Popover.Target>
             <Popover.Dropdown>
-              <NavbarNested />
+              <NavBar />
             </Popover.Dropdown>
           </Popover>
         </Group>
