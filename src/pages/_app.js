@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Head from 'next/head';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 
 export default function App(props) {

@@ -1,6 +1,5 @@
 import {
   UnstyledButton,
-  UnstyledButtonProps,
   Group,
   Avatar,
   Text,
