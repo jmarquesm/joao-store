@@ -139,7 +139,13 @@ export function NavBar() {
   ));
 
   return (
-    <Navbar height={600} width={{ sm: 300 }} p="md" className={classes.navbar}>
+    <Navbar
+      height={600}
+      width={{ sm: 300 }}
+      p="md"
+      pb={0}
+      className={classes.navbar}
+    >
       <Navbar.Section className={classes.header}>
         <Group position="apart">
           <Code sx={{ fontWeight: 700 }}>LOGO MARKET</Code>
