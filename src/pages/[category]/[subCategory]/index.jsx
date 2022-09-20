@@ -2,8 +2,8 @@ import { Container, Grid, Title } from "@mantine/core";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FeaturesCard } from "../../../components/FeaturesCard";
-import { Footer } from "../../../components/Footer";
-import { Header } from "../../../components/Header";
+import { Footer } from "../../../components/common/Footer";
+import { Header } from "../../../components/common/Header";
 
 function ProductsPage() {
   const [category, setCategory] = useState({});

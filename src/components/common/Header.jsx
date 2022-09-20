@@ -8,11 +8,11 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons";
-import { NavBar } from "./navBar/NavBar";
+import { NavBar } from "../navBar/NavBar";
 import { DarkThemeButton } from "./DarkThemeButton";
 import Link from "next/link";
 import { MenuBox } from "./MenuBox";
-import { UseModal } from "./account/UseModal";
+import { UseModal } from "../account/UseModal";
 
 const useStyles = createStyles((theme) => ({
   header: {
