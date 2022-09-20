@@ -1,18 +1,24 @@
 import { Navbar, Group, Code, ScrollArea, createStyles } from "@mantine/core";
-import { IconNotes, IconFileAnalytics } from "@tabler/icons";
+import {
+  IconPhone,
+  IconKeyboard,
+  IconSection,
+  IconArmchair,
+  IconHome,
+} from "@tabler/icons";
 import { UserButton } from "./userButton";
 import { LinksGroup } from "./navBarLinkGroup";
 
 const mockdata = [
   {
     label: "Pagina Inicial",
-    icon: IconNotes,
+    icon: IconHome,
     initiallyOpened: true,
     link: "/",
   },
   {
     label: "Hardware",
-    icon: IconNotes,
+    icon: IconSection,
     initiallyOpened: false,
     links: [
       {
@@ -40,7 +46,7 @@ const mockdata = [
   },
   {
     label: "Periféricos",
-    icon: IconNotes,
+    icon: IconKeyboard,
     links: [
       {
         label: "Teclado",
@@ -67,7 +73,7 @@ const mockdata = [
   },
   {
     label: "Escritório",
-    icon: IconNotes,
+    icon: IconArmchair,
     links: [
       {
         label: "Cadeira",
@@ -92,7 +98,7 @@ const mockdata = [
       },
     ],
   },
-  { label: "Contato", icon: IconFileAnalytics },
+  { label: "Contato", icon: IconPhone, link: "/contato" },
 ];
 
 const useStyles = createStyles((theme) => ({
@@ -148,7 +154,7 @@ export function NavBar() {
     >
       <Navbar.Section className={classes.header}>
         <Group position="apart">
-          <Code sx={{ fontWeight: 700 }}>LOGO MARKET</Code>
+          <Code sx={{ fontWeight: 700 }}>JOÃO STORE</Code>
         </Group>
       </Navbar.Section>
 

@@ -7,11 +7,7 @@ import {
   UnstyledButton,
   createStyles,
 } from "@mantine/core";
-import {
-  IconCalendarStats,
-  IconChevronLeft,
-  IconChevronRight,
-} from "@tabler/icons";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons";
 import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
@@ -79,12 +75,7 @@ export function LinksGroup({
   const ChevronIcon = theme.dir === "ltr" ? IconChevronRight : IconChevronLeft;
   const items = (hasLinks ? links : []).map((link) => (
     <Link key={link.label} href={link.link}>
-      <a
-        className={classes.link}
-        // onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </a>
+      <a className={classes.link}>{link.label}</a>
     </Link>
   ));
 
@@ -132,16 +123,6 @@ export function LinksGroup({
   );
 }
 
-const mockdata = {
-  label: "Releases",
-  icon: IconCalendarStats,
-  links: [
-    { label: "Upcoming releases", link: "/" },
-    { label: "Previous releases", link: "/" },
-    { label: "Releases schedule", link: "/" },
-  ],
-};
-
 export function NavbarLinksGroup() {
   return (
     <Box
@@ -151,8 +132,6 @@ export function NavbarLinksGroup() {
         backgroundColor:
           theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
       })}
-    >
-      <LinksGroup {...mockdata} />
-    </Box>
+    ></Box>
   );
 }
