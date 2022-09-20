@@ -1,8 +1,7 @@
-import { Footer } from "../components/common/Footer";
-import { Header } from "../components/common/Header";
 import { StatsGroup } from "../components/StatsGroup";
 import { Box, Container, createStyles, Loader, Title } from "@mantine/core";
 import { useState, useEffect } from "react";
+import Layout from "../components/common/Layout";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -33,8 +32,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      <Header />
+    <Layout>
       <div
         style={{
           minHeight: "calc(100vh - 140px)",
@@ -60,8 +58,7 @@ function HomePage() {
           )}
         </Container>
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 }
 

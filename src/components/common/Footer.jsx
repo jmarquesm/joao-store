@@ -6,7 +6,6 @@ import {
   Text,
 } from "@mantine/core";
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons";
-import { ScrollTop } from "./ScrollTop";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -63,7 +62,6 @@ export function Footer() {
         </Group>
         <Text size={12}>Desenvolvido por João Marques</Text>
       </Container>
-      <ScrollTop />
     </div>
   );
 }
