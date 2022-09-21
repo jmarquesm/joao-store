@@ -87,7 +87,12 @@ export function Header() {
     <MantineHeader height={56} className={classes.header} mb={0}>
       <div className={classes.inner}>
         <Group>
-          <Popover opened={opened} onClick={toggle} size="sm">
+          <Popover
+            opened={opened}
+            closeOnClickOutside
+            onClick={toggle}
+            size="sm"
+          >
             <Popover.Target>
               <Burger opened={opened} onClick={toggle} size="sm" />
             </Popover.Target>
