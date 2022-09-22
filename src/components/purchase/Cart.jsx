@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { createStyles, Avatar, Grid, Box, Text } from "@mantine/core";
 import { IconBarcode, IconCreditCard } from "@tabler/icons";
+import { useEffect, useState } from "react";
 import Amount from "./Amount";
 
 const useStyles = createStyles((theme) => ({
@@ -49,39 +49,34 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function TableSelection({ data }) {
-  const [stats, setStats] = useState();
+export function TableSelection() {
   const { classes } = useStyles();
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/product/hardware/placa-mae`)
-      .then((response) => response.json())
-      .then((statsData) => {
-        setStats(statsData);
-      });
+    const carrinho = JSON.parse(localStorage.getItem("produto"));
+    setItems(carrinho);
   }, []);
-
-  if (stats === undefined) {
-    return "Loading";
-  }
 
   return (
     <Grid grow gutter="xl">
       <Grid.Col span={12} md={8} className={classes.globalCol}>
-        {stats.items.map((stats) => (
-          <Grid key={stats.name} sx={{ margin: 0 }}>
+        {items.map((produto) => (
+          <Grid key={"keyTemporaria"} sx={{ margin: 0 }}>
             <Grid.Col span={"content"} className={classes.elementCol}>
-              <Avatar size={50} radius={20} src={stats.image} />
+              <Avatar size={50} radius={20} src={produto.image} />
             </Grid.Col>
+
             <Grid.Col
               span={"auto"}
               lineClamp={3}
               className={classes.elementCol}
             >
               <Text lineClamp={2} className={classes.name}>
-                {stats.name}
+                {produto.description}
               </Text>
             </Grid.Col>
+
             <Grid.Col
               span={2}
               xs={1}
@@ -90,9 +85,10 @@ export function TableSelection({ data }) {
               className={classes.elementCol}
             >
               <Text className={classes.name}>
-                <Amount />
+                <Amount amount={produto.units} />
               </Text>
             </Grid.Col>
+
             <Grid.Col
               span={3}
               xs={2}
@@ -100,7 +96,7 @@ export function TableSelection({ data }) {
               md={2}
               className={classes.elementCol}
             >
-              <Text className={classes.name}>R${stats.price}</Text>
+              <Text className={classes.name}>R$ {produto.price} </Text>
             </Grid.Col>
           </Grid>
         ))}
@@ -112,10 +108,12 @@ export function TableSelection({ data }) {
             <span>Subtotal:</span>
             <span>R$ 5.540,00</span>
           </Box>
+
           <Box className={classes.boxValoresCalculo}>
             <span>Frete:</span>
             <span>R$ 0,00</span>
           </Box>
+
           <Box
             sx={{ borderTop: "solid", borderTopWidth: 1 }}
             className={classes.boxValoresCalculo}
@@ -123,6 +121,7 @@ export function TableSelection({ data }) {
             <span>Desconto Cupom:</span>
             <span>R$ 0,00</span>
           </Box>
+
           <Box
             className={classes.boxValoresCalculo}
             sx={{
@@ -135,6 +134,7 @@ export function TableSelection({ data }) {
             <span>TOTAL</span>
             <span>5.540,00</span>
           </Box>
+
           <Box
             className={classes.boxValoresCalculo}
             sx={{
@@ -151,6 +151,7 @@ export function TableSelection({ data }) {
               <span>s/ juros</span>
             </Box>
           </Box>
+
           <Box
             className={classes.boxValoresCalculo}
             sx={{

@@ -6,7 +6,9 @@ import {
   Badge,
   createStyles,
   Button,
+  Box,
 } from "@mantine/core";
+import { IconShoppingCartPlus } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -78,14 +80,45 @@ export function FeaturesCard({ image, title, description, price, offer }) {
         <Group className={classes.cardValue} spacing={10}>
           <div>
             <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
-              R${price}
+              R${price} <Badge variant="outline">{offer}% OFF</Badge>
             </Text>
-            {offer && <Badge variant="outline">{offer}% OFF</Badge>}
           </div>
 
-          <Button className={classes.cardButton} radius="xl">
-            Comprar
-          </Button>
+          <Box>
+            <Button
+              className={classes.cardButton}
+              radius="xl"
+              onClick={() => {
+                let carrinho = localStorage.getItem("produto");
+                if (carrinho === null) {
+                  carrinho = [];
+                } else {
+                  carrinho = JSON.parse(carrinho);
+                }
+                const produto = {
+                  image,
+                  title,
+                  description,
+                  price,
+                  offer,
+                  units: 1,
+                };
+                let itemAllReadyExist = false;
+                for (let indexDoItemDoCarrinho in carrinho) {
+                  const itemDoCarrinho = carrinho[indexDoItemDoCarrinho];
+                  if (itemDoCarrinho.description === produto.description) {
+                    carrinho[indexDoItemDoCarrinho].units += 1;
+                    itemAllReadyExist = true;
+                  }
+                }
+                if (!itemAllReadyExist) carrinho.push(produto);
+                localStorage.setItem("produto", JSON.stringify(carrinho));
+              }}
+            >
+              <IconShoppingCartPlus size={20} />
+              Adicionar
+            </Button>
+          </Box>
         </Group>
       </Card.Section>
     </Card>

@@ -10,8 +10,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Amount() {
-  const [count, handlers] = useCounter(0, { min: 1, max: 10 });
+export default function Amount(props) {
+  const [count, handlers] = useCounter(props.amount, { min: 1, max: 10 });
   const { classes } = useStyles();
 
   return (
