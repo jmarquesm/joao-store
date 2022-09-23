@@ -1,13 +1,5 @@
-import {
-  Card,
-  Image,
-  Text,
-  Group,
-  Badge,
-  createStyles,
-  Button,
-  Box,
-} from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Box } from "@mantine/core";
+import { createStyles } from "@mantine/core";
 import { IconShoppingCartPlus } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
@@ -15,12 +7,6 @@ const useStyles = createStyles((theme) => ({
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
   },
-
-  cardTitle: { height: "100px", alignItems: "baseline" },
-
-  cardValue: { height: "50px" },
-
-  cardButton: { marginLeft: "auto" },
 
   imageSection: {
     display: "flex",
@@ -33,33 +19,65 @@ const useStyles = createStyles((theme) => ({
     }`,
   },
 
-  label: {
-    marginBottom: theme.spacing.xs,
-    lineHeight: 1,
-    fontWeight: 700,
-    fontSize: theme.fontSizes.xs,
-    letterSpacing: -0.25,
-    textTransform: "uppercase",
+  titleSection: {
+    height: "100px",
+    alignItems: "baseline",
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 
-  section: {
+  priceSection: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     padding: theme.spacing.md,
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
   },
 
-  icon: {
-    marginRight: 5,
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[2]
-        : theme.colors.gray[5],
+  price: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: 25,
+  },
+
+  button: {
+    marginLeft: "auto",
+    width: "-webkit-fill-available;",
   },
 }));
 
 export function FeaturesCard({ image, title, description, price, offer }) {
   const { classes } = useStyles();
+
+  function addToCart() {
+    let carrinho = localStorage.getItem("produto");
+    if (carrinho === null) {
+      carrinho = [];
+    } else {
+      carrinho = JSON.parse(carrinho);
+    }
+    const produto = {
+      image,
+      title,
+      description,
+      price,
+      offer,
+      units: 1,
+    };
+    let itemAllReadyExist = false;
+    for (let indexDoItemDoCarrinho in carrinho) {
+      const itemDoCarrinho = carrinho[indexDoItemDoCarrinho];
+      if (itemDoCarrinho.description === produto.description) {
+        carrinho[indexDoItemDoCarrinho].units += 1;
+        itemAllReadyExist = true;
+      }
+    }
+    if (!itemAllReadyExist) carrinho.push(produto);
+    localStorage.setItem("produto", JSON.stringify(carrinho));
+  }
 
   return (
     <Card withBorder radius="md" className={classes.card}>
@@ -67,59 +85,30 @@ export function FeaturesCard({ image, title, description, price, offer }) {
         <Image src={image} alt={title} />
       </Card.Section>
 
-      <Group className={classes.cardTitle} position="apart" mt="md">
+      <Card.Section className={classes.titleSection} position="apart" mt="md">
         <div>
           <Text weight={200}>{title}</Text>
+
           <Text lineClamp={2} size="xs" color="dimmed">
             {description}
           </Text>
         </div>
-      </Group>
+      </Card.Section>
 
-      <Card.Section className={classes.section}>
-        <Group className={classes.cardValue} spacing={10}>
-          <div>
-            <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
-              R${price} <Badge variant="outline">{offer}% OFF</Badge>
-            </Text>
-          </div>
+      <Card.Section className={classes.priceSection}>
+        <Box className={classes.price}>
+          <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
+            R${price}
+          </Text>
+          <Text>{offer && <Badge variant="outline">{offer}% OFF</Badge>}</Text>
+        </Box>
 
-          <Box>
-            <Button
-              className={classes.cardButton}
-              radius="xl"
-              onClick={() => {
-                let carrinho = localStorage.getItem("produto");
-                if (carrinho === null) {
-                  carrinho = [];
-                } else {
-                  carrinho = JSON.parse(carrinho);
-                }
-                const produto = {
-                  image,
-                  title,
-                  description,
-                  price,
-                  offer,
-                  units: 1,
-                };
-                let itemAllReadyExist = false;
-                for (let indexDoItemDoCarrinho in carrinho) {
-                  const itemDoCarrinho = carrinho[indexDoItemDoCarrinho];
-                  if (itemDoCarrinho.description === produto.description) {
-                    carrinho[indexDoItemDoCarrinho].units += 1;
-                    itemAllReadyExist = true;
-                  }
-                }
-                if (!itemAllReadyExist) carrinho.push(produto);
-                localStorage.setItem("produto", JSON.stringify(carrinho));
-              }}
-            >
-              <IconShoppingCartPlus size={20} />
-              Adicionar
-            </Button>
-          </Box>
-        </Group>
+        <Box sx={{ marginTop: 16, display: "flex" }}>
+          <Button className={classes.button} radius="xl" onClick={addToCart}>
+            <IconShoppingCartPlus size={20} />
+            Adicionar
+          </Button>
+        </Box>
       </Card.Section>
     </Card>
   );
