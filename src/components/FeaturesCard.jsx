@@ -49,6 +49,18 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+export default function removeItemCart(produto) {
+  let carrinho = localStorage.getItem("produto");
+  carrinho = JSON.parse(carrinho);
+
+  const itemToDelete = carrinho.filter(
+    (itemToDeleteSelection) =>
+      itemToDeleteSelection.description !== produto.description
+  );
+
+  localStorage.setItem("produto", JSON.stringify(itemToDelete));
+}
+
 export function FeaturesCard({ image, title, description, price, offer }) {
   const { classes } = useStyles();
 
@@ -103,8 +115,8 @@ export function FeaturesCard({ image, title, description, price, offer }) {
           <Text>{offer && <Badge variant="outline">{offer}% OFF</Badge>}</Text>
         </Box>
 
-        <Box sx={{ marginTop: 16, display: "flex" }}>
-          <Button className={classes.button} radius="xl" onClick={addToCart}>
+        <Box sx={{ marginTop: 16 }}>
+          <Button className={classes.button} onClick={addToCart}>
             <IconShoppingCartPlus size={20} />
             Adicionar
           </Button>

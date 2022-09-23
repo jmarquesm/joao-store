@@ -14,7 +14,7 @@ export default function Carrinho() {
         <Title size={"h2"} my={"md"}>
           Carrinho
         </Title>
-        <Cart></Cart>
+        <Cart />
       </Container>
     </Layout>
   );

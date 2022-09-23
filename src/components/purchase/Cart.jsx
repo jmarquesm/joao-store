@@ -1,7 +1,15 @@
-import { createStyles, Avatar, Grid, Box, Text } from "@mantine/core";
-import { IconBarcode, IconCreditCard } from "@tabler/icons";
-import { useEffect, useState } from "react";
+import {
+  createStyles,
+  Avatar,
+  Grid,
+  Box,
+  Text,
+  ActionIcon,
+} from "@mantine/core";
+import { IconBarcode, IconCreditCard, IconTrash } from "@tabler/icons";
+import React, { useEffect, useState } from "react";
 import Amount from "./Amount";
+import removeItemCart from "../FeaturesCard";
 
 const useStyles = createStyles((theme) => ({
   div: {
@@ -79,9 +87,9 @@ export function TableSelection() {
 
             <Grid.Col
               span={2}
-              xs={1}
+              xs={2}
               sm={1}
-              md={2}
+              md={1.5}
               className={classes.elementCol}
             >
               <Text className={classes.name}>
@@ -97,6 +105,26 @@ export function TableSelection() {
               className={classes.elementCol}
             >
               <Text className={classes.name}>R$ {produto.price} </Text>
+            </Grid.Col>
+            <Grid.Col
+              span={1}
+              xs={1}
+              sm={1}
+              md={0.5}
+              sx={{
+                padding: 0,
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <ActionIcon
+                onClick={function () {
+                  removeItemCart(produto);
+                }}
+              >
+                <IconTrash size={16} />
+              </ActionIcon>
             </Grid.Col>
           </Grid>
         ))}

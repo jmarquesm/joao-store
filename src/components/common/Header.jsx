@@ -5,14 +5,17 @@ import {
   Group,
   Burger,
   Popover,
+  ActionIcon,
+  Indicator,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons";
+import { IconSearch, IconShoppingCart } from "@tabler/icons";
 import { NavBar } from "../navBar/NavBar";
 import { DarkThemeButton } from "./DarkThemeButton";
 import Link from "next/link";
 import { MenuBox } from "./MenuBox";
 import { UseModal } from "../account/UseModal";
+import { useEffect, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -70,6 +73,12 @@ const items = [
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const carrinho = JSON.parse(localStorage.getItem("produto"));
+    setCartItems(carrinho);
+  }, []);
 
   const itemsEL = items.map((item) => {
     if (item.component) {
@@ -113,6 +122,20 @@ export function Header() {
             icon={<IconSearch size={16} stroke={1.5} />}
             data={["oi"]}
           />
+
+          <Indicator
+            label={cartItems?.length}
+            inline
+            size={15}
+            overflowCount={9}
+          >
+            <Link href={"/carrinho"}>
+              <ActionIcon color="blue">
+                <IconShoppingCart size={22} />
+              </ActionIcon>
+            </Link>
+          </Indicator>
+
           <DarkThemeButton />
         </Group>
       </div>
