@@ -3,7 +3,7 @@ import { useCounter } from "@mantine/hooks";
 import { ActionIcon } from "@mantine/core";
 import { IconCircleMinus, IconCirclePlus } from "@tabler/icons";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   body: {
     display: "flex",
     alignItems: "center",

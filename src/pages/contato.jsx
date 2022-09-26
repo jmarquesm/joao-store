@@ -2,7 +2,6 @@ import {
   createStyles,
   ThemeIcon,
   Text,
-  SimpleGrid,
   Box,
   Stack,
   Container,

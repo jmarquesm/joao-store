@@ -11,7 +11,7 @@ import { IconBarcode, IconCreditCard, IconTrash } from "@tabler/icons";
 import React from "react";
 import Amount from "./Amount";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   div: {
     borderRadius: 10,
     padding: 0,
