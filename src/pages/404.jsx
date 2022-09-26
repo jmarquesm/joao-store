@@ -50,11 +50,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function NotFoundPage() {
+function NotFoundPage({ items, setItems }) {
   const { classes } = useStyles();
 
   return (
-    <Layout>
+    <Layout items={items} setItems={setItems}>
       <Container
         className={classes.root}
         style={{
