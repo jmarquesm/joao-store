@@ -5,11 +5,11 @@ import {
   Box,
   Text,
   ActionIcon,
+  Button,
 } from "@mantine/core";
 import { IconBarcode, IconCreditCard, IconTrash } from "@tabler/icons";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Amount from "./Amount";
-import removeItemCart from "../FeaturesCard";
 
 const useStyles = createStyles((theme) => ({
   div: {
@@ -39,9 +39,6 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: 5,
   },
 
-  // name: {
-  //   fontSize: 13,
-  // },
   globalCol: {
     borderRadius: 10,
     padding: 0,
@@ -49,7 +46,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   elementCol: {
-    // background: "blue",
     display: "flex",
     alignContent: "center",
     margin: "auto",
@@ -57,29 +53,38 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function TableSelection() {
+export function Cart({ items, setItems }) {
   const { classes } = useStyles();
-  const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    const carrinho = JSON.parse(localStorage.getItem("produto"));
-    setItems(carrinho);
-  }, []);
+  function valueCalc(items) {
+    const totalPrices = items
+      .reduce((prevValue, element) => prevValue + element.price, 0)
+      .toFixed(2);
+
+    return totalPrices;
+  }
+
+  function clearAllCart() {
+    setItems([]);
+  }
+
+  function removeItemCart(product) {
+    const newItems = items.filter(
+      (productCart) => productCart.description !== product.description
+    );
+    setItems(newItems);
+  }
 
   return (
     <Grid grow gutter="xl">
       <Grid.Col span={12} md={8} className={classes.globalCol}>
         {items.map((produto) => (
-          <Grid key={"keyTemporaria"} sx={{ margin: 0 }}>
+          <Grid key={produto.description} sx={{ margin: 0 }}>
             <Grid.Col span={"content"} className={classes.elementCol}>
-              <Avatar size={50} radius={20} src={produto.image} />
+              <Avatar size={50} src={produto.image} />
             </Grid.Col>
 
-            <Grid.Col
-              span={"auto"}
-              lineClamp={3}
-              className={classes.elementCol}
-            >
+            <Grid.Col span={"auto"} className={classes.elementCol}>
               <Text lineClamp={2} className={classes.name}>
                 {produto.description}
               </Text>
@@ -134,7 +139,7 @@ export function TableSelection() {
         <Box className={classes.boxValores}>
           <Box className={classes.boxValoresCalculo}>
             <span>Subtotal:</span>
-            <span>R$ 5.540,00</span>
+            <span>R$ {valueCalc(items)}</span>
           </Box>
 
           <Box className={classes.boxValoresCalculo}>
@@ -160,7 +165,7 @@ export function TableSelection() {
             }}
           >
             <span>TOTAL</span>
-            <span>5.540,00</span>
+            <span>R$ {valueCalc(items)}</span>
           </Box>
 
           <Box
@@ -197,6 +202,10 @@ export function TableSelection() {
             </Box>
           </Box>
         </Box>
+        <Button onClick={clearAllCart}>
+          <IconTrash size={18} />
+          Limpar Carrinho
+        </Button>
       </Grid.Col>
     </Grid>
   );
