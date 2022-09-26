@@ -44,4 +44,4 @@ Com o acesso, a página recarrega automáticamente caso efetue uma edição no c
 
 ### `yarn build`
 
-Prepara o projeto para ser implantado de forma estática em produção.
+Prepara o projeto para ser implantado em produção.
