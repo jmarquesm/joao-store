@@ -94,9 +94,9 @@ function ContactIconsList({ data = MOCKDATA, variant }) {
   return <Stack>{items}</Stack>;
 }
 
-export default function ContactIcons() {
+export default function ContactIcons({ items, setItems }) {
   return (
-    <Layout>
+    <Layout items={items} setItems={setItems}>
       <Container
         style={{
           minHeight: "calc(100vh - 140px)",
@@ -105,28 +105,19 @@ export default function ContactIcons() {
         <Title size={"h2"} my={"md"}>
           Contato
         </Title>
-        <SimpleGrid cols={2} breakpoints={[{ maxWidth: 755, cols: 1 }]}>
-          <Box
-            sx={(theme) => ({
-              padding: theme.spacing.xl,
-              borderRadius: theme.radius.md,
-              backgroundColor: theme.white,
-            })}
-          >
-            <ContactIconsList />
-          </Box>
-          <Box
-            sx={(theme) => ({
-              padding: theme.spacing.xl,
-              borderRadius: theme.radius.md,
-              backgroundImage: `linear-gradient(135deg, ${
-                theme.colors[theme.primaryColor][6]
-              } 0%, ${theme.colors[theme.primaryColor][4]} 100%)`,
-            })}
-          >
-            <ContactIconsList variant="white" />
-          </Box>
-        </SimpleGrid>
+
+        <Box
+          sx={(theme) => ({
+            padding: theme.spacing.xl,
+            borderRadius: theme.radius.md,
+            backgroundImage: `linear-gradient(135deg, ${
+              theme.colors[theme.primaryColor][6]
+            } 0%, ${theme.colors[theme.primaryColor][4]} 100%)`,
+            width: 500,
+          })}
+        >
+          <ContactIconsList variant="white" />
+        </Box>
       </Container>
     </Layout>
   );
