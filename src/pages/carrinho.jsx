@@ -1,20 +1,30 @@
-import { Container, Title } from "@mantine/core";
+import { Container, Text, Title } from "@mantine/core";
 import Layout from "../components/common/Layout";
-import { TableSelection as Cart } from "../components/purchase/Cart";
+import { Cart } from "../components/purchase/Cart";
 
-export default function Carrinho() {
+export default function Carrinho({ items, setItems }) {
   return (
-    <Layout>
+    <Layout items={items} setItems={setItems}>
       <Container
         style={{
           minHeight: "calc(100vh - 130px)",
           padding: 16,
         }}
       >
-        <Title size={"h2"} my={"md"}>
-          Carrinho
-        </Title>
-        <Cart />
+        {items === null || items.length === 0 || items === [] ? (
+          <Container align="center" my={200}>
+            <Text size={50} weight={600} color="#49505757">
+              Carrinho Vazio
+            </Text>
+          </Container>
+        ) : (
+          <>
+            <Title size={"h2"} my={"md"}>
+              Carrinho
+            </Title>
+            <Cart items={items} setItems={setItems} />
+          </>
+        )}
       </Container>
     </Layout>
   );

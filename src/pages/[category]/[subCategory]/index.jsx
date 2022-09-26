@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FeaturesCard } from "../../../components/FeaturesCard";
 import Layout from "../../../components/common/Layout";
 
-function ProductsPage() {
+function ProductsPage({ items, setItems }) {
   const [category, setCategory] = useState({});
   const router = useRouter();
   const categoryid = router.query.category;
@@ -20,7 +20,7 @@ function ProductsPage() {
   }, [categoryid, subCategoryid]);
 
   return (
-    <Layout>
+    <Layout items={items} setItems={setItems}>
       {Object.keys(category).length === 0 ? (
         <Container
           sx={{
@@ -60,6 +60,8 @@ function ProductsPage() {
                   description={produto.name}
                   price={produto.price}
                   offer={produto.offer}
+                  items={items}
+                  setItems={setItems}
                 />
               </Grid.Col>
             ))}

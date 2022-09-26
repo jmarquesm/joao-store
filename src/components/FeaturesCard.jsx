@@ -49,28 +49,18 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function removeItemCart(produto) {
-  let carrinho = localStorage.getItem("produto");
-  carrinho = JSON.parse(carrinho);
-
-  const itemToDelete = carrinho.filter(
-    (itemToDeleteSelection) =>
-      itemToDeleteSelection.description !== produto.description
-  );
-
-  localStorage.setItem("produto", JSON.stringify(itemToDelete));
-}
-
-export function FeaturesCard({ image, title, description, price, offer }) {
+export function FeaturesCard({
+  image,
+  title,
+  description,
+  price,
+  offer,
+  items,
+  setItems,
+}) {
   const { classes } = useStyles();
 
   function addToCart() {
-    let carrinho = localStorage.getItem("produto");
-    if (carrinho === null) {
-      carrinho = [];
-    } else {
-      carrinho = JSON.parse(carrinho);
-    }
     const produto = {
       image,
       title,
@@ -79,16 +69,18 @@ export function FeaturesCard({ image, title, description, price, offer }) {
       offer,
       units: 1,
     };
+
     let itemAllReadyExist = false;
-    for (let indexDoItemDoCarrinho in carrinho) {
-      const itemDoCarrinho = carrinho[indexDoItemDoCarrinho];
+    for (let indexDoItemDoCarrinho in items) {
+      const itemDoCarrinho = items[indexDoItemDoCarrinho];
       if (itemDoCarrinho.description === produto.description) {
-        carrinho[indexDoItemDoCarrinho].units += 1;
+        items[indexDoItemDoCarrinho].units += 1;
         itemAllReadyExist = true;
       }
     }
-    if (!itemAllReadyExist) carrinho.push(produto);
-    localStorage.setItem("produto", JSON.stringify(carrinho));
+    if (!itemAllReadyExist) items.push(produto);
+
+    setItems([...items]);
   }
 
   return (

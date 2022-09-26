@@ -15,7 +15,6 @@ import { DarkThemeButton } from "./DarkThemeButton";
 import Link from "next/link";
 import { MenuBox } from "./MenuBox";
 import { UseModal } from "../account/UseModal";
-import { useEffect, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -64,23 +63,17 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const items = [
+const pages = [
   { label: "Pagina Inicial", link: "/" },
   { label: "Produtos", component: MenuBox },
   { label: "Conta", component: UseModal },
 ];
 
-export function Header() {
+export function Header({ items }) {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
-  const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    const carrinho = JSON.parse(localStorage.getItem("produto"));
-    setCartItems(carrinho);
-  }, []);
-
-  const itemsEL = items.map((item) => {
+  const itemsEL = pages.map((item) => {
     if (item.component) {
       return <item.component key={item.label} />;
     }
@@ -91,6 +84,11 @@ export function Header() {
       </Link>
     );
   });
+
+  const totalDeItensDoCarrinho = items.reduce(
+    (acc, product) => acc + product.units,
+    0
+  );
 
   return (
     <MantineHeader height={56} className={classes.header} mb={0}>
@@ -120,11 +118,11 @@ export function Header() {
             className={classes.search}
             placeholder="Search"
             icon={<IconSearch size={16} stroke={1.5} />}
-            data={["oi"]}
+            data={["processador", "placa de video"]}
           />
 
           <Indicator
-            label={cartItems?.length}
+            label={totalDeItensDoCarrinho}
             inline
             size={15}
             overflowCount={9}

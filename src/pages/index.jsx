@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function HomePage() {
+function HomePage({ items, setItems }) {
   const [stats, setStats] = useState([]);
   const { classes } = useStyles();
 
@@ -32,7 +32,7 @@ function HomePage() {
   }, []);
 
   return (
-    <Layout>
+    <Layout items={items} setItems={setItems}>
       <div
         style={{
           minHeight: "calc(100vh - 140px)",

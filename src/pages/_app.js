@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { useEffect, useState } from 'react';
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -9,8 +10,31 @@ export default function App(props) {
     defaultValue: 'light',
     key: 'ativation'
   });
-  const toggleColorScheme = (value) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+
+    let carrinho = localStorage.getItem("produtos")
+
+    if (carrinho === null) {
+      carrinho = [];
+    } else {
+      carrinho = JSON.parse(carrinho);
+    }
+
+    setItems(carrinho);
+  }, []);
+
+  function customSetItems(_items) {
+
+    localStorage.setItem("produtos", JSON.stringify(_items));
+    setItems(_items)
+  }
+
+  function toggleColorScheme(value) {
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+  }
 
   return (
     <>
@@ -28,7 +52,11 @@ export default function App(props) {
             colorScheme
           }}
         >
-          <Component {...pageProps} />
+          <Component
+            {...pageProps}
+            items={items}
+            setItems={customSetItems}
+          />
         </MantineProvider>
       </ColorSchemeProvider>
     </>

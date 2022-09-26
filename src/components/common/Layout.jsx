@@ -2,10 +2,10 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { ScrollTop } from "./ScrollTop";
 
-function Layout({ children }) {
+function Layout({ children, items, setItems }) {
   return (
     <div>
-      <Header />
+      <Header items={items} setItems={setItems} />
 
       {children}
 
