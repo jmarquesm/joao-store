@@ -102,7 +102,7 @@ export function FeaturesCard({
       <Card.Section className={classes.priceSection}>
         <Box className={classes.price}>
           <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
-            R${price}
+            R${price.toFixed(2).replace(".", ",")}
           </Text>
           <Text>{offer && <Badge variant="outline">{offer}% OFF</Badge>}</Text>
         </Box>
