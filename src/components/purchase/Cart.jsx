@@ -109,7 +109,9 @@ export function Cart({ items, setItems }) {
               md={2}
               className={classes.elementCol}
             >
-              <Text className={classes.name}>R$ {produto.price} </Text>
+              <Text className={classes.name}>
+                R$ {produto.price.toFixed(2).replace(".", ",")}
+              </Text>
             </Grid.Col>
             <Grid.Col
               span={1}
@@ -139,7 +141,7 @@ export function Cart({ items, setItems }) {
         <Box className={classes.boxValores}>
           <Box className={classes.boxValoresCalculo}>
             <span>Subtotal:</span>
-            <span>R$ {valueCalc(items)}</span>
+            <span>R$ {valueCalc(items).replace(".", ",")}</span>
           </Box>
 
           <Box className={classes.boxValoresCalculo}>
@@ -165,7 +167,7 @@ export function Cart({ items, setItems }) {
             }}
           >
             <span>TOTAL</span>
-            <span>R$ {valueCalc(items)}</span>
+            <span>R$ {valueCalc(items).replace(".", ",")}</span>
           </Box>
 
           <Box
@@ -180,8 +182,10 @@ export function Cart({ items, setItems }) {
           >
             <IconCreditCard size={25} />
             <Box>
-              <span>12x de R$ 556,00</span>
-              <span>s/ juros</span>
+              <span>
+                12x de R$ {(valueCalc(items) / 12).toFixed(2).replace(".", ",")}
+              </span>
+              <span> s/ juros</span>
             </Box>
           </Box>
 
@@ -197,8 +201,10 @@ export function Cart({ items, setItems }) {
           >
             <IconBarcode size={25} />
             <Box>
-              <span>R$ 5.777,98 </span>
-              <span>com desconto à vista no boleto ou no pix</span>
+              <span>
+                R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")}{" "}
+              </span>
+              <span>com 12% de desconto à vista no boleto ou no pix</span>
             </Box>
           </Box>
         </Box>
