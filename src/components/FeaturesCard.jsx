@@ -1,6 +1,7 @@
 import { Card, Image, Text, Badge, Button, Box } from "@mantine/core";
 import { createStyles } from "@mantine/core";
-import { IconShoppingCartPlus } from "@tabler/icons";
+import { showNotification } from "@mantine/notifications";
+import { IconCheck, IconShoppingCartPlus } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -83,6 +84,14 @@ export function FeaturesCard({
     setItems([...items]);
   }
 
+  function NotificationPurchase() {
+    showNotification({
+      icon: <IconCheck size={20} />,
+      title: "Produto adicionado ao carrinho",
+      autoClose: 2000,
+    });
+  }
+
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section className={classes.imageSection}>
@@ -108,7 +117,13 @@ export function FeaturesCard({
         </Box>
 
         <Box sx={{ marginTop: 16 }}>
-          <Button className={classes.button} onClick={addToCart}>
+          <Button
+            className={classes.button}
+            onClick={() => {
+              addToCart();
+              NotificationPurchase();
+            }}
+          >
             <IconShoppingCartPlus size={20} />
             Adicionar
           </Button>
