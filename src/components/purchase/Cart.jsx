@@ -68,7 +68,10 @@ export function Cart({ items, setItems }) {
 
   function valueCalc(items) {
     const totalPrices = items
-      .reduce((prevValue, element) => prevValue + element.price, 0)
+      .reduce(
+        (prevValue, element) => prevValue + element.price * element.units,
+        0
+      )
       .toFixed(2);
 
     return totalPrices;
