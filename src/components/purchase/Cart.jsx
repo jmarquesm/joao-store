@@ -7,9 +7,14 @@ import {
   ActionIcon,
   Button,
 } from "@mantine/core";
-import { IconBarcode, IconCreditCard, IconTrash } from "@tabler/icons";
+import {
+  IconBarcode,
+  IconCircleMinus,
+  IconCirclePlus,
+  IconCreditCard,
+  IconTrash,
+} from "@tabler/icons";
 import React from "react";
-import Amount from "./Amount";
 
 const useStyles = createStyles(() => ({
   div: {
@@ -51,6 +56,11 @@ const useStyles = createStyles(() => ({
     margin: "auto",
     fontSize: 13,
   },
+
+  unitsSection: {
+    display: "flex",
+    alignItems: "center",
+  },
 }));
 
 export function Cart({ items, setItems }) {
@@ -72,6 +82,35 @@ export function Cart({ items, setItems }) {
     const newItems = items.filter(
       (productCart) => productCart.description !== product.description
     );
+    setItems(newItems);
+  }
+
+  function incrementUnits(produto) {
+    let produtoSelecionado = produto.description;
+
+    items.forEach((_, index) => {
+      if (produtoSelecionado === items[index].description) {
+        items[index].units += 1;
+      }
+    });
+    const newItems = [...items];
+    setItems(newItems);
+  }
+
+  function decrementUnits(produto) {
+    let produtoSelecionado = produto.description;
+
+    items.forEach((_, index) => {
+      if (produtoSelecionado === items[index].description) {
+        if (items[index].units <= 1) {
+          items[index].units = 1;
+        } else {
+          items[index].units -= 1;
+        }
+      }
+    });
+
+    const newItems = [...items];
     setItems(newItems);
   }
 
@@ -97,9 +136,21 @@ export function Cart({ items, setItems }) {
               md={1.5}
               className={classes.elementCol}
             >
-              <Text className={classes.name}>
-                <Amount amount={produto.units} />
-              </Text>
+              <Box className={classes.unitsSection}>
+                <ActionIcon
+                  variant="transparent"
+                  onClick={() => decrementUnits(produto)}
+                >
+                  <IconCircleMinus size={16} />
+                </ActionIcon>
+                <Text className={classes.name}>{produto.units}</Text>
+                <ActionIcon
+                  variant="transparent"
+                  onClick={() => incrementUnits(produto)}
+                >
+                  <IconCirclePlus size={16} />
+                </ActionIcon>
+              </Box>
             </Grid.Col>
 
             <Grid.Col
@@ -199,7 +250,7 @@ export function Cart({ items, setItems }) {
               alignItems: "center",
             }}
           >
-            <IconBarcode size={25} />
+            <IconBarcode size={35} />
             <Box>
               <span>
                 R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")}{" "}
