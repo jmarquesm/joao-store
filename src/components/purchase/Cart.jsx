@@ -7,9 +7,14 @@ import {
   ActionIcon,
   Button,
 } from "@mantine/core";
-import { IconBarcode, IconCreditCard, IconTrash } from "@tabler/icons";
+import {
+  IconBarcode,
+  IconCircleMinus,
+  IconCirclePlus,
+  IconCreditCard,
+  IconTrash,
+} from "@tabler/icons";
 import React from "react";
-import Amount from "./Amount";
 
 const useStyles = createStyles(() => ({
   div: {
@@ -43,6 +48,7 @@ const useStyles = createStyles(() => ({
     borderRadius: 10,
     padding: 0,
     margin: "auto",
+    marginTop: 0,
   },
 
   elementCol: {
@@ -51,6 +57,19 @@ const useStyles = createStyles(() => ({
     margin: "auto",
     fontSize: 13,
   },
+
+  globalCol2: {
+    marginTop: 14.9,
+    paddingTop: 0,
+    position: "sticky",
+    top: 20,
+    height: 300,
+  },
+
+  unitsSection: {
+    display: "flex",
+    alignItems: "center",
+  },
 }));
 
 export function Cart({ items, setItems }) {
@@ -58,7 +77,10 @@ export function Cart({ items, setItems }) {
 
   function valueCalc(items) {
     const totalPrices = items
-      .reduce((prevValue, element) => prevValue + element.price, 0)
+      .reduce(
+        (prevValue, element) => prevValue + element.price * element.units,
+        0
+      )
       .toFixed(2);
 
     return totalPrices;
@@ -72,6 +94,35 @@ export function Cart({ items, setItems }) {
     const newItems = items.filter(
       (productCart) => productCart.description !== product.description
     );
+    setItems(newItems);
+  }
+
+  function incrementUnits(produto) {
+    let produtoSelecionado = produto.description;
+
+    items.forEach((_, index) => {
+      if (produtoSelecionado === items[index].description) {
+        items[index].units += 1;
+      }
+    });
+    const newItems = [...items];
+    setItems(newItems);
+  }
+
+  function decrementUnits(produto) {
+    let produtoSelecionado = produto.description;
+
+    items.forEach((_, index) => {
+      if (produtoSelecionado === items[index].description) {
+        if (items[index].units <= 1) {
+          items[index].units = 1;
+        } else {
+          items[index].units -= 1;
+        }
+      }
+    });
+
+    const newItems = [...items];
     setItems(newItems);
   }
 
@@ -97,9 +148,21 @@ export function Cart({ items, setItems }) {
               md={1.5}
               className={classes.elementCol}
             >
-              <Text className={classes.name}>
-                <Amount amount={produto.units} />
-              </Text>
+              <Box className={classes.unitsSection}>
+                <ActionIcon
+                  variant="transparent"
+                  onClick={() => decrementUnits(produto)}
+                >
+                  <IconCircleMinus size={16} />
+                </ActionIcon>
+                <Text className={classes.name}>{produto.units}</Text>
+                <ActionIcon
+                  variant="transparent"
+                  onClick={() => incrementUnits(produto)}
+                >
+                  <IconCirclePlus size={16} />
+                </ActionIcon>
+              </Box>
             </Grid.Col>
 
             <Grid.Col
@@ -137,7 +200,7 @@ export function Cart({ items, setItems }) {
         ))}
       </Grid.Col>
 
-      <Grid.Col span={12} sm={4}>
+      <Grid.Col span={12} sm={4} className={classes.globalCol2}>
         <Box className={classes.boxValores}>
           <Box className={classes.boxValoresCalculo}>
             <span>Subtotal:</span>
@@ -208,10 +271,17 @@ export function Cart({ items, setItems }) {
             </Box>
           </Box>
         </Box>
-        <Button onClick={clearAllCart}>
-          <IconTrash size={18} />
-          Limpar Carrinho
-        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button onClick={clearAllCart}>
+            <IconTrash size={18} />
+            Limpar Carrinho
+          </Button>
+        </Box>
       </Grid.Col>
     </Grid>
   );

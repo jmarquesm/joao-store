@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
+import { NotificationsProvider } from '@mantine/notifications';
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -52,11 +53,14 @@ export default function App(props) {
             colorScheme
           }}
         >
-          <Component
-            {...pageProps}
-            items={items}
-            setItems={customSetItems}
-          />
+          <NotificationsProvider position='bottom-left' limit={3} containerWidth={320}>
+            <Component
+              {...pageProps}
+              items={items}
+              setItems={customSetItems}
+            />
+          </NotificationsProvider>
+
         </MantineProvider>
       </ColorSchemeProvider>
     </>
