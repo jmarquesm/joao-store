@@ -48,6 +48,7 @@ const useStyles = createStyles(() => ({
     borderRadius: 10,
     padding: 0,
     margin: "auto",
+    marginTop: 0,
   },
 
   elementCol: {
@@ -55,6 +56,14 @@ const useStyles = createStyles(() => ({
     alignContent: "center",
     margin: "auto",
     fontSize: 13,
+  },
+
+  globalCol2: {
+    marginTop: 14.9,
+    paddingTop: 0,
+    position: "sticky",
+    top: 20,
+    height: 300,
   },
 
   unitsSection: {
@@ -191,7 +200,7 @@ export function Cart({ items, setItems }) {
         ))}
       </Grid.Col>
 
-      <Grid.Col span={12} sm={4}>
+      <Grid.Col span={12} sm={4} className={classes.globalCol2}>
         <Box className={classes.boxValores}>
           <Box className={classes.boxValoresCalculo}>
             <span>Subtotal:</span>
@@ -253,7 +262,7 @@ export function Cart({ items, setItems }) {
               alignItems: "center",
             }}
           >
-            <IconBarcode size={35} />
+            <IconBarcode size={25} />
             <Box>
               <span>
                 R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")}{" "}
@@ -262,10 +271,17 @@ export function Cart({ items, setItems }) {
             </Box>
           </Box>
         </Box>
-        <Button onClick={clearAllCart}>
-          <IconTrash size={18} />
-          Limpar Carrinho
-        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button onClick={clearAllCart}>
+            <IconTrash size={18} />
+            Limpar Carrinho
+          </Button>
+        </Box>
       </Grid.Col>
     </Grid>
   );
