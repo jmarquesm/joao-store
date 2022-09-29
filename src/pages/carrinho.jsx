@@ -1,4 +1,4 @@
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Text } from "@mantine/core";
 import Layout from "../components/common/Layout";
 import { Cart } from "../components/purchase/Cart";
 
@@ -9,6 +9,7 @@ export default function Carrinho({ items, setItems }) {
         style={{
           minHeight: "calc(100vh - 130px)",
           padding: 16,
+          paddingTop: 0,
         }}
       >
         {items === null || items.length === 0 || items === [] ? (
@@ -19,9 +20,6 @@ export default function Carrinho({ items, setItems }) {
           </Container>
         ) : (
           <>
-            <Title size={"h2"} my={"md"}>
-              Carrinho
-            </Title>
             <Cart items={items} setItems={setItems} />
           </>
         )}
