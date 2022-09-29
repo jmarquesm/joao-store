@@ -6,26 +6,19 @@ import {
   Text,
   ActionIcon,
   Button,
+  Title,
 } from "@mantine/core";
 import {
   IconBarcode,
   IconCircleMinus,
   IconCirclePlus,
   IconCreditCard,
+  IconShoppingCart,
   IconTrash,
 } from "@tabler/icons";
 import React from "react";
 
 const useStyles = createStyles(() => ({
-  div: {
-    borderRadius: 10,
-    padding: 0,
-    marginTop: 10,
-    marginBottom: 10,
-    marginRight: 10,
-    marginLeft: 0,
-  },
-
   boxValores: {
     borderRadius: 5,
     padding: 5,
@@ -39,9 +32,7 @@ const useStyles = createStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
     alignContent: "center",
-    margin: "auto",
     fontSize: 13,
-    paddingLeft: 5,
   },
 
   globalCol: {
@@ -127,162 +118,186 @@ export function Cart({ items, setItems }) {
   }
 
   return (
-    <Grid grow gutter="xl">
-      <Grid.Col span={12} md={8} className={classes.globalCol}>
-        {items.map((produto) => (
-          <Grid key={produto.description} sx={{ margin: 0 }}>
-            <Grid.Col span={"content"} className={classes.elementCol}>
-              <Avatar size={50} src={produto.image} />
-            </Grid.Col>
+    <>
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        <Title size={"h2"} my={"md"}>
+          Carrinho
+        </Title>
+        <Button
+          sx={{ width: 293, marginLeft: 15 }}
+          variant="default"
+          onClick={clearAllCart}
+        >
+          <IconTrash size={18} />
+          Limpar Carrinho
+        </Button>
+      </div>
+      <Grid grow gutter="xl">
+        <Grid.Col span={12} md={8} className={classes.globalCol}>
+          {items.map((produto) => (
+            <Grid key={produto.description} sx={{ margin: 0 }}>
+              <Grid.Col span={"content"} className={classes.elementCol}>
+                <Avatar size={50} src={produto.image} />
+              </Grid.Col>
 
-            <Grid.Col span={"auto"} className={classes.elementCol}>
-              <Text lineClamp={2} className={classes.name}>
-                {produto.description}
-              </Text>
-            </Grid.Col>
+              <Grid.Col span={"auto"} className={classes.elementCol}>
+                <Text lineClamp={2} className={classes.name}>
+                  {produto.description}
+                </Text>
+              </Grid.Col>
 
-            <Grid.Col
-              span={2}
-              xs={2}
-              sm={1}
-              md={1.5}
-              className={classes.elementCol}
-            >
-              <Box className={classes.unitsSection}>
+              <Grid.Col
+                span={2}
+                xs={2}
+                sm={1}
+                md={2}
+                className={classes.elementCol}
+              >
+                <Box className={classes.unitsSection}>
+                  <ActionIcon
+                    variant="transparent"
+                    onClick={() => decrementUnits(produto)}
+                  >
+                    <IconCircleMinus size={16} />
+                  </ActionIcon>
+                  <Text className={classes.name}>{produto.units}</Text>
+                  <ActionIcon
+                    variant="transparent"
+                    onClick={() => incrementUnits(produto)}
+                  >
+                    <IconCirclePlus size={16} />
+                  </ActionIcon>
+                </Box>
+              </Grid.Col>
+
+              <Grid.Col
+                span={2.5}
+                xs={2}
+                sm={2}
+                md={2.5}
+                className={classes.elementCol}
+              >
+                <Text className={classes.name}>
+                  R$ {produto.price.toFixed(2).replace(".", ",")}
+                </Text>
+              </Grid.Col>
+              <Grid.Col
+                span={1}
+                xs={1}
+                sm={1}
+                md={1}
+                sx={{
+                  padding: 0,
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
                 <ActionIcon
-                  variant="transparent"
-                  onClick={() => decrementUnits(produto)}
+                  onClick={function () {
+                    removeItemCart(produto);
+                  }}
                 >
-                  <IconCircleMinus size={16} />
+                  <IconTrash size={16} />
                 </ActionIcon>
-                <Text className={classes.name}>{produto.units}</Text>
-                <ActionIcon
-                  variant="transparent"
-                  onClick={() => incrementUnits(produto)}
-                >
-                  <IconCirclePlus size={16} />
-                </ActionIcon>
-              </Box>
-            </Grid.Col>
+              </Grid.Col>
+            </Grid>
+          ))}
+        </Grid.Col>
 
-            <Grid.Col
-              span={3}
-              xs={2}
-              sm={2}
-              md={2}
-              className={classes.elementCol}
+        <Grid.Col span={12} sm={4} className={classes.globalCol2}>
+          <Box className={classes.boxValores}>
+            <Box className={classes.boxValoresCalculo}>
+              <span>Subtotal:</span>
+              <span>R$ {valueCalc(items).replace(".", ",")}</span>
+            </Box>
+
+            <Box className={classes.boxValoresCalculo}>
+              <span>Frete:</span>
+              <span>R$ 0,00</span>
+            </Box>
+
+            <Box
+              sx={{ borderTop: "solid", borderTopWidth: 1 }}
+              className={classes.boxValoresCalculo}
             >
-              <Text className={classes.name}>
-                R$ {produto.price.toFixed(2).replace(".", ",")}
-              </Text>
-            </Grid.Col>
-            <Grid.Col
-              span={1}
-              xs={1}
-              sm={1}
-              md={0.5}
+              <span>Desconto Cupom:</span>
+              <span>R$ 0,00</span>
+            </Box>
+
+            <Box
+              className={classes.boxValoresCalculo}
               sx={{
-                padding: 0,
-                display: "flex",
-                justifyContent: "flex-start",
+                borderTop: "solid",
+                borderTopWidth: 1,
+                height: 50,
                 alignItems: "center",
               }}
             >
-              <ActionIcon
-                onClick={function () {
-                  removeItemCart(produto);
-                }}
-              >
-                <IconTrash size={16} />
-              </ActionIcon>
-            </Grid.Col>
-          </Grid>
-        ))}
-      </Grid.Col>
+              <span>TOTAL</span>
+              <span>R$ {valueCalc(items).replace(".", ",")}</span>
+            </Box>
 
-      <Grid.Col span={12} sm={4} className={classes.globalCol2}>
-        <Box className={classes.boxValores}>
-          <Box className={classes.boxValoresCalculo}>
-            <span>Subtotal:</span>
-            <span>R$ {valueCalc(items).replace(".", ",")}</span>
-          </Box>
+            <Box
+              className={classes.boxValoresCalculo}
+              sx={{
+                height: 50,
+                justifyContent: "flex-start",
+                borderTop: "solid",
+                borderTopWidth: 1,
+                alignItems: "center",
+              }}
+            >
+              <IconCreditCard size={25} />
+              <Box>
+                <span>
+                  12x de R$
+                  {(valueCalc(items) / 12).toFixed(2).replace(".", ",")}
+                </span>
+                <span> s/ juros</span>
+              </Box>
+            </Box>
 
-          <Box className={classes.boxValoresCalculo}>
-            <span>Frete:</span>
-            <span>R$ 0,00</span>
-          </Box>
-
-          <Box
-            sx={{ borderTop: "solid", borderTopWidth: 1 }}
-            className={classes.boxValoresCalculo}
-          >
-            <span>Desconto Cupom:</span>
-            <span>R$ 0,00</span>
-          </Box>
-
-          <Box
-            className={classes.boxValoresCalculo}
-            sx={{
-              borderTop: "solid",
-              borderTopWidth: 1,
-              height: 50,
-              alignItems: "center",
-            }}
-          >
-            <span>TOTAL</span>
-            <span>R$ {valueCalc(items).replace(".", ",")}</span>
-          </Box>
-
-          <Box
-            className={classes.boxValoresCalculo}
-            sx={{
-              height: 50,
-              justifyContent: "flex-start",
-              borderTop: "solid",
-              borderTopWidth: 1,
-              alignItems: "center",
-            }}
-          >
-            <IconCreditCard size={25} />
-            <Box>
-              <span>
-                12x de R$ {(valueCalc(items) / 12).toFixed(2).replace(".", ",")}
-              </span>
-              <span> s/ juros</span>
+            <Box
+              className={classes.boxValoresCalculo}
+              sx={{
+                height: 50,
+                justifyContent: "flex-start",
+                borderTop: "solid",
+                borderTopWidth: 1,
+                alignItems: "center",
+              }}
+            >
+              <IconBarcode size={25} />
+              <Box>
+                <span>
+                  R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")}{" "}
+                </span>
+                <span>com 12% de desconto à vista no boleto ou no pix</span>
+              </Box>
             </Box>
           </Box>
-
           <Box
-            className={classes.boxValoresCalculo}
             sx={{
-              height: 50,
-              justifyContent: "flex-start",
-              borderTop: "solid",
-              borderTopWidth: 1,
-              alignItems: "center",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
             }}
           >
-            <IconBarcode size={25} />
-            <Box>
-              <span>
-                R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")}{" "}
-              </span>
-              <span>com 12% de desconto à vista no boleto ou no pix</span>
-            </Box>
+            <Button>
+              <IconShoppingCart size={18} />
+              Finalizar Compra
+            </Button>
           </Box>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Button onClick={clearAllCart}>
-            <IconTrash size={18} />
-            Limpar Carrinho
-          </Button>
-        </Box>
-      </Grid.Col>
-    </Grid>
+        </Grid.Col>
+      </Grid>
+    </>
   );
 }
