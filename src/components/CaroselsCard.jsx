@@ -95,7 +95,7 @@ export function CaroselsCard({
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section className={classes.imageSection}>
-        <Image src={image} alt={title} />
+        <Image src={image} alt={title} sx={{ padding: 50 }} />
       </Card.Section>
 
       <Card.Section className={classes.titleSection} position="apart" mt="md">
