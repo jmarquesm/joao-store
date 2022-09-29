@@ -50,7 +50,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function FeaturesCard({
+export function CaroselsCard({
   image,
   title,
   description,

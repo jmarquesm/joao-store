@@ -27,6 +27,7 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingBottom: 1,
   },
 
   links: {
