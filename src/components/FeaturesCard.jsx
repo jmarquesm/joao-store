@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   titleSection: {
-    height: "100px",
+    height: "70px",
     alignItems: "baseline",
     paddingLeft: 16,
     paddingRight: 16,
