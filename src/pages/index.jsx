@@ -1,9 +1,18 @@
 import { StatsGroup } from "../components/StatsGroup";
-import { Box, Container, createStyles, Loader, Title } from "@mantine/core";
+import {
+  Box,
+  Container,
+  createStyles,
+  Image,
+  Loader,
+  SimpleGrid,
+  Title,
+} from "@mantine/core";
 import { useState, useEffect } from "react";
 import Layout from "../components/common/Layout";
 import { Carousel } from "@mantine/carousel";
 import { CaroselsCard } from "../components/CaroselsCard";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -19,11 +28,35 @@ const useStyles = createStyles((theme) => ({
       flexDirection: "column",
     },
   },
+  departamentGridCol: {
+    fontWeight: 700,
+    textAlign: "center",
+    // color: "#228be6",
+    height: 220,
+    padding: 16,
+    display: "flex",
+    overflow: "hidden",
+    alignItems: "top",
+    justifyContent: "center",
+    border: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
+    borderRadius: 8,
+    flexDirection: "column",
+    cursor: "pointer",
+  },
+  departamentGridImg: {
+    display: "flex",
+    flexWrap: "nowrap",
+    flexDirection: "column",
+    alignItems: "stretch",
+  },
 }));
 
 function HomePage({ items, setItems }) {
   const [stats, setStats] = useState([]);
   const [products, setProducts] = useState({});
+  const [departments, setDepartaments] = useState([]);
   const { classes } = useStyles();
 
   useEffect(() => {
@@ -36,6 +69,11 @@ function HomePage({ items, setItems }) {
       .then((response) => response.json())
       .then((productData) => {
         setProducts(productData);
+      });
+    fetch(`/api/departaments`)
+      .then((response) => response.json())
+      .then((departamentData) => {
+        setDepartaments(departamentData);
       });
   }, []);
 
@@ -54,7 +92,7 @@ function HomePage({ items, setItems }) {
               minHeight: 450,
             }}
           >
-            <Loader color={"white"} />
+            <Loader color={"#228be6"} />
           </Box>
         ) : (
           <Carousel
@@ -69,14 +107,14 @@ function HomePage({ items, setItems }) {
             slideGap="md"
             breakpoints={[
               { maxWidth: "md", slideSize: "50%" },
-              { maxWidth: "sm", slideSize: "100%", slideGap: 0 },
+              { maxWidth: "xs", slideSize: "100%", slideGap: 0 },
             ]}
             align="start"
             dragFree
             loop
           >
             {products?.items?.map((produto) => (
-              <Carousel.Slide key={produto.name}>
+              <Carousel.Slide key={produto.image}>
                 <CaroselsCard
                   image={produto.image}
                   title={produto.marca}
@@ -91,7 +129,47 @@ function HomePage({ items, setItems }) {
           </Carousel>
         )}
       </Container>
-
+      <Container>
+        <Title size={"h2"} my={"md"}>
+          Departamentos
+        </Title>
+        {departments.length == 0 ? (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: 460,
+            }}
+          >
+            <Loader color={"#228be6"} />
+          </Box>
+        ) : (
+          <SimpleGrid
+            cols={4}
+            spacing="lg"
+            breakpoints={[
+              { maxWidth: 980, cols: 3, spacing: "md" },
+              { maxWidth: 755, cols: 2, spacing: "sm" },
+              { maxWidth: 600, cols: 1, spacing: "sm" },
+            ]}
+          >
+            {departments.map((item) => (
+              <Link
+                key={item.label}
+                href={`/${item.category}/${item.subCategory}`}
+              >
+                <div className={classes.departamentGridCol}>
+                  <div> {item.label}</div>
+                  <div className={classes.departamentGridImg}>
+                    <Image src={item.img} alt={item.label} />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </SimpleGrid>
+        )}
+      </Container>
       <Container>
         <Title size={"h2"} my={"md"}>
           Estatísticas

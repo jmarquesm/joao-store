@@ -181,7 +181,7 @@ export default function handler(req, res) {
                     "Berserk Guts 410 Berserker Armor Ver. Figma PVC Action Figure Collection Figurine Model Toy",
                 marca: "Berserk",
                 price: 200.00,
-                image: "https://ae01.alicdn.com/kf/Sc5389a696404403d9af4b6523919e41dv/25cm-berserk-tripas-l-figura-anime-guts-berserker-armadura-figura-de-a-o-berserk-preto-espadachim.jpg_Q90.jpg_.webp",
+                image: "https://s.pacn.ws/1500/ym/berserk-16-scale-action-figure-guts-kyousenshi-armor-623371.1.jpg?v=qm8h7f&width=760",
                 offer: 10
             },
             {
@@ -189,7 +189,7 @@ export default function handler(req, res) {
                     "One Piece Luffy Anime Action Figure Brinquedos Pvc Nova Coleção Figuras De Coleta De Para O Presente De Natal Japonês Figura",
                 marca: "One Piece",
                 price: 50.00,
-                image: "https://cdn.shopify.com/s/files/1/0498/3249/3214/products/product-image-1737174365_1200x1200.jpg?v=1619815118",
+                image: "https://d3nt9em9l1urz8.cloudfront.net/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/b/i/bibas17391-1.jpg",
                 offer: 8
             },
             {
