@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FeaturesCard } from "../../../components/FeaturesCard";
 import Layout from "../../../components/common/Layout";
 
-function ProductsPage({ items, setItems }) {
+function DepartamentsPage({ items, setItems }) {
   const [category, setCategory] = useState({});
   const router = useRouter();
   const categoryid = router.query.category;
@@ -12,7 +12,7 @@ function ProductsPage({ items, setItems }) {
 
   useEffect(() => {
     if (categoryid && subCategoryid)
-      fetch(`/api/product/${categoryid}/${subCategoryid}`)
+      fetch(`/api/categories/${categoryid}/${subCategoryid}`)
         .then((response) => response.json())
         .then((categoryData) => {
           setCategory(categoryData);
@@ -46,20 +46,9 @@ function ProductsPage({ items, setItems }) {
 
           <Grid>
             {category?.items?.map((produto) => (
-              <Grid.Col
-                lg={3}
-                md={4}
-                sm={4}
-                xs={6}
-                span={12}
-                key={produto.name}
-              >
+              <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
                 <FeaturesCard
-                  image={produto.image}
-                  title={produto.marca}
-                  description={produto.name}
-                  price={produto.price}
-                  offer={produto.offer}
+                  produto={produto}
                   items={items}
                   setItems={setItems}
                 />
@@ -72,4 +61,4 @@ function ProductsPage({ items, setItems }) {
   );
 }
 
-export default ProductsPage;
+export default DepartamentsPage;
