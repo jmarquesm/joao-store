@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "slug": "placa-de-video",
+    "name": "Placa De Video",
+    "departament": "hardware"
+  },
+  {
+    "id": 2,
+    "slug": "placa-mae",
+    "name": "Placa Mãe",
+    "departament": "hardware"
+  },
+  {
+    "id": 3,
+    "slug": "processador",
+    "name": "Processador",
+    "departament": "hardware"
+  },
+  {
+    "id": 4,
+    "slug": "teclado",
+    "name": "Teclado",
+    "departament": "periferico"
+  },
+  {
+    "id": 5,
+    "slug": "mouse",
+    "name": "Mouse",
+    "departament": "periferico"
+  },
+  {
+    "id": 6,
+    "slug": "fone-de-ouvido",
+    "name": "Fone De Ouvido",
+    "departament": "periferico"
+  },
+  {
+    "id": 7,
+    "slug": "cadeira",
+    "name": "Cadeira",
+    "departament": "escritorio"
+  },
+  {
+    "id": 8,
+    "slug": "mesa",
+    "name": "Mesa",
+    "departament": "escritorio"
+  },
+  {
+    "id": 9,
+    "slug": "figure",
+    "name": "Figure",
+    "departament": "escritorio"
+  }
+]
