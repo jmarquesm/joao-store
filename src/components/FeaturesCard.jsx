@@ -2,6 +2,7 @@ import { Card, Image, Text, Badge, Button, Box } from "@mantine/core";
 import { createStyles } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { IconCheck, IconShoppingCartPlus } from "@tabler/icons";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -18,6 +19,7 @@ const useStyles = createStyles((theme) => ({
     borderBottom: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
+    cursor: "pointer",
   },
 
   titleSection: {
@@ -50,36 +52,24 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function FeaturesCard({
-  image,
-  title,
-  description,
-  price,
-  offer,
-  items,
-  setItems,
-}) {
+export function FeaturesCard({ produto, isInCarousel, items, setItems }) {
   const { classes } = useStyles();
 
   function addToCart() {
-    const produto = {
-      image,
-      title,
-      description,
-      price,
-      offer,
+    const novoProduto = {
+      ...produto,
       units: 1,
     };
 
     let itemAllReadyExist = false;
     for (let indexDoItemDoCarrinho in items) {
       const itemDoCarrinho = items[indexDoItemDoCarrinho];
-      if (itemDoCarrinho.description === produto.description) {
+      if (itemDoCarrinho.description === novoProduto.description) {
         items[indexDoItemDoCarrinho].units += 1;
         itemAllReadyExist = true;
       }
     }
-    if (!itemAllReadyExist) items.push(produto);
+    if (!itemAllReadyExist) items.push(novoProduto);
 
     setItems([...items]);
   }
@@ -95,15 +85,21 @@ export function FeaturesCard({
   return (
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section className={classes.imageSection}>
-        <Image src={image} alt={title} />
+        <Link href={`/produtos/${produto.id}`}>
+          <Image
+            src={produto.coverImage}
+            alt={produto.title}
+            sx={{ padding: isInCarousel ? 50 : 0 }}
+          />
+        </Link>
       </Card.Section>
 
       <Card.Section className={classes.titleSection} position="apart" mt="md">
         <div>
-          <Text weight={200}>{title}</Text>
+          <Text weight={200}>{produto.title}</Text>
 
           <Text lineClamp={2} size="xs" color="dimmed">
-            {description}
+            {produto.description}
           </Text>
         </div>
       </Card.Section>
@@ -111,9 +107,13 @@ export function FeaturesCard({
       <Card.Section className={classes.priceSection}>
         <Box className={classes.price}>
           <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
-            R${price.toFixed(2).replace(".", ",")}
+            R${produto.price.toFixed(2).replace(".", ",")}
           </Text>
-          <Text>{offer && <Badge variant="outline">{offer}% OFF</Badge>}</Text>
+          <Text>
+            {produto.offer && (
+              <Badge variant="outline">{produto.offer}% OFF</Badge>
+            )}
+          </Text>
         </Box>
 
         <Box sx={{ marginTop: 16 }}>
