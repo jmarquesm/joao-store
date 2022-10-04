@@ -11,8 +11,8 @@ import {
 import { useState, useEffect } from "react";
 import Layout from "../components/common/Layout";
 import { Carousel } from "@mantine/carousel";
-import { CaroselsCard } from "../components/CaroselsCard";
 import Link from "next/link";
+import { FeaturesCard } from "../components/FeaturesCard";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -31,7 +31,6 @@ const useStyles = createStyles((theme) => ({
   departamentGridCol: {
     fontWeight: 700,
     textAlign: "center",
-    // color: "#228be6",
     height: 220,
     padding: 16,
     display: "flex",
@@ -55,9 +54,17 @@ const useStyles = createStyles((theme) => ({
 
 function HomePage({ items, setItems }) {
   const [stats, setStats] = useState([]);
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState();
   const [departments, setDepartaments] = useState([]);
   const { classes } = useStyles();
+
+  useEffect(() => {
+    setProducts({});
+
+    return () => {
+      setProducts({});
+    };
+  }, []);
 
   useEffect(() => {
     fetch(`/api/estatistica`)
@@ -76,6 +83,10 @@ function HomePage({ items, setItems }) {
         setDepartaments(departamentData);
       });
   }, []);
+
+  if (departments.items == undefined) {
+    return;
+  }
 
   return (
     <Layout items={items} setItems={setItems}>
@@ -114,13 +125,10 @@ function HomePage({ items, setItems }) {
             loop
           >
             {products?.items?.map((produto) => (
-              <Carousel.Slide key={produto.image}>
-                <CaroselsCard
-                  image={produto.image}
-                  title={produto.marca}
-                  description={produto.name}
-                  price={produto.price}
-                  offer={produto.offer}
+              <Carousel.Slide key={produto.id}>
+                <FeaturesCard
+                  isInCarousel
+                  produto={produto}
                   items={items}
                   setItems={setItems}
                 />
@@ -133,7 +141,7 @@ function HomePage({ items, setItems }) {
         <Title size={"h2"} my={"md"}>
           Departamentos
         </Title>
-        {departments.length == 0 ? (
+        {departments.items.length == 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -154,15 +162,12 @@ function HomePage({ items, setItems }) {
               { maxWidth: 600, cols: 1, spacing: "sm" },
             ]}
           >
-            {departments.map((item) => (
-              <Link
-                key={item.label}
-                href={`/${item.category}/${item.subCategory}`}
-              >
+            {departments.items.map((item) => (
+              <Link key={item.name} href={`/${item.departament}/${item.slug}`}>
                 <div className={classes.departamentGridCol}>
-                  <div> {item.label}</div>
+                  <div> {item.name}</div>
                   <div className={classes.departamentGridImg}>
-                    <Image src={item.img} alt={item.label} />
+                    <Image src={item.image} alt={item.name} />
                   </div>
                 </div>
               </Link>

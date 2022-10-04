@@ -144,7 +144,7 @@ export function Cart({ items, setItems }) {
           {items.map((produto) => (
             <Grid key={produto.description} sx={{ margin: 0 }}>
               <Grid.Col span={"content"} className={classes.elementCol}>
-                <Avatar size={50} src={produto.image} />
+                <Avatar size={50} src={produto.coverImage} />
               </Grid.Col>
 
               <Grid.Col span={"auto"} className={classes.elementCol}>
