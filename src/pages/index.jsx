@@ -84,6 +84,10 @@ function HomePage({ items, setItems }) {
       });
   }, []);
 
+  if (departments.items == undefined) {
+    return;
+  }
+
   return (
     <Layout items={items} setItems={setItems}>
       <Container>
@@ -137,7 +141,7 @@ function HomePage({ items, setItems }) {
         <Title size={"h2"} my={"md"}>
           Departamentos
         </Title>
-        {departments.length == 0 ? (
+        {departments.items.length == 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -158,15 +162,12 @@ function HomePage({ items, setItems }) {
               { maxWidth: 600, cols: 1, spacing: "sm" },
             ]}
           >
-            {departments.map((item) => (
-              <Link
-                key={item.label}
-                href={`/${item.category}/${item.subCategory}`}
-              >
+            {departments.items.map((item) => (
+              <Link key={item.name} href={`/${item.departament}/${item.slug}`}>
                 <div className={classes.departamentGridCol}>
-                  <div> {item.label}</div>
+                  <div> {item.name}</div>
                   <div className={classes.departamentGridImg}>
-                    <Image src={item.img} alt={item.label} />
+                    <Image src={item.image} alt={item.name} />
                   </div>
                 </div>
               </Link>
