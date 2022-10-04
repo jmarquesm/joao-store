@@ -3,54 +3,63 @@
     "id": 1,
     "slug": "placa-de-video",
     "name": "Placa De Video",
-    "departament": "hardware"
+    "departament": "hardware",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg3070t8tfxppb13.jpg"
   },
   {
     "id": 2,
     "slug": "placa-mae",
     "name": "Placa Mãe",
-    "departament": "hardware"
+    "departament": "hardware",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/a/mag-b560-tomahawk-wifi1.jpg"
   },
   {
     "id": 3,
     "slug": "processador",
     "name": "Processador",
-    "departament": "hardware"
+    "departament": "hardware",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000514wof11.jpg"
   },
   {
     "id": 4,
     "slug": "teclado",
     "name": "Teclado",
-    "departament": "periferico"
+    "departament": "periferico",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/r/z/rz03-03930400-r3u14.jpg"
   },
   {
     "id": 5,
     "slug": "mouse",
     "name": "Mouse",
-    "departament": "periferico"
+    "departament": "periferico",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/h/ch-93170113.jpg"
   },
   {
     "id": 6,
     "slug": "fone-de-ouvido",
     "name": "Fone De Ouvido",
-    "departament": "periferico"
+    "departament": "periferico",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011188-na4.jpg"
   },
   {
     "id": 7,
     "slug": "cadeira",
     "name": "Cadeira",
-    "departament": "escritorio"
+    "departament": "escritorio",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/3/m/3mtitanr-00011.jpg"
   },
   {
     "id": 8,
     "slug": "mesa",
     "name": "Mesa",
-    "departament": "escritorio"
+    "departament": "escritorio",
+    "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/t/dt3-f40-curvada-32142_1.jpg"
   },
   {
     "id": 9,
     "slug": "figure",
     "name": "Figure",
-    "departament": "escritorio"
+    "departament": "escritorio",
+    "image": ["https://cf.shopee.com.br/file/204b536b32b693061d4f94be5787b5f7"]
   }
 ]

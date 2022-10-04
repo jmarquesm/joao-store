@@ -6,6 +6,10 @@
     "description": "Cadeira Gamer Cooler Master Caliber E1, Preto, CMI-GCE1-BK",
     "price": 1249.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/m/cmi-gce1-bk9.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/m/cmi-gce1-bk7.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/m/cmi-gce1-bk8.jpg"
+    ],
     "offer": 10
   },
   {
@@ -15,6 +19,10 @@
     "description": "Cadeira Gamer DT3 Sports Rhino, Graphite, 13338-8",
     "price": 2969.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/3/13338-82.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/3/13338-89.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/3/13338-83.jpg"
+    ],
     "offer": null
   },
   {
@@ -24,6 +32,7 @@
     "description": "Berserk Guts 410 Berserker Armor Ver. Figma PVC Action Figure Collection Figurine Model Toy",
     "price": 200.0,
     "coverImage": "https://s.pacn.ws/1500/ym/berserk-16-scale-action-figure-guts-kyousenshi-armor-623371.1.jpg?v=qm8h7f&width=760",
+    "images": [],
     "offer": 10
   },
   {
@@ -33,6 +42,7 @@
     "description": "Goku Dragon Ball Z Figurinhas Son Figura 20th Aniversário Pvc Toy Action Figure",
     "price": 55.0,
     "coverImage": "https://a-static.mlcdn.com.br/1500x1500/action-figure-son-goku-ssj-match-makers-dragon-ball-z-banpresto/shopb/shaf-1208/392d203c33585e2faa25dd45592acbea.jpg",
+    "images": [],
     "offer": null
   },
   {
@@ -42,6 +52,7 @@
     "description": "One Piece Luffy Anime Action Figure Brinquedos Pvc Nova Coleção Figuras De Coleta De Para O Presente De Natal Japonês Figura",
     "price": 50.0,
     "coverImage": "https://d3nt9em9l1urz8.cloudfront.net/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/b/i/bibas17391-1.jpg",
+    "images": [],
     "offer": null
   },
   {
@@ -51,6 +62,7 @@
     "description": "Arcanine Pokemon Action Figure Boneco Colecionável",
     "price": 115.0,
     "coverImage": "https://cdn.shopify.com/s/files/1/1144/1890/products/8273ab91-128c-49b8-817f-217599209894.jpg?v=1663845569",
+    "images": [],
     "offer": null
   },
   {
@@ -60,6 +72,10 @@
     "description": "Processador Intel Core i5-12600KF, 10-Core, 16-Threads, 3.7GHz (4.9GHz Turbo), Cache 20MB, LGA1700, BX8071512600KF-BR",
     "price": 2039.99,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512600kf-br2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512600kf1.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512600kf.jpg"
+    ],
     "offer": 10
   },
   {
@@ -69,6 +85,10 @@
     "description": "Processador Intel Core i9-12900F, 16-Core, 24-Threads, 2.4GHz (5.1GHz Turbo), Cache 30MB, LGA1700, BX8071512900F",
     "price": 3699.88,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512900f1.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512900f.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512900f2.jpg"
+    ],
     "offer": null
   },
   {
@@ -78,6 +98,7 @@
     "description": "Processador AMD Ryzen 5 3600, 6-Core, 12-Threads, 3.6GHz (4.2GHz Turbo), Cache 35MB, AM4, 100-100000031SBX",
     "price": 999.99,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000031sbx.jpg",
+    "images": [],
     "offer": 9
   },
   {
@@ -87,6 +108,9 @@
     "description": "Processador AMD Ryzen 7 5700X, 8-Core, 16-Threads, 3.4GHz (4.6GHz Turbo), Cache 36MB, AM4, 100-100000926WOF",
     "price": 1599.99,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000926wof.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000926wof1.jpg"
+    ],
     "offer": null
   },
   {
@@ -96,6 +120,9 @@
     "description": "Placa Mae Brazil PC B75C-V4, DDR3, Socket LGA1155, M-ATX, Chipset Intel B75, BPC-B75C-V4 OEM",
     "price": 325.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/p/bpc-b75c-v4-oem.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/p/bpc-b75c-v4-oem3.jpg"
+    ],
     "offer": 3
   },
   {
@@ -105,6 +132,10 @@
     "description": "Placa Mae MSI MAG B560 TOMAHAWK WIFI, DDR4, Socket LGA 1200, ATX, Chipset Intel B560, MAG-B560-TOMAHAWK-WIFI",
     "price": 1799.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/a/mag-b560-tomahawk-wifi2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/a/mag-b560-tomahawk-wifi4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/a/mag-b560-tomahawk-wifi1.jpg"
+    ],
     "offer": null
   },
   {
@@ -114,6 +145,10 @@
     "description": "Placa Mae MSI PRO H610M-G, DDR4, Socket LGA 1700, M-ATX, Chipset Intel H610, PRO-H610M-G",
     "price": 899.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-h610m-g2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-h610m-g4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-h610m-g.jpg"
+    ],
     "offer": 5
   },
   {
@@ -123,6 +158,10 @@
     "description": "Placa Mae MSI PRO B660M-G, DDR4, Socket LGA 1700, M-ATX, Chipset Intel B660, PRO-B660M-G",
     "price": 1399.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-g2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-g3.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-g.jpg"
+    ],
     "offer": null
   },
   {
@@ -132,6 +171,10 @@
     "description": "Placa Mae MSI MPG X570S EDGE MAX WIFI, DDR4, Socket AM4, Chipset AMD X570, MPG-X570S-EDGE-MAX-WIFI",
     "price": 3299.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/p/mpg-x570s-edge-max-wifi2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/p/mpg-x570s-edge-max-wifi4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/p/mpg-x570s-edge-max-wifi.jpg"
+    ],
     "offer": null
   },
   {
@@ -141,6 +184,10 @@
     "description": "Placa Mae MSI PRO B660M-A WIFI, DDR4, Socket LGA 1700, M-ATX, Chipset Intel B660, PRO-B660M-A-WIFI",
     "price": 1799.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-a-wifi3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-a-wifi5.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/p/r/pro-b660m-a-wifi.jpg"
+    ],
     "offer": 4
   },
   {
@@ -150,6 +197,10 @@
     "description": "Placa Mae Gigabyte H610M H, DDR4, Socket LGA 1700, M-ATX, Chipset Intel H610, H610MH-DDR4",
     "price": 999.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/h/6/h610mh-ddr44.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/h/6/h610mh-ddr42.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/h/6/h610mh-ddr41.jpg"
+    ],
     "offer": 12
   },
   {
@@ -159,6 +210,10 @@
     "description": "Placa Mae Gigabyte B660M Gaming X, DDR4, Socket LGA 1700, M-ATX, Chipset Intel B660, B660M-GAMINGX-DDR4",
     "price": 1109.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/6/b660m-gamingx-ddr44.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/6/b660m-gamingx-ddr42.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/6/b660m-gamingx-ddr41.jpg"
+    ],
     "offer": null
   },
   {
@@ -168,6 +223,10 @@
     "description": "Placa de Video PNY Geforce RTX 3060, 12GB, GDDR6, 192-Bit, VCG306012DFBPB1",
     "price": 2599.99,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg306012dfbpb14.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg306012dfbpb1.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg306012dfbpb11.jpg"
+    ],
     "offer": 3
   },
   {
@@ -177,6 +236,10 @@
     "description": "Placa de Video Asus Radeon RX 6750 XT Dual OC Edition, 12GB, GDDR6, 192-bit, DUAL-RX6750XT-O12G",
     "price": 5999.98,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/u/dual-rx6750xt-o12g.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/u/dual-rx6750xt-o12g4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/u/dual-rx6750xt-o12g3.jpg"
+    ],
     "offer": 2
   },
   {
@@ -186,6 +249,10 @@
     "description": "Placa de Video Mancer GeForce RTX 2060 Heimdall, 6GB, GDDR6, 192-bit, MCR-RTX2060-HLL",
     "price": 1749.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/c/mcr-rtx2060-hll2.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/c/mcr-rtx2060-hll3.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/c/mcr-rtx2060-hll1.jpg"
+    ],
     "offer": 5
   },
   {
@@ -195,6 +262,10 @@
     "description": "Placa de Video PNY GeForce GTX 1650, 4GB, GDDR6, 128-bit, VCG16504D6SFMPB1",
     "price": 1499.04,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg16504d6sfmpb1_1.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg16504d6sfmpb12.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/v/c/vcg16504d6sfmpb13.jpg"
+    ],
     "offer": null
   },
   {
@@ -204,6 +275,10 @@
     "description": "Placa de Video Afox GeForce GTX 750TI, 4GB, GDDR5, 128-bit, AF750TI-4096D5H1-V2",
     "price": 799.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/a/f/af750ti-4096d5h1-v22.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/a/f/af750ti-4096d5h1-v2.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/a/f/af750ti-4096d5h1-v21.jpg"
+    ],
     "offer": null
   },
   {
@@ -213,6 +288,10 @@
     "description": "Mesa Gamer Cougar Deimus 120, RGB, Preto, 3M1202WB.0002",
     "price": 1449.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/3/m/3m1202wb00024.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/3/m/3m1202wb00021.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/3/m/3m1202wb00026.jpg"
+    ],
     "offer": 10
   },
   {
@@ -222,6 +301,10 @@
     "description": "Headset Gamer Corsair Virtuoso RGB Wireless XT, Drivers 50mm, Cinza, CA-9011188-NA",
     "price": 2450.5,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011188-na4.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011188-na2.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011188-na7.jpg"
+    ],
     "offer": 3
   },
   {
@@ -231,6 +314,10 @@
     "description": "Headset Gamer Corsair HS80, RGB, Drivers 50mm, Preto, CA-9011237-NA",
     "price": 775.99,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011237-na3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011237-na2.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011237-na1.jpg"
+    ],
     "offer": null
   },
   {
@@ -240,6 +327,10 @@
     "description": "Headset Gamer HyperX CloudX, Drivers 53mm, Preto e Cinza, 4P5H8AA",
     "price": 319.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5h8aa3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5h8aa4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5h8aa.jpg"
+    ],
     "offer": null
   },
   {
@@ -249,6 +340,10 @@
     "description": "Headset Gamer HyperX Cloud II, Som Surround 7.1, Drivers 53mm, Branco e Rosa, 4P5E0AA",
     "price": 449.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5e0aa3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5e0aa4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5e0aa.jpg"
+    ],
     "offer": null
   },
   {
@@ -258,6 +353,9 @@
     "description": "Headset Gamer HyperX Cloud Stinger, Drivers 50mm, Preto, 4P5L7AAABL",
     "price": 249.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5l7aaabl3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p5l7aaabl.jpg"
+    ],
     "offer": 5
   },
   {
@@ -267,6 +365,10 @@
     "description": "Mouse Gamer HyperX Pulsefire FPS Pro, RGB, 16000DPI, 6 Botoes, Preto, 4P4F7AA",
     "price": 259.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p4f7aa3.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p4f7aa4.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/4/p/4p4f7aa1.jpg"
+    ],
     "offer": null
   },
   {
@@ -276,6 +378,10 @@
     "description": "Mouse Gamer Redragon King Cobra 2, RGB, 24000DPI, 8 Botoes, Preto, M711-FPS-1",
     "price": 199.89,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/7/m711-fps-12.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/7/m711-fps-13.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/m/7/m711-fps-14.jpg"
+    ],
     "offer": null
   },
   {
@@ -285,6 +391,10 @@
     "description": "Mouse Gamer Logitech G305, Wireless, 12000DPI, 6 Botoes, Branco, 910-005290",
     "price": 299.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/9/1/910-0052901.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/9/1/910-0052902.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/9/1/910-0052903.jpg"
+    ],
     "offer": null
   },
   {
@@ -294,6 +404,9 @@
     "description": "Mouse Gamer Fortrek Blackfire, RGB, 7200DPI, 6 Botoes, Preto, 75683",
     "price": 55.49,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/7/5/75683.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/7/5/756831.jpg"
+    ],
     "offer": 5
   },
   {
@@ -303,6 +416,10 @@
     "description": "Teclaco Optico Razer Huntsman V2, Chroma, US, Switch Razer Purple, Preto, RZ03-03930400-R3U1",
     "price": 1499.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/r/z/rz03-03930400-r3u14.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/r/z/rz03-03940200-r3u1.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/r/z/rz03-03940200-r3u11.jpg"
+    ],
     "offer": 3
   },
   {
@@ -312,15 +429,23 @@
     "description": "Teclado Mecanico Gamer Cooler Master SK652, RGB, Switch Vermelho, Preto, SK-652-GKTR1-US",
     "price": 769.9,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/s/k/sk-652-gktr1-us4.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/s/k/sk-652-gktr1-us5.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/s/k/sk-652-gktr1-us3.jpg"
+    ],
     "offer": null
   },
   {
     "id": 36,
     "category": "teclado",
     "title": "Corsair",
-    "description": "Placa de Video Mancer GeForce RTX 2060 Heimdall, 6GB, GDDR6, 192-bit, MCR-RTX2060-HLL",
+    "description": "Teclado Gamer Corsair K55 RGB PRO, ABNT2, Preto, CH-9226765-BR",
     "price": 363.92,
     "coverImage": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/h/ch-9226765-br4.jpg",
+    "images": [
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/h/ch-9226765-br1.jpg",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/h/ch-9226765-br.jpg"
+    ],
     "offer": null
   }
 ]
