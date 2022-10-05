@@ -11,6 +11,7 @@ export default function ProductsPage({ items, setItems }) {
   const router = useRouter();
   const produtoId = router.query.idProduto;
   const [error, setError] = useState();
+  const [mainImage, setMainImage] = useState();
 
   useEffect(() => {
     if (produtoId)
@@ -18,6 +19,7 @@ export default function ProductsPage({ items, setItems }) {
         .then((response) => response.json())
         .then((produtoData) => {
           setProduto(produtoData);
+          setMainImage(produtoData.coverImage);
         })
         .catch(() => {
           setError(true);
@@ -28,13 +30,12 @@ export default function ProductsPage({ items, setItems }) {
     return <NotFoundPage items={items} setItems={setItems} />;
   }
 
-  if (produto == undefined) {
-    return;
-  }
-
   let imageToRender = [];
-  for (let index = 0; index < produto.images.length; index++) {
-    imageToRender.push(produto.images[index]);
+  if (produto != undefined) {
+    imageToRender = [produto.coverImage];
+    for (let index = 0; index < produto.images.length; index++) {
+      imageToRender.push(produto.images[index]);
+    }
   }
 
   function addToCart() {
@@ -56,9 +57,13 @@ export default function ProductsPage({ items, setItems }) {
     setItems([...items]);
   }
 
+  function changeImageProduct(event) {
+    setMainImage(event.target.currentSrc);
+  }
+
   return (
     <Layout items={items} setItems={setItems}>
-      {!imageToRender ? (
+      {produto === undefined ? (
         <Box
           sx={{
             display: "flex",
@@ -72,24 +77,16 @@ export default function ProductsPage({ items, setItems }) {
       ) : (
         <Grid grow gutter="xs" sx={{ margin: 0 }}>
           <Grid.Col span={1} sx={{ margin: 0, padding: 0 }}>
-            <Box
-              sx={{
-                border: "1px solid #dee2e6",
-                margin: 20,
-                borderRadius: 3,
-                padding: 1,
-                maxHeight: 800,
-              }}
-            >
-              <Image src={produto.coverImage} alt={produto.title} />
-            </Box>
             {imageToRender?.map((image) => (
               <Box
                 key={image}
+                onClick={changeImageProduct}
                 sx={{
                   border: "1px solid #dee2e6",
                   margin: 20,
                   borderRadius: 3,
+                  padding: 1,
+                  maxHeight: 800,
                 }}
               >
                 <Image src={image} alt={produto.title} />
@@ -101,7 +98,7 @@ export default function ProductsPage({ items, setItems }) {
             span={4}
             sx={{ border: "1px solid #dee2e6", margin: 20, borderRadius: 3 }}
           >
-            <Image src={produto.coverImage} alt={produto.title} />
+            <Image src={mainImage} alt={produto.title} />
           </Grid.Col>
 
           <Grid.Col
