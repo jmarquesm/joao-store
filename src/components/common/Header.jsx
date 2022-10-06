@@ -1,7 +1,6 @@
 import {
   createStyles,
   Header as MantineHeader,
-  Autocomplete,
   Group,
   Burger,
   Popover,
@@ -9,12 +8,13 @@ import {
   Indicator,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch, IconShoppingCart } from "@tabler/icons";
+import { IconShoppingCart } from "@tabler/icons";
 import { NavBar } from "../navBar/NavBar";
 import { DarkThemeButton } from "./DarkThemeButton";
 import Link from "next/link";
 import { MenuBox } from "./MenuBox";
 import { UseModal } from "../account/UseModal";
+import { SearchBar } from "../SearchBar";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -48,18 +48,12 @@ const useStyles = createStyles((theme) => ({
     padding: "8px 12px",
     borderRadius: theme.radius.sm,
     textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
+    color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
+      backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
     },
   },
 }));
@@ -86,21 +80,13 @@ export function Header({ items }) {
     );
   });
 
-  const totalDeItensDoCarrinho = items.reduce(
-    (acc, product) => acc + product.units,
-    0
-  );
+  const totalDeItensDoCarrinho = items.reduce((acc, product) => acc + product.units, 0);
 
   return (
     <MantineHeader height={56} className={classes.header} mb={0}>
       <div className={classes.inner}>
         <Group>
-          <Popover
-            opened={opened}
-            closeOnClickOutside
-            onClick={toggle}
-            size="sm"
-          >
+          <Popover opened={opened} closeOnClickOutside onClick={toggle} size="sm">
             <Popover.Target>
               <Burger opened={opened} onClick={toggle} size="sm" />
             </Popover.Target>
@@ -115,19 +101,9 @@ export function Header({ items }) {
             {itemsEL}
           </Group>
 
-          <Autocomplete
-            className={classes.search}
-            placeholder="Search"
-            icon={<IconSearch size={16} stroke={1.5} />}
-            data={["processador", "placa de video"]}
-          />
+          <SearchBar />
 
-          <Indicator
-            label={totalDeItensDoCarrinho}
-            inline
-            size={15}
-            overflowCount={9}
-          >
+          <Indicator label={totalDeItensDoCarrinho} inline size={15} overflowCount={99}>
             <Link href={"/carrinho"}>
               <ActionIcon color="blue">
                 <IconShoppingCart size={22} />
