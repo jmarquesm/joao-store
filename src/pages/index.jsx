@@ -1,62 +1,61 @@
 import { StatsGroup } from "../components/StatsGroup";
-import {
-  Box,
-  Container,
-  createStyles,
-  Image,
-  Loader,
-  SimpleGrid,
-  Title,
-} from "@mantine/core";
+import { Box, Container, Image, Loader, SimpleGrid, Title } from "@mantine/core";
 import { useState, useEffect } from "react";
 import Layout from "../components/common/Layout";
 import { Carousel } from "@mantine/carousel";
 import Link from "next/link";
 import { FeaturesCard } from "../components/FeaturesCard";
+import styled from "@emotion/styled";
 
-const useStyles = createStyles((theme) => ({
-  root: {
-    minHeight: 190.1,
-    display: "flex",
-    backgroundImage: `linear-gradient(-60deg, ${
-      theme.colors[theme.primaryColor][4]
-    } 00%, ${theme.colors[theme.primaryColor][7]} 100%)`,
-    padding: theme.spacing.xl * 1.5,
-    borderRadius: theme.radius.md,
+const StyledDepartamentGridCol = styled.div`
+  font-weight: 700;
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  overflow: hidden;
+  align-items: top;
+  justify-content: center;
+  border: 1px solid
+    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3])};
+  border-radius: 8px;
+  flex-direction: column;
+  cursor: pointer;
+`;
 
-    [theme.fn.smallerThan("sm")]: {
-      flexDirection: "column",
-    },
-  },
-  departamentGridCol: {
-    fontWeight: 700,
-    textAlign: "center",
-    height: 220,
-    padding: 16,
-    display: "flex",
-    overflow: "hidden",
-    alignItems: "top",
-    justifyContent: "center",
-    border: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-    borderRadius: 8,
-    flexDirection: "column",
-    cursor: "pointer",
-  },
-  departamentGridImg: {
-    display: "flex",
-    flexWrap: "nowrap",
-    flexDirection: "column",
-    alignItems: "stretch",
-  },
-}));
+const StyledStatsLoaderBox = styled(Box)`
+  min-height: 190.1px;
+
+  background-image: linear-gradient(
+    -60 deg,
+    ${({ theme }) => theme.colors[theme.primaryColor][4]} 00%,
+    ${({ theme }) => theme.colors[theme.primaryColor][7]} 100%
+  );
+
+  padding: ${({ theme }) => theme.spacing.xl * 1.5}px;
+  border-radius: ${({ theme }) => theme.radius.md}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledCarouselLoaderBox = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 450;
+`;
+
+const StyledDepartamentLoaderBox = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 460;
+`;
 
 function HomePage({ items, setItems }) {
   const [stats, setStats] = useState([]);
   const [products, setProducts] = useState();
   const [departments, setDepartaments] = useState([]);
-  const { classes } = useStyles();
 
   useEffect(() => {
     setProducts({});
@@ -95,16 +94,9 @@ function HomePage({ items, setItems }) {
           Promoção
         </Title>
         {!products?.items ? (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 450,
-            }}
-          >
-            <Loader color={"#228be6"} />
-          </Box>
+          <StyledCarouselLoaderBox>
+            <Loader color="blue.8" />
+          </StyledCarouselLoaderBox>
         ) : (
           <Carousel
             styles={{
@@ -126,12 +118,7 @@ function HomePage({ items, setItems }) {
           >
             {products?.items?.map((produto) => (
               <Carousel.Slide key={produto.id}>
-                <FeaturesCard
-                  isInCarousel
-                  produto={produto}
-                  items={items}
-                  setItems={setItems}
-                />
+                <FeaturesCard isInCarousel produto={produto} items={items} setItems={setItems} />
               </Carousel.Slide>
             ))}
           </Carousel>
@@ -142,16 +129,9 @@ function HomePage({ items, setItems }) {
           Departamentos
         </Title>
         {departments.items.length == 0 ? (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 460,
-            }}
-          >
+          <StyledDepartamentLoaderBox>
             <Loader color={"#228be6"} />
-          </Box>
+          </StyledDepartamentLoaderBox>
         ) : (
           <SimpleGrid
             cols={4}
@@ -164,12 +144,12 @@ function HomePage({ items, setItems }) {
           >
             {departments.items.map((item) => (
               <Link key={item.name} href={`/${item.departament}/${item.slug}`}>
-                <div className={classes.departamentGridCol}>
+                <StyledDepartamentGridCol>
                   <div> {item.name}</div>
-                  <div className={classes.departamentGridImg}>
+                  <div>
                     <Image src={item.image} alt={item.name} />
                   </div>
-                </div>
+                </StyledDepartamentGridCol>
               </Link>
             ))}
           </SimpleGrid>
@@ -180,16 +160,9 @@ function HomePage({ items, setItems }) {
           Estatísticas
         </Title>
         {stats.length == 0 ? (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            className={classes.root}
-          >
+          <StyledStatsLoaderBox>
             <Loader color={"white"} />
-          </Box>
+          </StyledStatsLoaderBox>
         ) : (
           <StatsGroup data={stats} />
         )}

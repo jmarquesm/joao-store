@@ -1,67 +1,49 @@
-import {
-  createStyles,
-  Container,
-  Group,
-  ActionIcon,
-  Text,
-} from "@mantine/core";
+import styled from "@emotion/styled";
+import { Container, Group, ActionIcon, Text } from "@mantine/core";
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons";
 
-const useStyles = createStyles((theme) => ({
-  footer: {
-    marginTop: `auto`,
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
-  },
+const S = {};
 
-  inner: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: theme.spacing.xs,
-    paddingBottom: theme.spacing.xs,
+S.Footer = styled.footer`
+  margin-top: auto;
+  border-top: 1px solid
+    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2])};
+`;
 
-    [theme.fn.smallerThan("xs")]: {
-      flexDirection: "column",
-    },
-  },
+S.Container = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: ${({ theme }) => theme.spacing.xs}px;
+  padding-bottom: ${({ theme }) => theme.spacing.xs}px;
 
-  links: {
-    [theme.fn.smallerThan("xs")]: {
-      marginTop: theme.spacing.md,
-    },
-  },
-}));
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}px) {
+    flex-direction: column;
+  }
+`;
+
+S.GroupLinks = styled(Group)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}px) {
+    margin-top: ${({ theme }) => theme.spacing.md}px;
+  }
+`;
 
 export function Footer() {
-  const { classes } = useStyles();
-
   return (
-    <div className={classes.footer}>
-      <Container className={classes.inner}>
-        <Group spacing={0} className={classes.links} position="right">
-          <ActionIcon
-            component="a"
-            target="_blank"
-            href="https://www.linkedin.com/in/jmarquesm/"
-            size="lg"
-          >
+    <S.Footer>
+      <S.Container>
+        <S.GroupLinks spacing={0} position="right">
+          <ActionIcon component="a" target="_blank" href="https://www.linkedin.com/in/jmarquesm/" size="lg">
             <IconBrandLinkedin size={18} stroke={1.5} />
           </ActionIcon>
 
-          <ActionIcon
-            component="a"
-            target="_blank"
-            href="https://github.com/jmarquesm"
-            size="lg"
-          >
+          <ActionIcon component="a" target="_blank" href="https://github.com/jmarquesm" size="lg">
             <IconBrandGithub size={18} stroke={1.5} />
           </ActionIcon>
-        </Group>
+        </S.GroupLinks>
         <Text size={12}>Desenvolvido por João Marques</Text>
-      </Container>
-    </div>
+      </S.Container>
+    </S.Footer>
   );
 }

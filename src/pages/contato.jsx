@@ -1,73 +1,48 @@
-import {
-  createStyles,
-  ThemeIcon,
-  Text,
-  Box,
-  Stack,
-  Container,
-  Title,
-} from "@mantine/core";
+import { Text, Box, Stack, Container, Title } from "@mantine/core";
 import { IconSun, IconPhone, IconMapPin, IconAt } from "@tabler/icons";
 import Layout from "../components/common/Layout";
+import styled from "@emotion/styled";
 
-const useStyles = createStyles((theme, { variant }) => ({
-  wrapper: {
-    display: "flex",
-    alignItems: "center",
-    color: theme.white,
-  },
+const StyledContainer = styled(Container)`
+  min-height: calc(100vh - 140px);
+`;
 
-  icon: {
-    marginRight: theme.spacing.md,
-    backgroundImage:
-      variant === "gradient"
-        ? `linear-gradient(135deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
-            theme.colors[theme.primaryColor][6]
-          } 100%)`
-        : "none",
-    backgroundColor: "transparent",
-  },
+const StyledBox = styled(Box)`
+  padding: ${(p) => p.theme.spacing.xl}px;
+  border-radius: ${(p) => p.theme.radius.md}px;
+  background-image: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors[theme.primaryColor][6]} 0%,
+    ${({ theme }) => theme.colors[theme.primaryColor][4]} 100%
+  );
+`;
 
-  title: {
-    color:
-      variant === "gradient"
-        ? theme.colors.gray[6]
-        : theme.colors[theme.primaryColor][0],
-  },
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${(p) => p.theme.white};
+`;
 
-  description: {
-    color: variant === "gradient" ? theme.black : theme.white,
-  },
-}));
+const StyledTextTitle = styled(Text)`
+  color: ${({ theme }) => theme.colors[theme.primaryColor][0]};
+`;
 
-function ContactIcon({
-  icon: Icon,
-  title,
-  description,
-  variant = "gradient",
-  className,
-  ...others
-}) {
-  const { classes, cx } = useStyles({ variant });
+const StyledTextDescription = styled(Text)`
+  color: ${({ theme }) => theme.colors[theme.primaryColor][0]};
+`;
+
+function ContactItem({ icon: Icon, title, description }) {
   return (
-    <div className={cx(classes.wrapper, className)} {...others}>
-      {variant === "gradient" ? (
-        <ThemeIcon size={40} radius="md" className={classes.icon}>
-          <Icon size={24} />
-        </ThemeIcon>
-      ) : (
-        <Box mr="md">
-          <Icon size={24} />
-        </Box>
-      )}
+    <StyledDiv>
+      <Box mr="md">
+        <Icon size={24} />
+      </Box>
 
       <div>
-        <Text size="xs" className={classes.title}>
-          {title}
-        </Text>
-        <Text className={classes.description}>{description}</Text>
+        <StyledTextTitle size="xs">{title}</StyledTextTitle>
+        <StyledTextDescription>{description}</StyledTextDescription>
       </div>
-    </div>
+    </StyledDiv>
   );
 }
 
@@ -86,38 +61,23 @@ const MOCKDATA = [
   },
 ];
 
-function ContactIconsList({ data = MOCKDATA, variant }) {
-  const items = data.map((item, index) => (
-    <ContactIcon key={index} variant={variant} {...item} />
-  ));
+function ContactItemList({ data = MOCKDATA }) {
+  const items = data.map((item, index) => <ContactItem key={index} {...item} />);
   return <Stack>{items}</Stack>;
 }
 
-export default function ContactIcons({ items, setItems }) {
+export default function ContactPage({ items, setItems }) {
   return (
     <Layout items={items} setItems={setItems}>
-      <Container
-        style={{
-          minHeight: "calc(100vh - 140px)",
-        }}
-      >
+      <StyledContainer>
         <Title size={"h2"} my={"md"}>
           Contato
         </Title>
 
-        <Box
-          sx={(theme) => ({
-            padding: theme.spacing.xl,
-            borderRadius: theme.radius.md,
-            backgroundImage: `linear-gradient(135deg, ${
-              theme.colors[theme.primaryColor][6]
-            } 0%, ${theme.colors[theme.primaryColor][4]} 100%)`,
-            width: 500,
-          })}
-        >
-          <ContactIconsList variant="white" />
-        </Box>
-      </Container>
+        <StyledBox>
+          <ContactItemList />
+        </StyledBox>
+      </StyledContainer>
     </Layout>
   );
 }
