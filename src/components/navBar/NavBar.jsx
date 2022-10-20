@@ -1,13 +1,8 @@
-import { Navbar, Group, Code, ScrollArea, createStyles } from "@mantine/core";
-import {
-  IconPhone,
-  IconKeyboard,
-  IconSection,
-  IconArmchair,
-  IconHome,
-} from "@tabler/icons";
+import { Navbar, Group, Code, ScrollArea } from "@mantine/core";
+import { IconPhone, IconKeyboard, IconSection, IconArmchair, IconHome } from "@tabler/icons";
 import { UserButton } from "./userButton";
 import { LinksGroup } from "./navBarLinkGroup";
+import styled from "@emotion/styled";
 
 const mockdata = [
   {
@@ -101,74 +96,69 @@ const mockdata = [
   { label: "Contato", icon: IconPhone, link: "/contato" },
 ];
 
-const useStyles = createStyles((theme) => ({
-  navbar: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
-    paddingBottom: 0,
-  },
+const StyledNavbarMain = styled(Navbar)`
+  background-color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white)};
+  width: 95vw;
+  height: 92.3vh;
+  @media screen and (min-width: 768px) {
+    height: 600px;
+    width: 300px;
+  }
+`;
 
-  header: {
-    padding: theme.spacing.md,
-    paddingTop: 0,
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    borderBottom: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-  },
+const StyledNavbarSectionHeader = styled(Navbar.Section)`
+  padding: ${(p) => p.theme.spacing.md}px;
+  padding-top: 0;
+  margin-left: ${({ theme }) => -theme.spacing.md}px;
+  margin-right: ${({ theme }) => -theme.spacing.md}px;
+  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.white : theme.black)};
+  border-bottom: 1px solid
+    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3])};
+`;
 
-  links: {
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
-  },
+const StyledCodeLogo = styled(Code)`
+  font-weight: 700;
+`;
 
-  linksInner: {
-    paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.xl,
-  },
+const StyledNavSectionLinks = styled(Navbar.Section)`
+  margin-left: ${({ theme }) => -theme.spacing.md}px;
+  margin-right: ${({ theme }) => -theme.spacing.md}px;
+`;
 
-  footer: {
-    marginLeft: -theme.spacing.md,
-    marginRight: -theme.spacing.md,
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
-  },
-}));
+const StyledDivLinksInner = styled.div`
+  padding-top: ${({ theme }) => theme.spacing.xl}px;
+  padding-bottom: ${({ theme }) => theme.spacing.xl}px;
+`;
+
+const StyledNavbarSectionFooter = styled(Navbar.Section)`
+  margin-left: ${({ theme }) => -theme.spacing.md}px;
+  margin-right: ${({ theme }) => -theme.spacing.md}px;
+  border-top: 1px solid
+    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3])};
+`;
 
 export function NavBar() {
-  const { classes } = useStyles();
-  const links = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} />
-  ));
+  const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
 
   return (
-    <Navbar
-      height={600}
-      width={{ sm: 300 }}
-      p="md"
-      pb={0}
-      className={classes.navbar}
-    >
-      <Navbar.Section className={classes.header}>
+    <StyledNavbarMain p="md" pb={0}>
+      <StyledNavbarSectionHeader>
         <Group position="apart">
-          <Code sx={{ fontWeight: 700 }}>JOÃO STORE</Code>
+          <StyledCodeLogo>JOÃO STORE</StyledCodeLogo>
         </Group>
-      </Navbar.Section>
+      </StyledNavbarSectionHeader>
 
-      <Navbar.Section grow className={classes.links} component={ScrollArea}>
-        <div className={classes.linksInner}>{links}</div>
-      </Navbar.Section>
+      <StyledNavSectionLinks grow component={ScrollArea}>
+        <StyledDivLinksInner>{links}</StyledDivLinksInner>
+      </StyledNavSectionLinks>
 
-      <Navbar.Section className={classes.footer}>
+      <StyledNavbarSectionFooter>
         <UserButton
           image="https://www.educlub.com.br/wp-content/uploads/2020/10/letra-jota.jpg"
           name="João Marques"
           email="jmarquesm@live.com"
         />
-      </Navbar.Section>
-    </Navbar>
+      </StyledNavbarSectionFooter>
+    </StyledNavbarMain>
   );
 }
