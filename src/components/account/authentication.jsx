@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import {
   TextInput,
   PasswordInput,
@@ -13,6 +14,13 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 
+const S = {};
+
+S.DivMain = styled.div`
+  width: 400px;
+  position: relative;
+`;
+
 export function AuthenticationTitle({ closeModal }) {
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +34,7 @@ export function AuthenticationTitle({ closeModal }) {
   }
 
   return (
-    <div style={{ width: 400, position: "relative" }}>
+    <div>
       <LoadingOverlay visible={loading} overlayBlur={2} />
 
       <Container size={420} pb={16}>
@@ -34,30 +42,17 @@ export function AuthenticationTitle({ closeModal }) {
 
         <Text color="dimmed" size="sm" align="center" mt={5}>
           Ainda não tem uma conta?{" "}
-          <Anchor
-            href="#"
-            size="sm"
-            onClick={(event) => event.preventDefault()}
-          >
+          <Anchor href="#" size="sm" onClick={(event) => event.preventDefault()}>
             Criar conta
           </Anchor>
         </Text>
 
         <Box mt={30}>
           <TextInput label="Email" placeholder="seu@gmail.com" required />
-          <PasswordInput
-            label="Senha"
-            placeholder="Sua senha"
-            required
-            mt="md"
-          />
+          <PasswordInput label="Senha" placeholder="Sua senha" required mt="md" />
           <Group position="apart" mt="md">
             <Checkbox label="Lembre-me" />
-            <Anchor
-              onClick={(event) => event.preventDefault()}
-              href="#"
-              size="sm"
-            >
+            <Anchor onClick={(event) => event.preventDefault()} href="#" size="sm">
               Esqueceu sua Senha?
             </Anchor>
           </Group>

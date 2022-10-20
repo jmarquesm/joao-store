@@ -1,40 +1,33 @@
 import { useState } from "react";
-import { Modal, Group, createStyles } from "@mantine/core";
+import { Modal, Group } from "@mantine/core";
 import { AuthenticationTitle } from "./authentication";
+import styled from "@emotion/styled";
 
-const useStyles = createStyles((theme) => ({
-  link: {
-    cursor: "pointer",
-    display: "block",
-    lineHeight: 1,
-    padding: "8px 12px",
-    borderRadius: theme.radius.sm,
-    textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
+const S = {};
 
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
-  },
-}));
+S.GroupLink = styled(Group)`
+  cursor: pointer;
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: ${({ theme }) => theme.radius.sm}px;
+  text-decoration: none;
+  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7])};
+  font-size: ${({ theme }) => theme.fontSizes.sm}px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0]};
+  }
+`;
 
 export function UseModal() {
   const [opened, setOpened] = useState(false);
-  const { classes } = useStyles();
 
   return (
     <>
-      <Group className={classes.link} onClick={() => setOpened(true)}>
-        Login
-      </Group>
+      <S.GroupLink onClick={() => setOpened(true)}>Login</S.GroupLink>
 
       <Modal opened={opened} onClose={() => setOpened(false)}>
         <AuthenticationTitle closeModal={() => setOpened(false)} />

@@ -3,6 +3,20 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FeaturesCard } from "../../../components/FeaturesCard";
 import Layout from "../../../components/common/Layout";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+const StyledContainer = styled(Container)`
+  min-height: calc(100vh - 140px);
+
+  ${(props) =>
+    props.loading &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `}
+`;
 
 function DepartamentsPage({ items, setItems }) {
   const [category, setCategory] = useState({});
@@ -19,44 +33,29 @@ function DepartamentsPage({ items, setItems }) {
         });
   }, [categoryid, subCategoryid]);
 
+  const loading = Object.keys(category).length === 0;
+
   return (
     <Layout items={items} setItems={setItems}>
-      {Object.keys(category).length === 0 ? (
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          style={{
-            minHeight: "calc(100vh - 140px)",
-          }}
-        >
+      <StyledContainer loading={loading}>
+        {loading ? (
           <Loader />
-        </Container>
-      ) : (
-        <Container
-          style={{
-            minHeight: "calc(100vh - 140px)",
-          }}
-        >
-          <Title size={"h2"} my={"md"}>
-            {category.name}
-          </Title>
+        ) : (
+          <>
+            <Title size="h2" my="md">
+              {category.name}
+            </Title>
 
-          <Grid>
-            {category?.items?.map((produto) => (
-              <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
-                <FeaturesCard
-                  produto={produto}
-                  items={items}
-                  setItems={setItems}
-                />
-              </Grid.Col>
-            ))}
-          </Grid>
-        </Container>
-      )}
+            <Grid>
+              {category?.items?.map((produto) => (
+                <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
+                  <FeaturesCard produto={produto} items={items} setItems={setItems} />
+                </Grid.Col>
+              ))}
+            </Grid>
+          </>
+        )}
+      </StyledContainer>
     </Layout>
   );
 }

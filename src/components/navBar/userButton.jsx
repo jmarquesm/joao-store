@@ -1,33 +1,22 @@
-import {
-  UnstyledButton,
-  Group,
-  Avatar,
-  Text,
-  createStyles,
-} from "@mantine/core";
+import styled from "@emotion/styled";
+import { UnstyledButton, Group, Avatar, Text } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons";
 
-const useStyles = createStyles((theme) => ({
-  user: {
-    display: "block",
-    width: "100%",
-    padding: theme.spacing.md,
-    color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
+const StyledButtonUser = styled(UnstyledButton)`
+  display: block;
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing.md};
+  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black)};
 
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
-          : theme.colors.gray[0],
-    },
-  },
-}));
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[0]};
+  }
+`;
 
 export function UserButton({ image, name, email, icon, ...others }) {
-  const { classes } = useStyles();
-
   return (
-    <UnstyledButton className={classes.user} {...others}>
+    <StyledButtonUser {...others}>
       <Group>
         <Avatar src={image} radius="xl" />
 
@@ -43,6 +32,6 @@ export function UserButton({ image, name, email, icon, ...others }) {
 
         {icon || <IconChevronRight size={14} stroke={1.5} />}
       </Group>
-    </UnstyledButton>
+    </StyledButtonUser>
   );
 }

@@ -1,22 +1,19 @@
-import { Autocomplete, createStyles } from "@mantine/core";
+import styled from "@emotion/styled";
+import { Autocomplete } from "@mantine/core";
 import { IconSearch } from "@tabler/icons";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+
+const StyledAutoComplete = styled(Autocomplete)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}px) {
+    display: none;
+  }
+`;
 
 export function SearchBar() {
   const [searchItem, setSearchItem] = useState([]);
   const [search, setSearch] = useState();
   const router = useRouter();
-
-  const useStyles = createStyles((theme) => ({
-    search: {
-      [theme.fn.smallerThan("xs")]: {
-        display: "none",
-      },
-    },
-  }));
-
-  const { classes } = useStyles();
 
   useEffect(() => {
     fetch(`/api/search?q=${search}`)
@@ -33,8 +30,7 @@ export function SearchBar() {
   }, [search]);
 
   return (
-    <Autocomplete
-      className={classes.search}
+    <StyledAutoComplete
       placeholder="Search"
       icon={<IconSearch size={16} stroke={1.5} />}
       data={searchItem}

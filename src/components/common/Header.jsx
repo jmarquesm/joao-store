@@ -1,12 +1,4 @@
-import {
-  createStyles,
-  Header as MantineHeader,
-  Group,
-  Burger,
-  Popover,
-  ActionIcon,
-  Indicator,
-} from "@mantine/core";
+import { Header as MantineHeader, Group, Burger, Popover, ActionIcon, Indicator } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconShoppingCart } from "@tabler/icons";
 import { NavBar } from "../navBar/NavBar";
@@ -15,48 +7,43 @@ import Link from "next/link";
 import { MenuBox } from "./MenuBox";
 import { UseModal } from "../account/UseModal";
 import { SearchBar } from "../SearchBar";
+import styled from "@emotion/styled";
 
-const useStyles = createStyles((theme) => ({
-  header: {
-    paddingLeft: theme.spacing.md,
-    paddingRight: theme.spacing.md,
-  },
+const StyledALink = styled.a`
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: ${({ theme }) => theme.radius.sm}px;
+  text-decoration: none;
+  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7])};
+  font-size: ${({ theme }) => theme.fontSizes.sm}px;
+  font-weight: 500;
+  cursor: pointer;
 
-  inner: {
-    height: 56,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: 1,
-  },
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0]};
+  }
+`;
 
-  links: {
-    [theme.fn.smallerThan("md")]: {
-      display: "none",
-    },
-  },
+const StyledMantineHeader = styled(MantineHeader)`
+  padding-left: ${({ theme }) => theme.spacing.md}px;
+  padding-right: ${({ theme }) => theme.spacing.md}px;
+`;
 
-  search: {
-    [theme.fn.smallerThan("xs")]: {
-      display: "none",
-    },
-  },
+const StyledDivInner = styled.div`
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1px;
+`;
 
-  link: {
-    display: "block",
-    lineHeight: 1,
-    padding: "8px 12px",
-    borderRadius: theme.radius.sm,
-    textDecoration: "none",
-    color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-
-    "&:hover": {
-      backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
-    },
-  },
-}));
+const StyledGroupLinks = styled(Group)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    display: none;
+  }
+`;
 
 const pages = [
   { label: "Pagina Inicial", link: "/" },
@@ -66,7 +53,6 @@ const pages = [
 
 export function Header({ items }) {
   const [opened, { toggle }] = useDisclosure(false);
-  const { classes } = useStyles();
 
   const itemsEL = pages.map((item) => {
     if (item.component) {
@@ -75,7 +61,7 @@ export function Header({ items }) {
 
     return (
       <Link key={item.label} href={item.link}>
-        <a className={classes.link}>{item.label}</a>
+        <StyledALink>{item.label}</StyledALink>
       </Link>
     );
   });
@@ -83,8 +69,8 @@ export function Header({ items }) {
   const totalDeItensDoCarrinho = items.reduce((acc, product) => acc + product.units, 0);
 
   return (
-    <MantineHeader height={56} className={classes.header} mb={0}>
-      <div className={classes.inner}>
+    <StyledMantineHeader height={56} mb={0}>
+      <StyledDivInner>
         <Group>
           <Popover opened={opened} closeOnClickOutside onClick={toggle} size="sm">
             <Popover.Target>
@@ -97,9 +83,9 @@ export function Header({ items }) {
         </Group>
 
         <Group>
-          <Group ml={50} spacing={5} className={classes.links}>
+          <StyledGroupLinks ml={50} spacing={5}>
             {itemsEL}
-          </Group>
+          </StyledGroupLinks>
 
           <SearchBar />
 
@@ -113,7 +99,7 @@ export function Header({ items }) {
 
           <DarkThemeButton />
         </Group>
-      </div>
-    </MantineHeader>
+      </StyledDivInner>
+    </StyledMantineHeader>
   );
 }

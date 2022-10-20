@@ -1,29 +1,23 @@
-import { Menu, createStyles, Group } from "@mantine/core";
+import styled from "@emotion/styled";
+import { Menu, Group } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 
-const useStyles = createStyles((theme) => ({
-  link: {
-    cursor: "pointer",
-    display: "block",
-    lineHeight: 1,
-    padding: "8px 12px",
-    borderRadius: theme.radius.sm,
-    textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
+const StyledMenuLink = styled(Menu)`
+  cursor: pointer;
+  display: block;
+  line-height: 1;
+  padding: 8px 12px;
+  border-radius: ${({ theme }) => theme.radius.sm}px;
+  text-decoration: none;
+  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.colors.gray[7])};
+  font-size: ${({ theme }) => theme.fontSizes.sm}px;
+  font-weight: 500;
 
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
-  },
-}));
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0]};
+  }
+`;
 const categories = [
   {
     label: "Hardware",
@@ -55,10 +49,8 @@ const categories = [
 ];
 
 export function MenuBox() {
-  const { classes } = useStyles();
-
   return (
-    <Menu shadow="sm" width={200} className={classes.link}>
+    <StyledMenuLink shadow="sm" width={200}>
       <Menu.Target>
         <Group>Produtos</Group>
       </Menu.Target>
@@ -69,17 +61,13 @@ export function MenuBox() {
             {index != 0 && <Menu.Divider />}
             <Menu.Label>{category.label}</Menu.Label>
             {category.items.map((item) => (
-              <Menu.Item
-                key={item.id}
-                component={NextLink}
-                href={`/${category.id}/${item.id}`}
-              >
+              <Menu.Item key={item.id} component={NextLink} href={`/${category.id}/${item.id}`}>
                 {item.label}
               </Menu.Item>
             ))}
           </div>
         ))}
       </Menu.Dropdown>
-    </Menu>
+    </StyledMenuLink>
   );
 }

@@ -5,8 +5,7 @@ import { useLocalStorage } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { NotificationsProvider } from "@mantine/notifications";
 
-export default function App(props) {
-  const { Component, pageProps } = props;
+export default function App({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useLocalStorage({
     defaultValue: "light",
     key: "ativation",
@@ -39,16 +38,10 @@ export default function App(props) {
     <>
       <Head>
         <title>João Store</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      >
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
@@ -57,11 +50,7 @@ export default function App(props) {
             colorScheme,
           }}
         >
-          <NotificationsProvider
-            position="bottom-left"
-            limit={3}
-            containerWidth={320}
-          >
+          <NotificationsProvider position="bottom-left" limit={3} containerWidth={320}>
             <Component {...pageProps} items={items} setItems={customSetItems} />
           </NotificationsProvider>
         </MantineProvider>

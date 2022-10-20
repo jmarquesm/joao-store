@@ -1,10 +1,105 @@
-import { Box, Button, Grid, Image, Loader, Text } from "@mantine/core";
+import styled from "@emotion/styled";
+import { Box, Button, Container, Grid, Image, Loader, Text } from "@mantine/core";
 import { IconShoppingCart } from "@tabler/icons";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/common/Layout";
+import { addToCart } from "../../utils/addToCart";
 import NotFoundPage from "../404";
+
+const StyledContainerPage = styled(Container)`
+  min-height: calc(100vh - 140px);
+`;
+
+const StyledLoaderPage = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+`;
+
+const StyledImagesGridCol = styled(Grid.Col)`
+  margin: 0px;
+  padding: 0px;
+`;
+
+const StyledImagesBoxChange = styled(Box)`
+  border: 1px solid #dee2e6;
+  margin: 20px;
+  border-radius: 3%;
+  padding: 1px;
+  max-height: 800;
+`;
+
+const StyledMainImageGridCol = styled(Grid.Col)`
+  border: 1px solid #dee2e6;
+  margin: 20px;
+  margin-left: 0px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+`;
+
+const StyledInformationGridCol = styled(Grid.Col)`
+  border: 1px solid #dee2e6;
+  margin: 20px;
+  margin-left: 0px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledProductDescriptionBox = styled(Box)`
+  font-size: 1.8rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: Roboto, Verdana;
+  padding: 15px;
+`;
+
+const StyledInventoryBox = styled(Box)`
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  padding: 15px;
+`;
+
+const StyledInventoryText = styled(Text)`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+`;
+
+const StyledCashPaymentBox = styled(Box)`
+  padding: 15px;
+  font-size: 1.2rem;
+`;
+
+const StyledCashPaymentText = styled(Text)`
+  font-size: 1.7rem;
+  font-weight: bolder;
+`;
+
+const StyledCardPaymentBox = styled(Box)`
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  padding: 15px;
+  font-size: 1.2rem;
+`;
+
+const StyledCardPaymentText = styled(Text)`
+  font-size: 1.7rem;
+  font-weight: bolder;
+`;
+
+const StyledButtonBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  padding: 10px 20px;
+`;
 
 export default function ProductsPage({ items, setItems }) {
   const [produto, setProduto] = useState();
@@ -38,161 +133,64 @@ export default function ProductsPage({ items, setItems }) {
     }
   }
 
-  function addToCart() {
-    const novoProduto = {
-      ...produto,
-      units: 1,
-    };
-
-    let itemAllReadyExist = false;
-    for (let indexDoItemDoCarrinho in items) {
-      const itemDoCarrinho = items[indexDoItemDoCarrinho];
-      if (itemDoCarrinho.description === novoProduto.description) {
-        items[indexDoItemDoCarrinho].units += 1;
-        itemAllReadyExist = true;
-      }
-    }
-    if (!itemAllReadyExist) items.push(novoProduto);
-
-    setItems([...items]);
-  }
-
   function changeImageProduct(event) {
     setMainImage(event.target.currentSrc);
   }
 
   return (
     <Layout items={items} setItems={setItems}>
-      {produto === undefined ? (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: 450,
-          }}
-        >
-          <Loader color={"#228be6"} />
-        </Box>
-      ) : (
-        <Grid grow gutter="xs" sx={{ margin: 0 }}>
-          <Grid.Col span={1} sx={{ margin: 0, padding: 0 }}>
-            {imageToRender?.map((image) => (
-              <Box
-                key={image}
-                onClick={changeImageProduct}
-                sx={{
-                  border: "1px solid #dee2e6",
-                  margin: 20,
-                  borderRadius: 3,
-                  padding: 1,
-                  maxHeight: 800,
-                }}
-              >
-                <Image src={image} alt={produto.title} />
-              </Box>
-            ))}
-          </Grid.Col>
+      <StyledContainerPage>
+        {produto === undefined ? (
+          <StyledLoaderPage>
+            <Loader color={"#228be6"} />
+          </StyledLoaderPage>
+        ) : (
+          <Grid grow gutter="xs">
+            <StyledImagesGridCol span={1}>
+              {imageToRender?.map((image) => (
+                <StyledImagesBoxChange key={image} onClick={changeImageProduct}>
+                  <Image src={image} alt={produto.title} />
+                </StyledImagesBoxChange>
+              ))}
+            </StyledImagesGridCol>
 
-          <Grid.Col
-            span={4}
-            sx={{ border: "1px solid #dee2e6", margin: 20, borderRadius: 3 }}
-          >
-            <Image src={mainImage} alt={produto.title} />
-          </Grid.Col>
+            <StyledMainImageGridCol span={4}>
+              <Image src={mainImage} alt={produto.title} />
+            </StyledMainImageGridCol>
 
-          <Grid.Col
-            span={4}
-            sx={{
-              border: "1px solid #dee2e6",
-              margin: 20,
-              borderRadius: 3,
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box
-              sx={{
-                fontSize: 22,
-                lineHeight: 1.2,
-                borderBottom: "1px solid #dee2e6",
-                textTransform: "uppercase",
-                fontWeight: 500,
-                fontFamily: "Roboto, Verdana",
-                padding: 15,
-              }}
-            >
-              {produto.description}
-            </Box>
+            <StyledInformationGridCol span={4}>
+              <StyledProductDescriptionBox>{produto.description}</StyledProductDescriptionBox>
 
-            <Box
-              sx={{
-                borderBottom: "1px solid #dee2e6",
-                padding: 15,
-              }}
-            >
-              <Text
-                color={"green.8"}
-                sx={{
-                  fontWeight: "bold",
-                  textTransform: "uppercase",
-                }}
-              >
-                Produto Em Estoque
-              </Text>
-            </Box>
+              <StyledInventoryBox>
+                <StyledInventoryText color={"green.8"}>Produto Em Estoque</StyledInventoryText>
+              </StyledInventoryBox>
 
-            <Box
-              sx={{
-                borderBottom: "1px solid #dee2e6",
-                padding: 15,
-                fontSize: 13,
-              }}
-            >
-              <Text>à vista</Text>
-              <Text
-                color={"green.8"}
-                sx={{ fontSize: 20, fontWeight: "bolder" }}
-              >
-                R$ {(produto.price * 0.88).toFixed(2).replace(".", ",")}
-              </Text>
-              <Text> no pix com 12% de desconto</Text>
-            </Box>
+              <StyledCashPaymentBox>
+                <Text>à vista</Text>
+                <StyledCashPaymentText color={"green.8"}>
+                  R$ {(produto.price * 0.88).toFixed(2).replace(".", ",")}
+                </StyledCashPaymentText>
+                <Text> no pix com 12% de desconto</Text>
+              </StyledCashPaymentBox>
 
-            <Box
-              sx={{
-                borderBottom: "1px solid #dee2e6",
-                padding: 15,
-                fontSize: 13,
-              }}
-            >
-              <Text>no cartão</Text>
-              <Text
-                color={"blue.7"}
-                sx={{ fontSize: 20, fontWeight: "bolder" }}
-              >
-                R$ {produto.price.toFixed(2).replace(".", ",")}
-              </Text>
-              <Text> em 12x sem juros</Text>
-            </Box>
+              <StyledCardPaymentBox>
+                <Text>no cartão</Text>
+                <StyledCardPaymentText color={"blue.7"}>
+                  R$ {produto.price.toFixed(2).replace(".", ",")}
+                </StyledCardPaymentText>
+                <Text> em 12x sem juros</Text>
+              </StyledCardPaymentBox>
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                flex: 1,
-                padding: "0px 20px",
-              }}
-            >
-              <Button size="xl" onClick={addToCart}>
-                <IconShoppingCart size={18} />
-                Adicionar ao Carrinho
-              </Button>
-            </Box>
-          </Grid.Col>
-        </Grid>
-      )}
+              <StyledButtonBox>
+                <Button size="md" onClick={() => addToCart(produto, items, setItems)}>
+                  <IconShoppingCart size={18} />
+                  Adicionar ao Carrinho
+                </Button>
+              </StyledButtonBox>
+            </StyledInformationGridCol>
+          </Grid>
+        )}
+      </StyledContainerPage>
     </Layout>
   );
 }
