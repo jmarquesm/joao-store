@@ -24,21 +24,21 @@
     "id": 4,
     "slug": "teclado",
     "name": "Teclado",
-    "departament": "periferico",
+    "departament": "perifericos",
     "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/r/z/rz03-03930400-r3u14.jpg"
   },
   {
     "id": 5,
     "slug": "mouse",
     "name": "Mouse",
-    "departament": "periferico",
+    "departament": "perifericos",
     "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/h/ch-93170113.jpg"
   },
   {
     "id": 6,
     "slug": "fone-de-ouvido",
     "name": "Fone De Ouvido",
-    "departament": "periferico",
+    "departament": "perifericos",
     "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/a/ca-9011188-na4.jpg"
   },
   {
