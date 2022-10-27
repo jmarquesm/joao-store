@@ -54,12 +54,5 @@
     "name": "Mesa",
     "departament": "escritorio",
     "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/t/dt3-f40-curvada-32142_1.jpg"
-  },
-  {
-    "id": 9,
-    "slug": "figure",
-    "name": "Figure",
-    "departament": "escritorio",
-    "image": ["https://cf.shopee.com.br/file/204b536b32b693061d4f94be5787b5f7"]
   }
 ]
