@@ -109,7 +109,7 @@ function HomePage({ items, setItems }) {
             slideSize="33.333333%"
             slideGap="md"
             breakpoints={[
-              { maxWidth: "md", slideSize: "50%" },
+              { maxWidth: "sm", slideSize: "50%" },
               { maxWidth: "xs", slideSize: "100%", slideGap: 0 },
             ]}
             align="start"
@@ -139,7 +139,7 @@ function HomePage({ items, setItems }) {
             breakpoints={[
               { maxWidth: 980, cols: 3, spacing: "md" },
               { maxWidth: 755, cols: 2, spacing: "sm" },
-              { maxWidth: 600, cols: 1, spacing: "sm" },
+              { maxWidth: 400, cols: 1, spacing: "xs" },
             ]}
           >
             {departments.items.map((item) => (
