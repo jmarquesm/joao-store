@@ -14,6 +14,7 @@ Para mais informações vá ao site oficial do <a href="https://nextjs.org/">Nex
 - `HTML`
 - `CSS`
 - `Mantine`
+- `Styled Components`
 - `Tabler Icons`
 
 ## 📁 Acesso ao projeto
