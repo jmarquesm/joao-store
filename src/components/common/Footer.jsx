@@ -35,14 +35,14 @@ export function Footer() {
       <S.Container>
         <S.GroupLinks spacing={0} position="right">
           <ActionIcon component="a" target="_blank" href="https://www.linkedin.com/in/jmarquesm/" size="lg">
-            <IconBrandLinkedin size={18} stroke={1.5} />
+            <IconBrandLinkedin size={24} stroke={1.5} />
           </ActionIcon>
 
           <ActionIcon component="a" target="_blank" href="https://github.com/jmarquesm" size="lg">
-            <IconBrandGithub size={18} stroke={1.5} />
+            <IconBrandGithub size={24} stroke={1.5} />
           </ActionIcon>
         </S.GroupLinks>
-        <Text size={12}>Desenvolvido por João Marques</Text>
+        <Text size={16}>Desenvolvido por João Marques</Text>
       </S.Container>
     </S.Footer>
   );
