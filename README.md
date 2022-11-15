@@ -23,7 +23,7 @@ Esse é um repoistório público e você pode acessar a qualquer momento clicand
 
 ## 🛠️ Abrir e rodar projeto
 
-Após baixar o projeto, você pode abrir com qualquer editor de código de sua preferência, para produção foi utilizado <a href="https://code.visualstudio.com">VSCode</a>.
+Após baixar o projeto, você pode abrir com qualquer editor de código de sua preferência, para o desenvolvimento foi utilizado <a href="https://code.visualstudio.com">VSCode</a>.
 
 ### Scripts Disponíveis
 
