@@ -19,7 +19,7 @@ Para mais informações vá ao site oficial do <a href="https://nextjs.org/">Nex
 
 ## 📁 Acesso ao projeto
 
-Esse é um repoistório público e você pode acessar a qualquer momento clicando <a href="https://github.com/jmarquesm/joao-store">aqui</a>.
+Esse é um repositório público e você pode acessar a qualquer momento clicando <a href="https://github.com/jmarquesm/joao-store">aqui</a>.
 
 ## 🛠️ Abrir e rodar projeto
 
