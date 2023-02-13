@@ -1,5 +1,5 @@
 html {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 body {
@@ -16,6 +16,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h2 {
+  margin: 0 0 1.5rem;
+  font-size: 26px;
 }
 
 @media (prefers-color-scheme: dark) {

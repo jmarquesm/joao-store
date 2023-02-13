@@ -42,7 +42,7 @@ export function Footer() {
             <IconBrandGithub size={18} stroke={1.5} />
           </ActionIcon>
         </S.GroupLinks>
-        <Text size={12}>Desenvolvido por João Marques</Text>
+        <Text size={14}>Desenvolvido por João Marques</Text>
       </S.Container>
     </S.Footer>
   );

@@ -3,11 +3,7 @@ import { Title, Text, Button, Container, Group } from "@mantine/core";
 import Link from "next/link";
 import Layout from "../components/common/Layout";
 
-const StyledContainerBody = styled(Container)`
-  padding-top: 80px;
-  padding-bottom: 80px;
-  min-height: calc(100vh - 140px);
-`;
+const StyledContainerBody = styled(Container)``;
 
 const StyledDiv404 = styled.div`
   text-align: center;
