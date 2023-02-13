@@ -1,41 +1,7 @@
+import styled from "@emotion/styled";
 import { createStyles, Text } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
-  root: {
-    display: "flex",
-    backgroundImage: `linear-gradient(-60deg, ${
-      theme.colors[theme.primaryColor][4]
-    } 00%, ${theme.colors[theme.primaryColor][7]} 100%)`,
-    padding: theme.spacing.xl * 1.5,
-    borderRadius: theme.radius.md,
-
-    [theme.fn.smallerThan("sm")]: {
-      flexDirection: "column",
-    },
-  },
-
-  title: {
-    color: theme.white,
-    textTransform: "uppercase",
-    fontWeight: 700,
-    fontSize: theme.fontSizes.sm,
-  },
-
-  count: {
-    color: theme.white,
-    fontSize: 32,
-    lineHeight: 1,
-    fontWeight: 700,
-    marginBottom: theme.spacing.md,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-  },
-
-  description: {
-    color: theme.colors[theme.primaryColor][0],
-    fontSize: theme.fontSizes.sm,
-    marginTop: 5,
-  },
-
   stat: {
     flex: 1,
 
@@ -56,14 +22,48 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const StyledRootDiv = styled.div`
+  display: flex;
+  background-image: linear-gradient(-60deg, #4dabf7 00%, #1c7ed6 100%);
+
+  padding: ${({ theme }) => theme.spacing.xl * 1.5}px;
+  border-radius: ${({ theme }) => theme.radius.md}px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    flex-direction: column;
+  }
+`;
+
+const StyledCountText = styled(Text)`
+  color: ${(p) => p.theme.white};
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: ${(p) => p.theme.spacing.md}px;
+  font-family: Greycliff CF, ${(p) => p.theme.fontFamily};
+`;
+
+const StyledTitleText = styled(Text)`
+  color: ${(p) => p.theme.white};
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
+`;
+
+const StyledDescriptionText = styled(Text)`
+  color: ${({ theme }) => theme.colors[theme.primaryColor][0]};
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
+  margin-top: 5;
+`;
+
 export function StatsGroup({ data }) {
   const { classes } = useStyles();
   const stats = data.map((stat) => (
     <div key={stat.title} className={classes.stat}>
-      <Text className={classes.count}>{stat.stats}</Text>
-      <Text className={classes.title}>{stat.title}</Text>
-      <Text className={classes.description}>{stat.description}</Text>
+      <StyledCountText>{stat.stats}</StyledCountText>
+      <StyledTitleText>{stat.title}</StyledTitleText>
+      <StyledDescriptionText>{stat.description}</StyledDescriptionText>
     </div>
   ));
-  return <div className={classes.root}>{stats}</div>;
+  return <StyledRootDiv>{stats}</StyledRootDiv>;
 }

@@ -14,15 +14,16 @@ Para mais informações vá ao site oficial do <a href="https://nextjs.org/">Nex
 - `HTML`
 - `CSS`
 - `Mantine`
+- `Styled Components`
 - `Tabler Icons`
 
 ## 📁 Acesso ao projeto
 
-Esse é um repoistório público e você pode acessar a qualquer momento clicando <a href="https://github.com/jmarquesm/joao-store">aqui</a>.
+Esse é um repositório público e você pode acessar a qualquer momento clicando <a href="https://github.com/jmarquesm/joao-store">aqui</a>.
 
 ## 🛠️ Abrir e rodar projeto
 
-Após baixar o projeto, você pode abrir com qualquer editor de código de sua preferência, para produção foi utilizado <a href="https://code.visualstudio.com">VSCode</a>.
+Após baixar o projeto, você pode abrir com qualquer editor de código de sua preferência, para o desenvolvimento foi utilizado <a href="https://code.visualstudio.com">VSCode</a>.
 
 ### Scripts Disponíveis
 
