@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 
 // components
-import { NavBar } from "../../navBar/NavBar";
+import { NavBar } from "../../navBar/NavBar/NavBar";
 import { DarkThemeButton } from "../DarkThemeButton";
 import { MenuBox } from "../MenuBox/MenuBox";
 import { UseModal } from "../../account/UseModal/UseModal";

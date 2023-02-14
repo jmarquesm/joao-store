@@ -1,10 +1,17 @@
-import { Navbar, Group, Code, ScrollArea } from "@mantine/core";
-import { IconPhone, IconKeyboard, IconSection, IconArmchair, IconHome } from "@tabler/icons";
-import { UserButton } from "./userButton";
-import { LinksGroup } from "./navBarLinkGroup";
-import styled from "@emotion/styled";
+// vendors
+import { Group, ScrollArea } from "@mantine/core";
 
-const mockdata = [
+// components
+import { UserButton } from "../userButton/userButton";
+import { LinksGroup } from "../navBarLinkGroup/navBarLinkGroup";
+
+// icons
+import { IconKeyboard, IconSection, IconArmchair, IconHome } from "@tabler/icons";
+
+// styles
+import * as S from "./styles";
+
+const menuMock = [
   {
     label: "Pagina Inicial",
     icon: IconHome,
@@ -93,72 +100,30 @@ const mockdata = [
       },
     ],
   },
-  { label: "Contato", icon: IconPhone, link: "/contato" },
 ];
 
-const StyledNavbarMain = styled(Navbar)`
-  background-color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white)};
-  width: 95vw;
-  height: 92.3vh;
-  @media screen and (min-width: 768px) {
-    height: 600px;
-    width: 300px;
-  }
-`;
-
-const StyledNavbarSectionHeader = styled(Navbar.Section)`
-  padding: ${(p) => p.theme.spacing.md}px;
-  padding-top: 0;
-  margin-left: ${({ theme }) => -theme.spacing.md}px;
-  margin-right: ${({ theme }) => -theme.spacing.md}px;
-  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.white : theme.black)};
-  border-bottom: 1px solid
-    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3])};
-`;
-
-const StyledCodeLogo = styled(Code)`
-  font-weight: 700;
-`;
-
-const StyledNavSectionLinks = styled(Navbar.Section)`
-  margin-left: ${({ theme }) => -theme.spacing.md}px;
-  margin-right: ${({ theme }) => -theme.spacing.md}px;
-`;
-
-const StyledDivLinksInner = styled.div`
-  padding-top: ${({ theme }) => theme.spacing.xl}px;
-  padding-bottom: ${({ theme }) => theme.spacing.xl}px;
-`;
-
-const StyledNavbarSectionFooter = styled(Navbar.Section)`
-  margin-left: ${({ theme }) => -theme.spacing.md}px;
-  margin-right: ${({ theme }) => -theme.spacing.md}px;
-  border-top: 1px solid
-    ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3])};
-`;
-
 export function NavBar() {
-  const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
+  const links = menuMock.map((item) => <LinksGroup {...item} key={item.label} />);
 
   return (
-    <StyledNavbarMain p="md" pb={0}>
-      <StyledNavbarSectionHeader>
+    <S.Main p="md" pb={0}>
+      <S.Header>
         <Group position="apart">
-          <StyledCodeLogo>JOÃO STORE</StyledCodeLogo>
+          <S.CodeLogo>JOÃO STORE</S.CodeLogo>
         </Group>
-      </StyledNavbarSectionHeader>
+      </S.Header>
 
-      <StyledNavSectionLinks grow component={ScrollArea}>
-        <StyledDivLinksInner>{links}</StyledDivLinksInner>
-      </StyledNavSectionLinks>
+      <S.Links grow component={ScrollArea}>
+        <S.LinksInner>{links}</S.LinksInner>
+      </S.Links>
 
-      <StyledNavbarSectionFooter>
+      <S.Footer>
         <UserButton
           image="https://www.educlub.com.br/wp-content/uploads/2020/10/letra-jota.jpg"
           name="João Marques"
           email="jmarquesm@live.com"
         />
-      </StyledNavbarSectionFooter>
-    </StyledNavbarMain>
+      </S.Footer>
+    </S.Main>
   );
 }
