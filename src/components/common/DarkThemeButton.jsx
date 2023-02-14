@@ -1,4 +1,7 @@
+// vendors
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+
+// icons
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
 export function DarkThemeButton() {
