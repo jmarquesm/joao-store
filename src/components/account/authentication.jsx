@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+// vendors
+import { useState } from "react";
 import {
   TextInput,
   PasswordInput,
@@ -12,14 +13,6 @@ import {
   LoadingOverlay,
   Box,
 } from "@mantine/core";
-import { useState } from "react";
-
-const S = {};
-
-S.DivMain = styled.div`
-  width: 400px;
-  position: relative;
-`;
 
 export function AuthenticationTitle({ closeModal }) {
   const [loading, setLoading] = useState(false);
