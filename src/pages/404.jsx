@@ -1,59 +1,31 @@
-import styled from "@emotion/styled";
-import { Title, Text, Button, Container, Group } from "@mantine/core";
+// vendors
+import { Button, Group } from "@mantine/core";
 import Link from "next/link";
-import Layout from "../components/common/Layout";
 
-const StyledContainerBody = styled(Container)``;
+// components
+import Layout from "../components/common/Layout/Layout";
 
-const StyledDiv404 = styled.div`
-  text-align: center;
-  font-weight: 900;
-  font-size: 220px;
-  line-height: 1;
-  margin-bottom: ${({ theme }) => theme.spacing.xl * 1.5}px;
-  color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2])};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    font-size: 120px;
-  }
-`;
-
-const StyledTitle = styled(Title)`
-  font-family: Greycliff CF ${(p) => p.theme.fontFamily};
-  text-align: center;
-  font-weight: 900;
-  font-size: 38px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
-    font-size: 32px;
-  }
-`;
-
-const StyledText = styled(Text)`
-  max-width: 500px;
-  margin: auto;
-  margin-top: ${(p) => p.theme.spacing.xl}px;
-  margin-bottom: ${(p) => p.theme.spacing.xl * 1.5}px;
-  justify-content: center;
-`;
+// styles
+import * as S from "../styles/404";
 
 function NotFoundPage({ items, setItems }) {
   return (
     <Layout items={items} setItems={setItems}>
-      <StyledContainerBody>
-        <StyledDiv404>404</StyledDiv404>
-        <StyledTitle>Você encontrou um local secreto.</StyledTitle>
-        <StyledText color="dimmed" size="lg">
-          Infelizmente, está é apenas uma pagina de não encontrado.
-        </StyledText>
-        <Group position="center">
-          <Button variant="subtle" size="md">
-            <Link href="/">
-              <a>Voltar para a Pagina Inicial</a>
-            </Link>
-          </Button>
-        </Group>
-      </StyledContainerBody>
+      <S.Div404>404</S.Div404>
+
+      <S.Title>Você encontrou um local secreto.</S.Title>
+
+      <S.Text color="dimmed" size="lg">
+        Infelizmente, está é apenas uma pagina de não encontrado.
+      </S.Text>
+
+      <Group position="center">
+        <Button variant="subtle" size="md">
+          <Link href="/">
+            <a>Voltar para a Pagina Inicial</a>
+          </Link>
+        </Button>
+      </Group>
     </Layout>
   );
 }
