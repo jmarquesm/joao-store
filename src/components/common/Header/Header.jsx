@@ -31,9 +31,9 @@ export function Header({ items }) {
     }
 
     return (
-      <Link key={item.label} href={item.link}>
-        <S.Link>{item.label}</S.Link>
-      </Link>
+      <S.Link key={item.label} href={item.link}>
+        {item.label}
+      </S.Link>
     );
   });
 

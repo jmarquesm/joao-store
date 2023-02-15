@@ -1,8 +1,9 @@
 // vendors
 import styled from "@emotion/styled";
 import { Group, Header as MantineHeader } from "@mantine/core";
+import NextLink from "next/link";
 
-export const Link = styled.a`
+export const Link = styled(NextLink)`
   display: block;
   line-height: 1;
   padding: 8px 12px;

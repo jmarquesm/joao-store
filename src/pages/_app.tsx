@@ -9,7 +9,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  const [colorScheme, setColorScheme] = useLocalStorage({
+  const [colorScheme, setColorScheme] = useLocalStorage <'light' | 'dark'>({
     defaultValue: "light",
     key: "ativation",
   });
@@ -17,15 +17,13 @@ export default function App({ Component, pageProps }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    let carrinho = localStorage.getItem("produtos");
+    const cart = localStorage.getItem("produtos")
 
-    if (carrinho === null) {
-      carrinho = [];
+    if (cart === null) {
+      setItems([])
     } else {
-      carrinho = JSON.parse(carrinho);
+      setItems(JSON.parse(cart))
     }
-
-    setItems(carrinho);
   }, []);
 
   function customSetItems(_items) {
