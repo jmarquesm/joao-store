@@ -5,8 +5,8 @@ import { Carousel } from "@mantine/carousel";
 import Link from "next/link";
 
 // components
-import Layout from "../components/common/Layout";
-import { FeaturesCard } from "../components/FeaturesCard";
+import Layout from "../components/common/Layout/Layout";
+import { FeaturesCard } from "../components/FeaturesCard/FeaturesCard";
 
 // styles
 import * as S from "../styles/index";
