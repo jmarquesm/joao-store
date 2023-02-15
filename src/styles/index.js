@@ -15,11 +15,7 @@ export const DepartamentGridCol = styled.div`
   flex-direction: column;
   cursor: pointer;
 
-  @media (min-width: 768px) {
-  :last-of-type{
-    display: none;
-    }
-  }
+
 `;
 
 export const Images = styled(Image)`
