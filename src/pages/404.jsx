@@ -11,21 +11,23 @@ import * as S from "../styles/404";
 function NotFoundPage({ items, setItems }) {
   return (
     <Layout items={items} setItems={setItems}>
-      <S.Div404>404</S.Div404>
+      <S.Container>
+        <S.Div404>404</S.Div404>
 
-      <S.Title>Você encontrou um local secreto.</S.Title>
+        <S.Title>Você encontrou um local secreto.</S.Title>
 
-      <S.Text color="dimmed" size="lg">
-        Infelizmente, está é apenas uma pagina de não encontrado.
-      </S.Text>
+        <S.Text color="dimmed" size="lg">
+          Infelizmente, está é apenas uma pagina de não encontrado.
+        </S.Text>
 
-      <Group position="center">
-        <Button variant="subtle" size="md">
-          <Link href="/">
-            <a>Voltar para a Pagina Inicial</a>
-          </Link>
-        </Button>
-      </Group>
+        <Group position="center">
+          <Button variant="subtle" size="md">
+            <Link href="/">
+              <span>Voltar para a Pagina Inicial</span>
+            </Link>
+          </Button>
+        </Group>
+      </S.Container>
     </Layout>
   );
 }

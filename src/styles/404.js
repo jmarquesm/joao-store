@@ -2,6 +2,10 @@
 import styled from "@emotion/styled";
 import { Title as MantineTitle, Text as MantineText } from "@mantine/core";
 
+export const Container = styled.div`
+  margin: auto;
+`
+
 export const Div404 = styled.div`
   text-align: center;
   font-weight: 900;
