@@ -1,9 +1,12 @@
-import "../styles/globals.css";
+// vendors
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
-import { useEffect, useState } from "react";
 import { NotificationsProvider } from "@mantine/notifications";
+
+// styles
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   const [colorScheme, setColorScheme] = useLocalStorage({
@@ -46,7 +49,6 @@ export default function App({ Component, pageProps }) {
           withGlobalStyles
           withNormalizeCSS
           theme={{
-            /** Put your mantine theme override here */
             colorScheme,
           }}
         >
