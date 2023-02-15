@@ -1,22 +1,37 @@
-import { Container, Grid, Loader, Title } from "@mantine/core";
-import { useRouter } from "next/router";
+// vendors
 import React, { useEffect, useState } from "react";
-import { FeaturesCard } from "../../../components/FeaturesCard";
-import Layout from "../../../components/common/Layout";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Grid, Loader } from "@mantine/core";
+import { useRouter } from "next/router";
 
-const StyledContainer = styled(Container)`
-  min-height: calc(100vh - 140px);
+// components
+import { FeaturesCard } from "../../../components/FeaturesCard/FeaturesCard";
+import Layout from "../../../components/common/Layout/Layout";
 
-  ${(props) =>
-    props.loading &&
-    css`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    `}
-`;
+// styles
+import * as S from "./styles";
+
+function Products({ loading, category, items, setItems }) {
+  if (loading) {
+    return (
+      <S.LoadingContainer loading={loading}>
+        <Loader />
+      </S.LoadingContainer>
+    );
+  }
+  return (
+    <>
+      <h2>{category.name}</h2>
+
+      <Grid>
+        {category?.items?.map((produto) => (
+          <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
+            <FeaturesCard produto={produto} items={items} setItems={setItems} />
+          </Grid.Col>
+        ))}
+      </Grid>
+    </>
+  );
+}
 
 function DepartamentsPage({ items, setItems }) {
   const [category, setCategory] = useState({});
@@ -33,29 +48,14 @@ function DepartamentsPage({ items, setItems }) {
         });
   }, [categoryid, subCategoryid]);
 
-  const loading = Object.keys(category).length === 0;
-
   return (
     <Layout items={items} setItems={setItems}>
-      <StyledContainer loading={loading}>
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <Title size="h2" my="md">
-              {category.name}
-            </Title>
-
-            <Grid>
-              {category?.items?.map((produto) => (
-                <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
-                  <FeaturesCard produto={produto} items={items} setItems={setItems} />
-                </Grid.Col>
-              ))}
-            </Grid>
-          </>
-        )}
-      </StyledContainer>
+      <Products
+        loading={Object.keys(category).length === 0}
+        category={category}
+        items={items}
+        setItems={setItems}
+      ></Products>
     </Layout>
   );
 }
