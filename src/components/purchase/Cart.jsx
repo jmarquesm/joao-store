@@ -85,7 +85,7 @@ export function Cart({ items, setItems }) {
                 <Text lineClamp={2}>{produto.description}</Text>
               </S.ElementCol>
 
-              <S.ElementCol span={2} xs={2} sm={1} md={2}>
+              <S.ElementCol span={3} xs={2} sm={1} md={2}>
                 <S.Units>
                   <ActionIcon variant="transparent" onClick={() => decrementUnits(produto)}>
                     <IconCircleMinus size={16} />
