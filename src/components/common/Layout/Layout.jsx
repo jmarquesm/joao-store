@@ -1,6 +1,6 @@
 // components
-import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { Footer } from "../Footer/Footer";
+import { Header } from "../Header/Header";
 import { ScrollTop } from "../ScrollTop";
 
 // styles
