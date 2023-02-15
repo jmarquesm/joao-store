@@ -8,7 +8,7 @@ import { FeaturesCard } from "../../../components/FeaturesCard/FeaturesCard";
 import Layout from "../../../components/common/Layout/Layout";
 
 // styles
-import * as S from "./styles";
+import * as S from "../../../styles/departaments-page";
 
 function Products({ loading, category, items, setItems }) {
   if (loading) {

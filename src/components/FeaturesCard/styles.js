@@ -19,6 +19,11 @@ export const ImageCard = styled(Card.Section)`
 
 export const StyledImage = styled(Image)`
   padding: ${({ isInCarousel }) => (isInCarousel ? "50px" : "0")};
+  margin: ${({ isInCarousel }) => (isInCarousel ? '' : "4rem")};
+  
+  @media (min-width: 768px){
+    margin: 0;
+  }
 `;
 
 export const Title = styled(Card.Section)`

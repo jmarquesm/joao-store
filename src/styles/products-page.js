@@ -1,6 +1,6 @@
 // vendors
 import styled from "@emotion/styled";
-import { Box, Grid } from "@mantine/core";
+import { Box, Grid, Text } from "@mantine/core";
 
 export const LoaderPage = styled(Box)`
   display: flex;
@@ -10,8 +10,8 @@ export const LoaderPage = styled(Box)`
 `;
 
 export const ImagesGrid = styled(Grid.Col)`
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 `;
 
 export const ImagesBox = styled(Box)`
@@ -25,7 +25,7 @@ export const ImagesBox = styled(Box)`
 export const MainImageGrid = styled(Grid.Col)`
   border: 1px solid #dee2e6;
   margin: 20px;
-  margin-left: 0px;
+  margin-left: 0;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@ export const MainImageGrid = styled(Grid.Col)`
 export const InformationGrid = styled(Grid.Col)`
   border: 1px solid #dee2e6;
   margin: 20px;
-  margin-left: 0px;
+  margin-left: 0;
   border-radius: 3px;
   display: flex;
   flex-direction: column;

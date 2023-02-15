@@ -16,7 +16,7 @@ import { IconShoppingCart } from "@tabler/icons";
 import NotFoundPage from "../404";
 
 // styles
-import * as S from "./styles";
+import * as S from "../../styles/products-page";
 
 export default function ProductsPage({ items, setItems }) {
   const [produto, setProduto] = useState();
