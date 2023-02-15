@@ -1,14 +1,12 @@
-import styled from "@emotion/styled";
-import { Autocomplete } from "@mantine/core";
-import { IconSearch } from "@tabler/icons";
-import { useRouter } from "next/router";
+// vendors
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-const StyledAutoComplete = styled(Autocomplete)`
-  @media (max-width: ${({ theme }) => theme.breakpoints.xs}px) {
-    display: none;
-  }
-`;
+// icons
+import { IconSearch } from "@tabler/icons";
+
+// styles
+import * as S from "./styles";
 
 export function SearchBar() {
   const [searchItem, setSearchItem] = useState([]);
@@ -30,7 +28,7 @@ export function SearchBar() {
   }, [search]);
 
   return (
-    <StyledAutoComplete
+    <S.AutoComplete
       placeholder="Search"
       icon={<IconSearch size={16} stroke={1.5} />}
       data={searchItem}

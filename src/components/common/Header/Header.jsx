@@ -8,7 +8,7 @@ import { NavBar } from "../../navBar/NavBar/NavBar";
 import { DarkThemeButton } from "../DarkThemeButton";
 import { MenuBox } from "../MenuBox/MenuBox";
 import { UseModal } from "../../account/UseModal/UseModal";
-import { SearchBar } from "../../SearchBar";
+import { SearchBar } from "../../SearchBar/SearchBar";
 
 // icons
 import { IconShoppingCart } from "@tabler/icons";
