@@ -1,5 +1,8 @@
-import styled from "@emotion/styled";
+// vendors
+import React from "react";
 import { Avatar, Grid, Box, Text, ActionIcon, Button, Title } from "@mantine/core";
+
+// icons
 import {
   IconBarcode,
   IconCircleMinus,
@@ -8,110 +11,9 @@ import {
   IconShoppingCart,
   IconTrash,
 } from "@tabler/icons";
-import React from "react";
 
-const StyledTitleDiv = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const StyledClearCartButton = styled(Button)`
-  width: 293px;
-  margin-left: 15px;
-`;
-
-const StyledGlobalCol = styled(Grid.Col)`
-  border-radius: 10;
-  padding: 0px;
-  margin: auto;
-  margin-top: 0px;
-`;
-
-const StyledGridProductsDescription = styled(Grid)`
-  margin: 0px;
-`;
-
-const StyledElementCol = styled(Grid.Col)`
-  display: flex;
-  align-content: center;
-  margin: auto;
-  font-size: 13px;
-`;
-
-const StyledBoxUnitsSection = styled(Box)`
-  display: flex;
-  align-items: center;
-`;
-
-const StyledRemoveItemGrid = styled(Grid.Col)`
-  padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const StyledGlobalCol2 = styled(Grid.Col)`
-  margin-top: 14.9px;
-  padding-top: 0px;
-  position: sticky;
-  top: 20px;
-  height: 300px;
-`;
-
-const StyledBoxValue = styled(Box)`
-  border-radius: 5;
-  padding: 5px;
-  margin: auto;
-  min-width: 200px;
-  align-content: center;
-  font-size: 13px;
-`;
-
-const StyledBoxValueCalc = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  font-size: 13px;
-`;
-
-const StyledBoxDiscount = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  font-size: 13px;
-  border-top: solid;
-  border-top-width: 1px;
-`;
-
-const StyledBoxTotalPrice = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  font-size: 13px;
-  border-top: solid;
-  border-top-width: 1px;
-  height: 50px;
-  align-items: center;
-`;
-
-const StyledBoxFee = styled(Box)`
-  display: flex;
-  justify-content: flex-start;
-  align-content: center;
-  font-size: 13px;
-  border-top: solid;
-  border-top-width: 1px;
-  height: 50px;
-  align-items: center;
-`;
-
-const StyledButtonBox = styled(Box)`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
+// styles
+import * as S from "./styles";
 
 export function Cart({ items, setItems }) {
   function valueCalc(items) {
@@ -162,29 +64,29 @@ export function Cart({ items, setItems }) {
 
   return (
     <>
-      <StyledTitleDiv>
+      <S.Title>
         <Title size={"h2"} my={"md"}>
           Carrinho
         </Title>
-        <StyledClearCartButton variant="default" onClick={clearAllCart}>
+        <S.ClearCartButton variant="default" onClick={clearAllCart}>
           <IconTrash size={18} />
           Limpar Carrinho
-        </StyledClearCartButton>
-      </StyledTitleDiv>
+        </S.ClearCartButton>
+      </S.Title>
       <Grid grow gutter="xl">
-        <StyledGlobalCol span={12} md={8}>
+        <S.GlobalCol span={12} md={8}>
           {items.map((produto) => (
-            <StyledGridProductsDescription key={produto.description}>
-              <StyledElementCol span={"content"}>
+            <S.ProductsDescription key={produto.description}>
+              <S.ElementCol span={"content"}>
                 <Avatar size={50} src={produto.coverImage} />
-              </StyledElementCol>
+              </S.ElementCol>
 
-              <StyledElementCol span={"auto"}>
+              <S.ElementCol span={"auto"}>
                 <Text lineClamp={2}>{produto.description}</Text>
-              </StyledElementCol>
+              </S.ElementCol>
 
-              <StyledElementCol span={2} xs={2} sm={1} md={2}>
-                <StyledBoxUnitsSection>
+              <S.ElementCol span={2} xs={2} sm={1} md={2}>
+                <S.Units>
                   <ActionIcon variant="transparent" onClick={() => decrementUnits(produto)}>
                     <IconCircleMinus size={16} />
                   </ActionIcon>
@@ -192,14 +94,14 @@ export function Cart({ items, setItems }) {
                   <ActionIcon variant="transparent" onClick={() => incrementUnits(produto)}>
                     <IconCirclePlus size={16} />
                   </ActionIcon>
-                </StyledBoxUnitsSection>
-              </StyledElementCol>
+                </S.Units>
+              </S.ElementCol>
 
-              <StyledElementCol span={2.5} xs={2} sm={2} md={2.5}>
+              <S.ElementCol span={2.5} xs={2} sm={2} md={2.5}>
                 <Text>R$ {produto.price.toFixed(2).replace(".", ",")}</Text>
-              </StyledElementCol>
+              </S.ElementCol>
 
-              <StyledRemoveItemGrid span={1} xs={1} sm={1} md={1}>
+              <S.RemoveItemGrid span={1} xs={1} sm={1} md={1}>
                 <ActionIcon
                   onClick={function () {
                     removeItemCart(produto);
@@ -207,34 +109,34 @@ export function Cart({ items, setItems }) {
                 >
                   <IconTrash size={16} />
                 </ActionIcon>
-              </StyledRemoveItemGrid>
-            </StyledGridProductsDescription>
+              </S.RemoveItemGrid>
+            </S.ProductsDescription>
           ))}
-        </StyledGlobalCol>
+        </S.GlobalCol>
 
-        <StyledGlobalCol2 span={12} sm={4}>
-          <StyledBoxValue>
-            <StyledBoxValueCalc>
+        <S.GlobalCol2 span={12} sm={4}>
+          <S.Value>
+            <S.ValueCalc>
               <span>Subtotal:</span>
               <span>R$ {valueCalc(items).replace(".", ",")}</span>
-            </StyledBoxValueCalc>
+            </S.ValueCalc>
 
-            <StyledBoxValueCalc>
+            <S.ValueCalc>
               <span>Frete:</span>
               <span>R$ 0,00</span>
-            </StyledBoxValueCalc>
+            </S.ValueCalc>
 
-            <StyledBoxDiscount>
+            <S.Discount>
               <span>Desconto Cupom:</span>
               <span>R$ 0,00</span>
-            </StyledBoxDiscount>
+            </S.Discount>
 
-            <StyledBoxTotalPrice>
+            <S.TotalPrice>
               <span>TOTAL</span>
               <span>R$ {valueCalc(items).replace(".", ",")}</span>
-            </StyledBoxTotalPrice>
+            </S.TotalPrice>
 
-            <StyledBoxFee>
+            <S.Fee>
               <IconCreditCard size={25} />
               <Box>
                 <span>
@@ -243,23 +145,23 @@ export function Cart({ items, setItems }) {
                 </span>
                 <span> s/ juros</span>
               </Box>
-            </StyledBoxFee>
+            </S.Fee>
 
-            <StyledBoxFee>
+            <S.Fee>
               <IconBarcode size={25} />
               <Box>
                 <span>R$ {(valueCalc(items) * 0.88).toFixed(2).replace(".", ",")} </span>
                 <span>com 12% de desconto à vista no boleto ou no pix</span>
               </Box>
-            </StyledBoxFee>
-          </StyledBoxValue>
-          <StyledButtonBox>
+            </S.Fee>
+          </S.Value>
+          <S.ButtonBox>
             <Button>
               <IconShoppingCart size={18} />
               Finalizar Compra
             </Button>
-          </StyledButtonBox>
-        </StyledGlobalCol2>
+          </S.ButtonBox>
+        </S.GlobalCol2>
       </Grid>
     </>
   );
