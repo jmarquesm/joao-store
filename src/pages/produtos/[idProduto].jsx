@@ -1,105 +1,22 @@
-import styled from "@emotion/styled";
-import { Box, Button, Container, Grid, Image, Loader, Text } from "@mantine/core";
+// vendors
+import { useEffect, useState } from "react";
+import { Button as MantineButton, Grid, Image, Loader, Text } from "@mantine/core";
+import { useRouter } from "next/router";
+
+// components
+import Layout from "../../components/common/Layout/Layout";
+
+// utils
+import { addToCart } from "../../utils/addToCart";
+
+// icons
 import { IconShoppingCart } from "@tabler/icons";
 
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Layout from "../../components/common/Layout";
-import { addToCart } from "../../utils/addToCart";
+// pages
 import NotFoundPage from "../404";
 
-const StyledContainerPage = styled(Container)`
-  min-height: calc(100vh - 140px);
-`;
-
-const StyledLoaderPage = styled(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 450px;
-`;
-
-const StyledImagesGridCol = styled(Grid.Col)`
-  margin: 0px;
-  padding: 0px;
-`;
-
-const StyledImagesBoxChange = styled(Box)`
-  border: 1px solid #dee2e6;
-  margin: 20px;
-  border-radius: 3%;
-  padding: 1px;
-  max-height: 800;
-`;
-
-const StyledMainImageGridCol = styled(Grid.Col)`
-  border: 1px solid #dee2e6;
-  margin: 20px;
-  margin-left: 0px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-`;
-
-const StyledInformationGridCol = styled(Grid.Col)`
-  border: 1px solid #dee2e6;
-  margin: 20px;
-  margin-left: 0px;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledProductDescriptionBox = styled(Box)`
-  font-size: 1.8rem;
-  line-height: 1.2;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-family: Roboto, Verdana;
-  padding: 15px;
-`;
-
-const StyledInventoryBox = styled(Box)`
-  border-top: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
-  padding: 15px;
-`;
-
-const StyledInventoryText = styled(Text)`
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-`;
-
-const StyledCashPaymentBox = styled(Box)`
-  padding: 15px;
-  font-size: 1.2rem;
-`;
-
-const StyledCashPaymentText = styled(Text)`
-  font-size: 1.7rem;
-  font-weight: bolder;
-`;
-
-const StyledCardPaymentBox = styled(Box)`
-  border-top: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
-  padding: 15px;
-  font-size: 1.2rem;
-`;
-
-const StyledCardPaymentText = styled(Text)`
-  font-size: 1.7rem;
-  font-weight: bolder;
-`;
-
-const StyledButtonBox = styled(Box)`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex: 1;
-  padding: 10px 20px;
-`;
+// styles
+import * as S from "./styles";
 
 export default function ProductsPage({ items, setItems }) {
   const [produto, setProduto] = useState();
@@ -139,58 +56,56 @@ export default function ProductsPage({ items, setItems }) {
 
   return (
     <Layout items={items} setItems={setItems}>
-      <StyledContainerPage>
-        {produto === undefined ? (
-          <StyledLoaderPage>
-            <Loader color={"#228be6"} />
-          </StyledLoaderPage>
-        ) : (
-          <Grid grow gutter="xs">
-            <StyledImagesGridCol span={1}>
-              {imageToRender?.map((image) => (
-                <StyledImagesBoxChange key={image} onClick={changeImageProduct}>
-                  <Image src={image} alt={produto.title} />
-                </StyledImagesBoxChange>
-              ))}
-            </StyledImagesGridCol>
+      {produto === undefined ? (
+        <S.LoaderPage>
+          <Loader color={"#228be6"} />
+        </S.LoaderPage>
+      ) : (
+        <Grid grow gutter="xs">
+          <S.ImagesGrid span={1}>
+            {imageToRender?.map((image) => (
+              <S.ImagesBox key={image} onClick={changeImageProduct}>
+                <Image src={image} alt={produto.title} />
+              </S.ImagesBox>
+            ))}
+          </S.ImagesGrid>
 
-            <StyledMainImageGridCol span={4}>
-              <Image src={mainImage} alt={produto.title} />
-            </StyledMainImageGridCol>
+          <S.MainImageGrid span={4}>
+            <Image src={mainImage} alt={produto.title} />
+          </S.MainImageGrid>
 
-            <StyledInformationGridCol span={4}>
-              <StyledProductDescriptionBox>{produto.description}</StyledProductDescriptionBox>
+          <S.InformationGrid span={4}>
+            <S.ProductDescription>{produto.description}</S.ProductDescription>
 
-              <StyledInventoryBox>
-                <StyledInventoryText color={"green.8"}>Produto Em Estoque</StyledInventoryText>
-              </StyledInventoryBox>
+            <S.Inventory>
+              <S.InventoryText color={"green.8"}>Produto Em Estoque</S.InventoryText>
+            </S.Inventory>
 
-              <StyledCashPaymentBox>
-                <Text>à vista</Text>
-                <StyledCashPaymentText color={"green.8"}>
-                  R$ {(produto.price * 0.88).toFixed(2).replace(".", ",")}
-                </StyledCashPaymentText>
-                <Text> no pix com 12% de desconto</Text>
-              </StyledCashPaymentBox>
+            <S.CashPayment>
+              <Text>à vista</Text>
+              <S.CashPaymentText color={"green.8"}>
+                R$ {(produto.price * 0.88).toFixed(2).replace(".", ",")}
+              </S.CashPaymentText>
+              <Text> no pix com 12% de desconto</Text>
+            </S.CashPayment>
 
-              <StyledCardPaymentBox>
-                <Text>no cartão</Text>
-                <StyledCardPaymentText color={"blue.7"}>
-                  R$ {produto.price.toFixed(2).replace(".", ",")}
-                </StyledCardPaymentText>
-                <Text> em 12x sem juros</Text>
-              </StyledCardPaymentBox>
+            <S.CardPayment>
+              <Text>no cartão</Text>
+              <S.CardPaymentText color={"blue.7"}>
+                R$ {produto.price.toFixed(2).replace(".", ",")}
+              </S.CardPaymentText>
+              <Text> em 12x sem juros</Text>
+            </S.CardPayment>
 
-              <StyledButtonBox>
-                <Button size="md" onClick={() => addToCart(produto, items, setItems)}>
-                  <IconShoppingCart size={18} />
-                  Adicionar ao Carrinho
-                </Button>
-              </StyledButtonBox>
-            </StyledInformationGridCol>
-          </Grid>
-        )}
-      </StyledContainerPage>
+            <S.Button>
+              <MantineButton size="md" onClick={() => addToCart(produto, items, setItems)}>
+                <IconShoppingCart size={18} />
+                Adicionar ao Carrinho
+              </MantineButton>
+            </S.Button>
+          </S.InformationGrid>
+        </Grid>
+      )}
     </Layout>
   );
 }
