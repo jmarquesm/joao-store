@@ -84,6 +84,7 @@ function Departaments({ loading, departments }) {
 export default function HomePage({ items, setItems }) {
   const [products, setProducts] = useState();
   const [departments, setDepartaments] = useState([]);
+  const axios = require("axios").default;
 
   useEffect(() => {
     setProducts({});
@@ -94,17 +95,19 @@ export default function HomePage({ items, setItems }) {
   }, []);
 
   useEffect(() => {
-    fetch(`/api/offers`)
-      .then((response) => response.json())
+    axios
+      .get("/api/offers")
+      .then((response) => response.data)
       .then((productData) => {
         setProducts(productData);
       });
-    fetch(`/api/departaments`)
-      .then((response) => response.json())
+    axios
+      .get("/api/departaments")
+      .then((response) => response.data)
       .then((departamentData) => {
         setDepartaments(departamentData);
       });
-  }, []);
+  }, [axios]);
 
   if (!departments.items) {
     return;

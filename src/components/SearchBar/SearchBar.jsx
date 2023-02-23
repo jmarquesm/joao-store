@@ -12,10 +12,11 @@ export function SearchBar() {
   const [searchItem, setSearchItem] = useState([]);
   const [search, setSearch] = useState();
   const router = useRouter();
+  const axios = require("axios").default;
 
   useEffect(() => {
-    fetch(`/api/search?q=${search}`)
-      .then((response) => response.json())
+    axios(`/api/search?q=${search}`)
+      .then((response) => response.data)
       .then((produtoData) => {
         const formatedSearch = produtoData.items.map((item) => {
           return {
@@ -25,7 +26,7 @@ export function SearchBar() {
         });
         setSearchItem(formatedSearch);
       });
-  }, [search]);
+  }, [axios, search]);
 
   return (
     <S.AutoComplete

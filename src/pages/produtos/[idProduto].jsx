@@ -24,11 +24,12 @@ export default function ProductsPage({ items, setItems }) {
   const produtoId = router.query.idProduto;
   const [error, setError] = useState();
   const [mainImage, setMainImage] = useState();
+  const axios = require("axios").default;
 
   useEffect(() => {
     if (produtoId)
-      fetch(`/api/products/${produtoId}`)
-        .then((response) => response.json())
+      axios(`/api/products/${produtoId}`)
+        .then((response) => response.data)
         .then((produtoData) => {
           setProduto(produtoData);
           setMainImage(produtoData.coverImage);
@@ -36,7 +37,7 @@ export default function ProductsPage({ items, setItems }) {
         .catch(() => {
           setError(true);
         });
-  }, [produtoId]);
+  }, [axios, produtoId]);
 
   if (error) {
     return <NotFoundPage items={items} setItems={setItems} />;

@@ -38,15 +38,16 @@ function DepartamentsPage({ items, setItems }) {
   const router = useRouter();
   const categoryid = router.query.category;
   const subCategoryid = router.query.subCategory;
+  const axios = require("axios").default;
 
   useEffect(() => {
     if (categoryid && subCategoryid)
-      fetch(`/api/categories/${categoryid}/${subCategoryid}`)
-        .then((response) => response.json())
+      axios(`/api/categories/${categoryid}/${subCategoryid}`)
+        .then((response) => response.data)
         .then((categoryData) => {
           setCategory(categoryData);
         });
-  }, [categoryid, subCategoryid]);
+  }, [axios, categoryid, subCategoryid]);
 
   return (
     <Layout items={items} setItems={setItems}>
