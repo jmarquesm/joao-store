@@ -3,6 +3,7 @@ import { Loader, SimpleGrid } from "@mantine/core";
 import { useState, useEffect } from "react";
 import { Carousel } from "@mantine/carousel";
 import Link from "next/link";
+import axios from "axios";
 
 // components
 import Layout from "../components/common/Layout/Layout";
@@ -10,6 +11,10 @@ import { FeaturesCard } from "../components/FeaturesCard/FeaturesCard";
 
 // styles
 import * as S from "../styles/index";
+
+const api = axios.create({
+  baseURL: "/api",
+});
 
 function Products({ loading, products, items, setItems }) {
   if (loading) {
@@ -84,7 +89,21 @@ function Departaments({ loading, departments }) {
 export default function HomePage({ items, setItems }) {
   const [products, setProducts] = useState();
   const [departments, setDepartaments] = useState([]);
-  const axios = require("axios").default;
+
+  async function fetchAndLoadOffers() {
+    const response = await api.get("/offers");
+    setProducts(response.data);
+  }
+
+  async function fetchAndLoadDepartaments() {
+    const response = await api.get("/departaments");
+    setDepartaments(response.data);
+  }
+
+  useEffect(() => {
+    fetchAndLoadOffers();
+    fetchAndLoadDepartaments();
+  }, []);
 
   useEffect(() => {
     setProducts({});
@@ -93,21 +112,6 @@ export default function HomePage({ items, setItems }) {
       setProducts({});
     };
   }, []);
-
-  useEffect(() => {
-    axios
-      .get("/api/offers")
-      .then((response) => response.data)
-      .then((productData) => {
-        setProducts(productData);
-      });
-    axios
-      .get("/api/departaments")
-      .then((response) => response.data)
-      .then((departamentData) => {
-        setDepartaments(departamentData);
-      });
-  }, [axios]);
 
   if (!departments.items) {
     return;

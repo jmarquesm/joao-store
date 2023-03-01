@@ -8,6 +8,7 @@ import Layout from "../../components/common/Layout/Layout";
 
 // utils
 import { addToCart } from "../../utils/addToCart";
+import { api } from "../../lib/api";
 
 // icons
 import { IconShoppingCart } from "@tabler/icons";
@@ -19,35 +20,35 @@ import NotFoundPage from "../404";
 import * as S from "../../styles/products-page";
 
 export default function ProductsPage({ items, setItems }) {
-  const [produto, setProduto] = useState();
+  const [product, setProduct] = useState();
   const router = useRouter();
-  const produtoId = router.query.idProduto;
+  const productId = router.query.idProduto;
   const [error, setError] = useState();
   const [mainImage, setMainImage] = useState();
-  const axios = require("axios").default;
 
   useEffect(() => {
-    if (produtoId)
-      axios(`/api/products/${produtoId}`)
-        .then((response) => response.data)
-        .then((produtoData) => {
-          setProduto(produtoData);
-          setMainImage(produtoData.coverImage);
-        })
-        .catch(() => {
-          setError(true);
-        });
-  }, [axios, produtoId]);
+    async function fetchAndLoadProduct() {
+      try {
+        const response = await api.get(`/products/${productId}`);
+        setProduct(response.data);
+        setMainImage(response.data.coverImage);
+      } catch (error) {
+        setError(true);
+      }
+    }
+
+    if (productId) fetchAndLoadProduct();
+  }, [productId]);
 
   if (error) {
     return <NotFoundPage items={items} setItems={setItems} />;
   }
 
   let imageToRender = [];
-  if (produto != undefined) {
-    imageToRender = [produto.coverImage];
-    for (let index = 0; index < produto.images.length; index++) {
-      imageToRender.push(produto.images[index]);
+  if (product != undefined) {
+    imageToRender = [product.coverImage];
+    for (let index = 0; index < product.images.length; index++) {
+      imageToRender.push(product.images[index]);
     }
   }
 
@@ -57,7 +58,7 @@ export default function ProductsPage({ items, setItems }) {
 
   return (
     <Layout items={items} setItems={setItems}>
-      {produto === undefined ? (
+      {product === undefined ? (
         <S.LoaderPage>
           <Loader color={"#228be6"} />
         </S.LoaderPage>
@@ -66,17 +67,17 @@ export default function ProductsPage({ items, setItems }) {
           <S.ImagesGrid span={1}>
             {imageToRender?.map((image) => (
               <S.ImagesBox key={image} onClick={changeImageProduct}>
-                <Image src={image} alt={produto.title} />
+                <Image src={image} alt={product.title} />
               </S.ImagesBox>
             ))}
           </S.ImagesGrid>
 
           <S.MainImageGrid span={4}>
-            <Image src={mainImage} alt={produto.title} />
+            <Image src={mainImage} alt={product.title} />
           </S.MainImageGrid>
 
           <S.InformationGrid span={4}>
-            <S.ProductDescription>{produto.description}</S.ProductDescription>
+            <S.ProductDescription>{product.description}</S.ProductDescription>
 
             <S.Inventory>
               <S.InventoryText color={"green.8"}>Produto Em Estoque</S.InventoryText>
@@ -85,7 +86,7 @@ export default function ProductsPage({ items, setItems }) {
             <S.CashPayment>
               <Text>à vista</Text>
               <S.CashPaymentText color={"green.8"}>
-                R$ {(produto.price * 0.88).toFixed(2).replace(".", ",")}
+                R$ {(product.price * 0.88).toFixed(2).replace(".", ",")}
               </S.CashPaymentText>
               <Text> no pix com 12% de desconto</Text>
             </S.CashPayment>
@@ -93,13 +94,13 @@ export default function ProductsPage({ items, setItems }) {
             <S.CardPayment>
               <Text>no cartão</Text>
               <S.CardPaymentText color={"blue.7"}>
-                R$ {produto.price.toFixed(2).replace(".", ",")}
+                R$ {product.price.toFixed(2).replace(".", ",")}
               </S.CardPaymentText>
               <Text> em 12x sem juros</Text>
             </S.CardPayment>
 
             <S.Button>
-              <MantineButton size="md" onClick={() => addToCart(produto, items, setItems)}>
+              <MantineButton size="md" onClick={() => addToCart(product, items, setItems)}>
                 <IconShoppingCart size={18} />
                 Adicionar ao Carrinho
               </MantineButton>

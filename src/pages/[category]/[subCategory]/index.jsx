@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Loader } from "@mantine/core";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 // components
 import { FeaturesCard } from "../../../components/FeaturesCard/FeaturesCard";
@@ -9,6 +10,10 @@ import Layout from "../../../components/common/Layout/Layout";
 
 // styles
 import * as S from "../../../styles/departaments-page";
+
+const api = axios.create({
+  baseURL: "/api",
+});
 
 function Products({ loading, category, items, setItems }) {
   if (loading) {
@@ -38,16 +43,17 @@ function DepartamentsPage({ items, setItems }) {
   const router = useRouter();
   const categoryid = router.query.category;
   const subCategoryid = router.query.subCategory;
-  const axios = require("axios").default;
 
   useEffect(() => {
-    if (categoryid && subCategoryid)
-      axios(`/api/categories/${categoryid}/${subCategoryid}`)
-        .then((response) => response.data)
-        .then((categoryData) => {
-          setCategory(categoryData);
-        });
-  }, [axios, categoryid, subCategoryid]);
+    async function fetchAndLoadSubCategoryId() {
+      const response = await api.get(`/categories/${categoryid}/${subCategoryid}`);
+      setCategory(response.data);
+    }
+
+    if (categoryid && subCategoryid) {
+      fetchAndLoadSubCategoryId();
+    }
+  }, [categoryid, subCategoryid]);
 
   return (
     <Layout items={items} setItems={setItems}>

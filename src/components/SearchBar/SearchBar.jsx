@@ -1,6 +1,7 @@
 // vendors
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 // icons
 import { IconSearch } from "@tabler/icons";
@@ -8,25 +9,28 @@ import { IconSearch } from "@tabler/icons";
 // styles
 import * as S from "./styles";
 
+const api = axios.create({
+  baseURL: "/api",
+});
+
 export function SearchBar() {
   const [searchItem, setSearchItem] = useState([]);
   const [search, setSearch] = useState();
   const router = useRouter();
-  const axios = require("axios").default;
 
   useEffect(() => {
-    axios(`/api/search?q=${search}`)
-      .then((response) => response.data)
-      .then((produtoData) => {
-        const formatedSearch = produtoData.items.map((item) => {
-          return {
-            value: item.description,
-            id: item.id,
-          };
-        });
-        setSearchItem(formatedSearch);
+    async function fetchAndLoadSearch() {
+      const response = await api.get(`/search?q=${search}`);
+      const formatedSearch = response.data.items.map((item) => {
+        return {
+          value: item.description,
+          id: item.id,
+        };
       });
-  }, [axios, search]);
+      setSearchItem(formatedSearch);
+    }
+    fetchAndLoadSearch();
+  }, [search]);
 
   return (
     <S.AutoComplete
