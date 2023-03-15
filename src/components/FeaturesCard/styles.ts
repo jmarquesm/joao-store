@@ -38,10 +38,11 @@ export const Image = createPolymorphicComponent<"img", ImageProps>(styled(
   MantineImage,
   transientConfig
 )<ImageProps>`
-  padding: ${({ $isInCarousel }) => ($isInCarousel ? "50px" : "0")};
-  margin: ${({ $isInCarousel }) => ($isInCarousel ? "" : "4rem")};
+  padding: ${({ $isInCarousel }) => ($isInCarousel ? "65px" : "5rem")};
+  margin: ${({ $isInCarousel }) => ($isInCarousel ? "" : "")};
 
   @media (min-width: 768px) {
+    padding: ${({ $isInCarousel }) => ($isInCarousel ? "55px" : "20px")};
     margin: 0;
   }
 `);
