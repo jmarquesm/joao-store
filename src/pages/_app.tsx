@@ -5,6 +5,9 @@ import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
 
+// typings
+import { Product } from "../typings/products";
+
 // styles
 import "../styles/globals.css";
 
@@ -14,7 +17,7 @@ export default function App({ Component, pageProps }) {
     key: "ativation",
   });
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Product[]>([]);
 
   useEffect(() => {
     const cart = localStorage.getItem("produtos")
@@ -26,7 +29,7 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  function customSetItems(_items) {
+  function customSetItems(_items: Product[]) {
     localStorage.setItem("produtos", JSON.stringify(_items));
     setItems(_items);
   }
