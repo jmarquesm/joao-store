@@ -9,14 +9,12 @@ import { Product } from "../../../typings/products";
 // styles
 import * as S from "./styles";
 
-interface Props{
-  children: any,
-  items: Product[],
-  setItems: ()=>void
+interface Props {
+  children: React.ReactNode;
+  items: Product[];
 }
 
-function Layout({ children, items}:Props) {
-  
+function Layout({ children, items }: Props) {
   return (
     <div>
       <Header items={items} />

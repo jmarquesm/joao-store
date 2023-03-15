@@ -20,23 +20,31 @@ import { Product } from "../../../typings/products";
 // styles
 import * as S from "./styles";
 
-interface Props{
-  items: Array<Product>
+interface Props {
+  items: Array<Product>;
 }
 
-interface Pages{
-  label: string,
-  link?: string,
-  component?: ComponentType;
-}
+type PageWithLink = {
+  label: string;
+  link: string;
+  component?: never;
+};
 
-const pagesMock:Pages[] = [
+type PageWithComponent = {
+  label: string;
+  link?: never;
+  component: ComponentType;
+};
+
+type Page = PageWithLink | PageWithComponent;
+
+const pagesMock: Page[] = [
   { label: "Pagina Inicial", link: "/" },
   { label: "Produtos", component: MenuBox },
   { label: "Conta", component: UseModal },
 ];
 
-export function Header({items}:Props) {
+export function Header({ items }: Props) {
   const [opened, handlers] = useDisclosure(false);
 
   const itemsEL = pagesMock.map((item) => {
@@ -49,9 +57,9 @@ export function Header({items}:Props) {
         {item.label}
       </S.Link>
     );
-  });  
+  });
 
-  const totalDeItensDoCarrinho = items.reduce((acc, product) => acc + product.units, 0);
+  const totalDeItensDoCarrinho = items.reduce((acc, product) => acc + (product.units || 1), 0);
 
   return (
     <S.Header height={56} mb={0} fixed>
@@ -59,7 +67,7 @@ export function Header({items}:Props) {
         <Group>
           <Popover opened={opened} closeOnClickOutside>
             <Popover.Target>
-              <Burger opened={opened} onClick={()=>handlers.toggle()} size="sm" />
+              <Burger opened={opened} onClick={() => handlers.toggle()} size="sm" />
             </Popover.Target>
             <Popover.Dropdown p={0} ml={8}>
               <NavBar />

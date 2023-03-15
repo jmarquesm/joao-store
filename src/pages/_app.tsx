@@ -1,18 +1,20 @@
 // vendors
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
+import { MantineProvider, ColorSchemeProvider, ColorScheme } from "@mantine/core";
 import { useLocalStorage } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
+import { AppProps } from "next/app";
 
 // typings
 import { Product } from "../typings/products";
 
 // styles
 import "../styles/globals.css";
+import Layout from "../components/common/Layout/Layout";
 
-export default function App({ Component, pageProps }) {
-  const [colorScheme, setColorScheme] = useLocalStorage <'light' | 'dark'>({
+export default function App({ Component, pageProps }: AppProps) {
+  const [colorScheme, setColorScheme] = useLocalStorage<"light" | "dark">({
     defaultValue: "light",
     key: "ativation",
   });
@@ -20,12 +22,12 @@ export default function App({ Component, pageProps }) {
   const [items, setItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    const cart = localStorage.getItem("produtos")
+    const cart = localStorage.getItem("produtos");
 
     if (cart === null) {
-      setItems([])
+      setItems([]);
     } else {
-      setItems(JSON.parse(cart))
+      setItems(JSON.parse(cart));
     }
   }, []);
 
@@ -34,7 +36,7 @@ export default function App({ Component, pageProps }) {
     setItems(_items);
   }
 
-  function toggleColorScheme(value) {
+  function toggleColorScheme(value?: ColorScheme) {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
   }
 
@@ -54,7 +56,9 @@ export default function App({ Component, pageProps }) {
           }}
         >
           <NotificationsProvider position="bottom-left" limit={3} containerWidth={320}>
-            <Component {...pageProps} items={items} setItems={customSetItems} />
+            <Layout items={items}>
+              <Component {...pageProps} items={items} setItems={customSetItems} />
+            </Layout>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>

@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { createPolymorphicComponent, Box, BoxProps, Grid, Text, TextProps } from "@mantine/core";
 
-export const LoaderPage = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const LoaderPage = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ export const ImagesGrid = styled(Grid.Col)`
   padding: 0;
 `;
 
-export const ImagesBox = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const ImagesBox = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   border: 1px solid #dee2e6;
   margin: 20px;
   border-radius: 3%;
@@ -40,7 +40,7 @@ export const InformationGrid = styled(Grid.Col)`
   flex-direction: column;
 `;
 
-export const ProductDescription = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const ProductDescription = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   font-size: 1.8rem;
   line-height: 1.2;
   text-transform: uppercase;
@@ -49,41 +49,41 @@ export const ProductDescription = createPolymorphicComponent<'div', BoxProps>(st
   padding: 15px;
 `);
 
-export const Inventory = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const Inventory = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
   padding: 15px;
 `);
 
-export const InventoryText = createPolymorphicComponent<'text', TextProps>(styled(Text)`
+export const InventoryText = createPolymorphicComponent<"text", TextProps>(styled(Text)`
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.5rem;
 `);
 
-export const CashPayment = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const CashPayment = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   padding: 15px;
   font-size: 1.2rem;
 `);
 
-export const CashPaymentText = createPolymorphicComponent<'text', TextProps>(styled(Text)`
+export const CashPaymentText = createPolymorphicComponent<"text", TextProps>(styled(Text)`
   font-size: 1.7rem;
   font-weight: bolder;
 `);
 
-export const CardPayment = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const CardPayment = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
   padding: 15px;
   font-size: 1.2rem;
 `);
 
-export const CardPaymentText = createPolymorphicComponent<'text', TextProps>(styled(Text)`
+export const CardPaymentText = createPolymorphicComponent<"text", TextProps>(styled(Text)`
   font-size: 1.7rem;
   font-weight: bolder;
 `);
 
-export const Button = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const Button = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   display: flex;
   justify-content: center;
   flex-direction: column;

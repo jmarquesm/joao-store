@@ -1,5 +1,6 @@
 // vendors
 import { Menu, Group } from "@mantine/core";
+import Link from "next/link";
 
 // styles
 import * as S from "./styles";
@@ -45,11 +46,13 @@ export function MenuBox() {
         {categoriesMock.map((category, index) => (
           <div key={category.id}>
             {index != 0 && <Menu.Divider />}
+
             <Menu.Label>{category.label}</Menu.Label>
+
             {category.items.map((item) => (
-              <Menu.Item key={item.id} component="a" href={`/${category.id}/${item.id}`}>
-                {item.label}
-              </Menu.Item>
+              <Link key={item.id} href={`/${category.id}/${item.id}`}>
+                <Menu.Item>{item.label}</Menu.Item>
+              </Link>
             ))}
           </div>
         ))}

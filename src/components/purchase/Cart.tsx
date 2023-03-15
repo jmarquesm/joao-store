@@ -18,18 +18,17 @@ import { Product } from "../../typings/products";
 // styles
 import * as S from "./styles";
 
-interface Props{
-  items: Product[],
-  setItems: (props) => void
+interface Props {
+  items: Product[];
+  setItems: (newItems: Product[]) => void;
 }
 
-export function Cart({ items, setItems }:Props) {
-
+export function Cart({ items, setItems }: Props) {
   function valueCalc(items: Product[]) {
     const totalPrices = items
-      .reduce((prevValue, element) => prevValue + element.price * element.units, 0)
-      .toFixed(2)
-      
+      .reduce((prevValue, element) => prevValue + element.price * (element.units || 1), 0)
+      .toFixed(2);
+
     return +totalPrices;
   }
 
@@ -39,31 +38,39 @@ export function Cart({ items, setItems }:Props) {
 
   function removeItemCart(product: Product) {
     const newItems = items.filter((productCart) => productCart.description !== product.description);
-    
+
     setItems(newItems);
   }
 
   function incrementUnits(product: Product) {
-    let produtoSelecionado = product.description;
+    const selectedProduct = product.description;
 
-    items.forEach((_, index) => {
-      if (produtoSelecionado === items[index].description) {
-        items[index].units += 1;
+    items.forEach((item) => {
+      if (selectedProduct === item.description) {
+        if (item.units == undefined) {
+          item.units = 1;
+        }
+        item.units += 1;
       }
     });
+
     const newItems = [...items];
     setItems(newItems);
   }
 
   function decrementUnits(product: Product) {
-    let produtoSelecionado = product.description;
+    const selectedProduct = product.description;
 
-    items.forEach((_, index) => {
-      if (produtoSelecionado === items[index].description) {
-        if (items[index].units <= 1) {
-          items[index].units = 1;
+    items.forEach((item) => {
+      if (selectedProduct === item.description) {
+        if (item.units == undefined) {
+          item.units = 1;
+        }
+
+        if (item.units <= 1) {
+          item.units = 1;
         } else {
-          items[index].units -= 1;
+          item.units -= 1;
         }
       }
     });

@@ -6,7 +6,6 @@ import axios from "axios";
 
 // components
 import { FeaturesCard } from "../../../components/FeaturesCard/FeaturesCard";
-import Layout from "../../../components/common/Layout/Layout";
 
 // utils
 import { isEmpty } from "../../../utils/isEmpty";
@@ -21,25 +20,25 @@ const api = axios.create({
   baseURL: "/api",
 });
 
-interface Category{
-    id: string,
-    items: Product[],
-    name: string
+interface Category {
+  id: string;
+  items: Product[];
+  name: string;
 }
 
 interface ProductProps {
-  loading: boolean,
-  category?: Category
-  items: Product[]
-  setItems: () => void
+  loading: boolean;
+  category?: Category;
+  items: Product[];
+  setItems: (items: Product[]) => void;
 }
 
-interface DepartamentProps{
-  items: Product[]
-  setItems: ()=>void
+interface DepartamentProps {
+  items: Product[];
+  setItems: (items: Product[]) => void;
 }
 
-function Products({ loading, category, items, setItems }:ProductProps) {
+function Products({ loading, category, items, setItems }: ProductProps) {
   if (loading || !category) {
     return (
       <S.LoadingContainer $loading={loading}>
@@ -62,7 +61,7 @@ function Products({ loading, category, items, setItems }:ProductProps) {
   );
 }
 
-function DepartamentsPage({ items, setItems }:DepartamentProps) {
+function DepartamentsPage({ items, setItems }: DepartamentProps) {
   const [category, setCategory] = useState<Category>();
   const router = useRouter();
   const categoryid = router.query.category;
@@ -79,18 +78,7 @@ function DepartamentsPage({ items, setItems }:DepartamentProps) {
     }
   }, [categoryid, subCategoryid]);
 
-  return (
-    <Layout items={items} setItems={setItems}>
-      <Products
-        loading={isEmpty(category)}
-        category={category}
-        items={items}
-        setItems={setItems}
-      />
-    </Layout>
-  );
+  return <Products loading={isEmpty(category)} category={category} items={items} setItems={setItems} />;
 }
-
-
 
 export default DepartamentsPage;

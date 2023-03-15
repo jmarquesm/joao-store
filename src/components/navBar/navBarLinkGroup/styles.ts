@@ -18,7 +18,7 @@ export const ButtonControl = createPolymorphicComponent<'button', UnstyledButton
   }
 `);
 
-export const Links = styled.a`
+export const InnerLink = styled.a`
   cursor: pointer;
   font-weight: 500;
   display: block;

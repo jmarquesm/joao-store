@@ -18,16 +18,20 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }:MenuItem) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: MenuItem) {
   const { theme } = useStyles();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === "ltr" ? IconChevronRight : IconChevronLeft;
-  const items = (hasLinks ? links : []).map((link) => (
-    <Link key={link.label} href={link.link}>
-      <S.Links>{link.label}</S.Links>
-    </Link>
-  ));
+  const items = (hasLinks ? links : []).map((linkItem) =>
+    linkItem.link ? (
+      <Link key={linkItem.label} href={linkItem.link}>
+        <S.InnerLink>{linkItem.label}</S.InnerLink>
+      </Link>
+    ) : (
+      <S.InnerLink key={linkItem.label}>{linkItem.label}</S.InnerLink>
+    )
+  );
 
   return (
     <>
@@ -37,7 +41,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }:M
             <Link href={link}>
               <S.ThemeIcon>
                 <ThemeIcon variant="light" size={30}>
-                  <Icon size={18} />
+                  {Icon && <Icon size={18} />}
                 </ThemeIcon>
                 <Box ml="md">{label}</Box>
               </S.ThemeIcon>
@@ -45,7 +49,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }:M
           ) : (
             <S.ThemeIcon>
               <ThemeIcon variant="light" size={30}>
-                <Icon size={18} />
+                {Icon && <Icon size={18} />}
               </ThemeIcon>
               <Box ml="md">{label}</Box>
             </S.ThemeIcon>

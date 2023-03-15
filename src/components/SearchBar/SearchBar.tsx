@@ -6,6 +6,9 @@ import axios from "axios";
 // icons
 import { IconSearch } from "@tabler/icons";
 
+// typings
+import { Product } from "../../typings/products";
+
 // styles
 import * as S from "./styles";
 
@@ -13,9 +16,9 @@ const api = axios.create({
   baseURL: "/api",
 });
 
-interface SearchItem{
-  id: number,
-  value: string
+interface SearchItem {
+  id: number;
+  value: string;
 }
 
 export function SearchBar() {
@@ -25,15 +28,16 @@ export function SearchBar() {
 
   useEffect(() => {
     async function fetchAndLoadSearch() {
-      const response = await api.get(`/search?q=${search}`);
-      const formatedSearch:SearchItem[] = response.data.items.map((item) => {
-        return {
-          value: item.description,
-          id: item.id,
-        };
-      });
+      const response = await api.get<{ items: Product[] }>(`/search?q=${search}`);
+
+      const formatedSearch: SearchItem[] = response.data.items.map((item) => ({
+        value: item.description,
+        id: item.id,
+      }));
+
       setSearchItem(formatedSearch);
     }
+
     fetchAndLoadSearch();
   }, [search]);
 
@@ -45,7 +49,7 @@ export function SearchBar() {
       onItemSubmit={(items) => {
         router.push(`/produtos/${items.id}`);
       }}
-      onChange={()=>setSearch}
+      onChange={() => setSearch}
     />
   );
 }

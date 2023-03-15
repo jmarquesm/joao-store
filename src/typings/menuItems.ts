@@ -1,16 +1,18 @@
 // vendors
-import { ComponentType } from "react";
+import { TablerIconProps } from "@tabler/icons";
 
 export type MenuItem = {
   label: string;
-  icon?: ComponentType<any>;
+  icon?: React.ComponentType<TablerIconProps>;
   initiallyOpened?: boolean;
-  link?: string | {
-    pathname?: string;
-    query?: {
-      category?: string;
-      subCategory?: string;
-    };
-  };
+  link?:
+    | string
+    | {
+        pathname?: string;
+        query?: {
+          category?: string;
+          subCategory?: string;
+        };
+      };
   links?: MenuItem[];
 };

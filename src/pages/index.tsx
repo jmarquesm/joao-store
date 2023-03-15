@@ -6,7 +6,6 @@ import Link from "next/link";
 import axios from "axios";
 
 // components
-import Layout from "../components/common/Layout/Layout";
 import { FeaturesCard } from "../components/FeaturesCard/FeaturesCard";
 
 // typings
@@ -20,32 +19,16 @@ const api = axios.create({
   baseURL: "/api",
 });
 
-interface ProductsProps{
-  loading: boolean
+interface ProductsProps {
+  loading: boolean;
   products: {
-    items?: Product[]
-  }
-  items: Product[]
-  setItems: ()=>void
+    items?: Product[];
+  };
+  items: Product[];
+  setItems: (items: Product[]) => void;
 }
 
-interface DepartamentsProps{
-  loading: boolean
-  departaments: {
-    items: Departaments[]
-  }
-}
-
-interface HomePageProps{
-  items: Product[]
-  setItems: ()=>void
-}
-
-interface DepartamentStateProps{
-  items: Departaments[]
-}
-
-function Products({ loading, products, items, setItems }:ProductsProps) {  
+function Products({ loading, products, items, setItems }: ProductsProps) {
   if (loading) {
     return (
       <S.CarouselLoaderBox>
@@ -82,7 +65,14 @@ function Products({ loading, products, items, setItems }:ProductsProps) {
   );
 }
 
-function DepartamentsProduct({ loading, departaments }:DepartamentsProps) {
+interface DepartamentsProps {
+  loading: boolean;
+  departaments: {
+    items: Departaments[];
+  };
+}
+
+function DepartamentsProduct({ loading, departaments }: DepartamentsProps) {
   if (loading) {
     return (
       <S.DepartamentLoaderBox>
@@ -115,9 +105,14 @@ function DepartamentsProduct({ loading, departaments }:DepartamentsProps) {
   );
 }
 
-export default function HomePage({ items, setItems }:HomePageProps) {
+interface HomePageProps {
+  items: Product[];
+  setItems: (items: Product[]) => void;
+}
+
+export default function HomePage({ items, setItems }: HomePageProps) {
   const [products, setProducts] = useState<Product>();
-  const [departaments, setDepartaments] = useState<DepartamentStateProps>();
+  const [departaments, setDepartaments] = useState<{ items: Departaments[] }>();
 
   async function fetchAndLoadOffers() {
     const response = await api.get("/offers");
@@ -134,7 +129,7 @@ export default function HomePage({ items, setItems }:HomePageProps) {
     fetchAndLoadDepartaments();
   }, []);
 
-  if (!products){
+  if (!products) {
     return;
   }
 
@@ -143,7 +138,7 @@ export default function HomePage({ items, setItems }:HomePageProps) {
   }
 
   return (
-    <Layout items={items} setItems={setItems}>
+    <>
       <h2>Promoção</h2>
 
       <Products products={products} loading={!products?.items} items={items} setItems={setItems} />
@@ -151,6 +146,6 @@ export default function HomePage({ items, setItems }:HomePageProps) {
       <h2>Departamentos</h2>
 
       <DepartamentsProduct departaments={departaments} loading={departaments.items.length == 0} />
-    </Layout>
+    </>
   );
 }

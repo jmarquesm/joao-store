@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { Button as MantineButton, Grid, Image, Loader, Text } from "@mantine/core";
 import { useRouter } from "next/router";
 
-// components
-import Layout from "../../components/common/Layout/Layout";
-
 // utils
 import { addToCart } from "../../utils/addToCart";
 import { api } from "../../lib/api";
@@ -22,22 +19,29 @@ import { Product } from "../../typings/products";
 // styles
 import * as S from "../../styles/products-page";
 
-interface ProductsPageProps{
-  items: Product[]
-  setItems: ()=>void
+interface ProductsPageProps {
+  items: Product[];
+  setItems: (items: Product[]) => void;
 }
 
-interface ProductComponentProps{
-  items: Product[]
-  setItems: ()=>void
-  product: Product
-  mainImage: string
-  imageToRender: string[]
-  changeImageProduct: (event)=>void
+interface ProductComponentProps {
+  items: Product[];
+  setItems: (items: Product[]) => void;
+  product: Product;
+  mainImage: string;
+  imageToRender: string[];
+  changeImageProduct: (event: React.MouseEvent) => void;
 }
 
-function ProductComponent({items, setItems, product, mainImage, imageToRender, changeImageProduct}:ProductComponentProps){
-  return(
+function ProductComponent({
+  items,
+  setItems,
+  product,
+  mainImage,
+  imageToRender,
+  changeImageProduct,
+}: ProductComponentProps) {
+  return (
     <Grid grow gutter="xs">
       <S.ImagesGrid span={1}>
         {imageToRender?.map((image) => (
@@ -59,11 +63,11 @@ function ProductComponent({items, setItems, product, mainImage, imageToRender, c
         </S.Inventory>
 
         <S.CashPayment>
-            <Text>à vista</Text>
+          <Text>à vista</Text>
           <S.CashPaymentText color={"green.8"}>
             R$ {(product.price * 0.88).toFixed(2).replace(".", ",")}
           </S.CashPaymentText>
-            <Text> no pix com 12% de desconto</Text>
+          <Text> no pix com 12% de desconto</Text>
         </S.CashPayment>
 
         <S.CardPayment>
@@ -77,18 +81,18 @@ function ProductComponent({items, setItems, product, mainImage, imageToRender, c
         <S.Button>
           <MantineButton size="md" onClick={() => addToCart(product, items, setItems)}>
             <IconShoppingCart size={18} />
-              Adicionar ao Carrinho
+            Adicionar ao Carrinho
           </MantineButton>
         </S.Button>
       </S.InformationGrid>
     </Grid>
-  )
+  );
 }
 
-export default function ProductsPage({ items, setItems }:ProductsPageProps) {
+export default function ProductsPage({ items, setItems }: ProductsPageProps) {
   const [product, setProduct] = useState<Product>();
   const router = useRouter();
-  const productId = router.query.idProduto;
+  const productId = router.query.productId;
   const [error, setError] = useState(false);
   const [mainImage, setMainImage] = useState<string>();
 
@@ -107,10 +111,10 @@ export default function ProductsPage({ items, setItems }:ProductsPageProps) {
   }, [productId]);
 
   if (error) {
-    return <NotFoundPage items={items} setItems={setItems} />;
+    return <NotFoundPage />;
   }
 
-  let imageToRender = [];
+  let imageToRender: string[] = [];
   if (product) {
     imageToRender = [product.coverImage];
     for (let index = 0; index < product.images.length; index++) {
@@ -118,19 +122,27 @@ export default function ProductsPage({ items, setItems }:ProductsPageProps) {
     }
   }
 
-  function changeImageProduct(event) {
-    setMainImage(event.target.currentSrc);
+  function changeImageProduct(event: React.MouseEvent) {
+    const imageEl = event.target as HTMLImageElement;
+    setMainImage(imageEl.currentSrc);
   }
 
   return (
-    <Layout items={items} setItems={setItems}>
+    <>
       {!product ? (
         <S.LoaderPage>
           <Loader color={"#228be6"} />
         </S.LoaderPage>
       ) : (
-        <ProductComponent items={items} setItems={setItems} product={product} mainImage={mainImage} imageToRender={imageToRender} changeImageProduct={changeImageProduct}/>
+        <ProductComponent
+          items={items}
+          setItems={setItems}
+          product={product}
+          mainImage={mainImage || product.coverImage}
+          imageToRender={imageToRender}
+          changeImageProduct={changeImageProduct}
+        />
       )}
-    </Layout>
+    </>
   );
 }
