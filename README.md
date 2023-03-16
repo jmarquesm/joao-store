@@ -11,6 +11,7 @@ Para mais informações vá ao site oficial do <a href="https://nextjs.org/">Nex
 - `Javascript`
 - `React`
 - `Next`
+- `Typescript`
 - `HTML`
 - `CSS`
 - `Mantine`
