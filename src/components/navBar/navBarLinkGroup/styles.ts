@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { createPolymorphicComponent, Box, UnstyledButton, BoxProps } from "@mantine/core";
 import { UnstyledButtonProps } from "@mantine/core/lib/UnstyledButton";
 
-export const ButtonControl = createPolymorphicComponent<'button', UnstyledButtonProps>(styled(UnstyledButton)`
+export const ButtonControl = createPolymorphicComponent<"button", UnstyledButtonProps>(styled(UnstyledButton)`
   font-weight: 500;
   display: block;
   width: 100%;
@@ -13,12 +13,12 @@ export const ButtonControl = createPolymorphicComponent<'button', UnstyledButton
 
   &:hover {
     background-color: ${({ theme }) =>
-    theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0]};
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0]};
     color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.white : theme.black)};
   }
 `);
 
-export const InnerLink = styled.a`
+export const InnerLink = styled.div`
   cursor: pointer;
   font-weight: 500;
   display: block;
@@ -33,17 +33,17 @@ export const InnerLink = styled.a`
 
   &:hover {
     background-color: ${({ theme }) =>
-    theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0]};
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0]};
     color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.white : theme.black)};
   }
 `;
 
-export const ThemeIcon = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const ThemeIcon = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   display: flex;
   align-items: center;
 `);
 
-export const LinkGroup = createPolymorphicComponent<'div', BoxProps>(styled(Box)`
+export const LinkGroup = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
   min-height: 220px;
   padding: ${({ theme }) => theme.spacing.md}px;
   background-color: ${({ theme }) => (theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white)};
