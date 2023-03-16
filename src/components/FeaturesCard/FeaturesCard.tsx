@@ -15,27 +15,27 @@ import { Product } from "../../typings/products";
 import * as S from "./styles";
 
 interface Props {
-  produto: Product;
+  product: Product;
   isInCarousel?: boolean;
   items: Product[];
   setItems: (items: Product[]) => void;
 }
 
-export function FeaturesCard({ produto, isInCarousel, items, setItems }: Props) {
+export function FeaturesCard({ product, isInCarousel, items, setItems }: Props) {
   return (
     <S.Container withBorder radius="md">
       <S.ImageCard>
-        <Link href={`/produtos/${produto.id}`}>
-          <S.Image $isInCarousel={!!isInCarousel} src={produto.coverImage} alt={produto.title} />
+        <Link href={`/produtos/${product.id}`}>
+          <S.Image $isInCarousel={!!isInCarousel} src={product.coverImage} alt={product.title} />
         </Link>
       </S.ImageCard>
 
       <S.Title mt="md">
         <div>
-          <Text weight={200}>{produto.title}</Text>
+          <Text weight={200}>{product.title}</Text>
 
           <Text lineClamp={2} size="xs" color="dimmed">
-            {produto.description}
+            {product.description}
           </Text>
         </div>
       </S.Title>
@@ -43,15 +43,15 @@ export function FeaturesCard({ produto, isInCarousel, items, setItems }: Props) 
       <S.Price>
         <S.PriceBox>
           <Text size="md" weight={400} sx={{ lineHeight: 1 }}>
-            R${produto.price.toFixed(2).replace(".", ",")}
+            R${product.price.toFixed(2).replace(".", ",")}
           </Text>
-          <Text>{produto.offer && <Badge variant="outline">{produto.offer}% OFF</Badge>}</Text>
+          <Text>{product.offer && <Badge variant="outline">{product.offer}% OFF</Badge>}</Text>
         </S.PriceBox>
 
         <S.ButtonBox>
           <S.Button
             onClick={() => {
-              addToCart(produto, items, setItems);
+              addToCart(product, items, setItems);
             }}
           >
             <IconShoppingCartPlus size={20} />

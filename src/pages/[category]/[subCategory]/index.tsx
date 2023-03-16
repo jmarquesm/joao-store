@@ -53,7 +53,7 @@ function Products({ loading, category, items, setItems }: ProductProps) {
       <Grid>
         {category?.items?.map((produto) => (
           <Grid.Col lg={3} md={4} sm={4} xs={6} span={12} key={produto.id}>
-            <FeaturesCard produto={produto} items={items} setItems={setItems} />
+            <FeaturesCard product={produto} items={items} setItems={setItems} />
           </Grid.Col>
         ))}
       </Grid>
