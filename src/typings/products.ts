@@ -4,10 +4,9 @@ export type Product = {
   description: string;
   id: number;
   images: string[];
-  offer: number;
+  offer: number | null;
   price: number;
-  title: string
-  units?: number
-  items?: Product[]
-}
-
+  title: string;
+  units?: number;
+  items?: Product[];
+};

@@ -1,6 +1,6 @@
 // vendors
 import styled from "@emotion/styled";
-import { Box, BoxProps, Image, ImageProps, createPolymorphicComponent } from "@mantine/core";
+import { Image, ImageProps, createPolymorphicComponent } from "@mantine/core";
 
 export const DepartamentGridCol = styled.div`
   font-weight: 700;
@@ -23,11 +23,4 @@ export const Images = createPolymorphicComponent<"img", ImageProps>(styled(Image
   @media (min-width: 768px) {
     padding: 0;
   }
-`);
-
-export const DepartamentLoaderBox = createPolymorphicComponent<"div", BoxProps>(styled(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 460;
 `);
