@@ -1,51 +1,28 @@
 // vendors
-import { useEffect, useState } from "react";
-import { Loader } from "@mantine/core";
-import { useRouter } from "next/router";
+import { useState } from "react";
+import { GetServerSidePropsContext } from "next";
 
 // components
 import { ProductComponent } from "../../components/common/ProductPage/ProductComponent";
 
-// utils
-import { api } from "../../lib/api";
-
-// pages
-import NotFoundPage from "../404";
-
 // typings
 import { Product } from "../../typings/products";
 
-// styles
-import * as S from "../../styles/products-page";
+// apis
+import { getProduct } from "../api/products/[id]";
 
 interface ProductsPageProps {
   items: Product[];
   setItems: (items: Product[]) => void;
+  product: Product;
 }
 
-export default function ProductsPage({ items, setItems }: ProductsPageProps) {
-  const [product, setProduct] = useState<Product>();
-  const router = useRouter();
-  const productId = router.query.productId;
-  const [error, setError] = useState(false);
-  const [mainImage, setMainImage] = useState<string>();
+export default function ProductPage({ items, setItems, product }: ProductsPageProps) {
+  const [mainImage, setMainImage] = useState<string>(product.coverImage);
 
-  useEffect(() => {
-    async function fetchAndLoadProduct() {
-      try {
-        const response = await api.get(`/products/${productId}`);
-        setProduct(response.data);
-        setMainImage(response.data.coverImage);
-      } catch (error) {
-        setError(true);
-      }
-    }
-
-    if (productId) fetchAndLoadProduct();
-  }, [productId]);
-
-  if (error) {
-    return <NotFoundPage />;
+  function changeImageProduct(event: React.MouseEvent) {
+    const imageEl = event.target as HTMLImageElement;
+    setMainImage(imageEl.currentSrc);
   }
 
   let imageToRender: string[] = [];
@@ -56,27 +33,31 @@ export default function ProductsPage({ items, setItems }: ProductsPageProps) {
     }
   }
 
-  function changeImageProduct(event: React.MouseEvent) {
-    const imageEl = event.target as HTMLImageElement;
-    setMainImage(imageEl.currentSrc);
+  return (
+    <ProductComponent
+      items={items}
+      setItems={setItems}
+      product={product}
+      mainImage={mainImage || product.coverImage}
+      imageToRender={imageToRender}
+      changeImageProduct={changeImageProduct}
+    />
+  );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const productId = String(context.query.productId);
+  const product = await getProduct(+productId);
+
+  if (!product) {
+    return {
+      notFound: true,
+    };
   }
 
-  return (
-    <>
-      {!product ? (
-        <S.LoaderPage>
-          <Loader color={"#228be6"} />
-        </S.LoaderPage>
-      ) : (
-        <ProductComponent
-          items={items}
-          setItems={setItems}
-          product={product}
-          mainImage={mainImage || product.coverImage}
-          imageToRender={imageToRender}
-          changeImageProduct={changeImageProduct}
-        />
-      )}
-    </>
-  );
+  return {
+    props: {
+      product,
+    },
+  };
 }
