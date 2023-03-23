@@ -1,7 +1,11 @@
+// vendors
+import { showNotification } from "@mantine/notifications";
+
+// icons
+import { IconCheck } from "@tabler/icons";
+
 // typings
 import type { Product } from "../typings/products";
-import { IconCheck } from "@tabler/icons";
-import { showNotification } from "@mantine/notifications";
 
 function addNotification() {
   showNotification({

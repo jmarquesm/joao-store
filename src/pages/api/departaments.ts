@@ -1,7 +1,7 @@
 // vendors
 import { NextApiRequest, NextApiResponse } from "next";
 
-// datas
+// data
 import categories from "../../data/categories.json";
 
 // typings

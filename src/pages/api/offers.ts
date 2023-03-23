@@ -1,7 +1,7 @@
 // vendors
 import { NextApiRequest, NextApiResponse } from "next";
 
-// datas
+// data
 import products from "../../data/products.json";
 
 // utils

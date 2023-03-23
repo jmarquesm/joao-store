@@ -8,7 +8,7 @@ import { Products } from "../components/common/Home/ProductsCarousel/ProductsCar
 // typings
 import { Product } from "../typings/products";
 
-// apis
+// data
 import { getDepartaments } from "../pages/api/departaments";
 import { getOffers } from "../pages/api/offers";
 

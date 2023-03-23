@@ -5,11 +5,11 @@ import { GetServerSidePropsContext } from "next";
 // components
 import { SingleProductComponent } from "../../components/common/SingleProduct/SingleProductComponent";
 
+// data
+import { getProduct } from "../api/products/[id]";
+
 // typings
 import { Product } from "../../typings/products";
-
-// apis
-import { getProduct } from "../api/products/[id]";
 
 interface ProductsPageProps {
   items: Product[];

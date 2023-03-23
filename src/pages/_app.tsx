@@ -6,12 +6,14 @@ import { useLocalStorage } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
 import { AppProps } from "next/app";
 
+// components
+import Layout from "../components/common/Layout/Layout";
+
 // typings
 import { Product } from "../typings/products";
 
 // styles
 import "../styles/globals.css";
-import Layout from "../components/common/Layout/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<"light" | "dark">({
