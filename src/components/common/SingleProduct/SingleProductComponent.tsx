@@ -22,7 +22,7 @@ interface ProductComponentProps {
   changeImageProduct: (event: React.MouseEvent) => void;
 }
 
-export function ProductComponent({
+export function SingleProductComponent({
   items,
   setItems,
   product,

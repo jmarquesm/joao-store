@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GetServerSidePropsContext } from "next";
 
 // components
-import { ProductComponent } from "../../components/common/ProductPage/ProductComponent";
+import { SingleProductComponent } from "../../components/common/SingleProduct/SingleProductComponent";
 
 // typings
 import { Product } from "../../typings/products";
@@ -34,7 +34,7 @@ export default function ProductPage({ items, setItems, product }: ProductsPagePr
   }
 
   return (
-    <ProductComponent
+    <SingleProductComponent
       items={items}
       setItems={setItems}
       product={product}
