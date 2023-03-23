@@ -1,6 +1,5 @@
 // vendors
 import { SimpleGrid } from "@mantine/core";
-import Link from "next/link";
 
 // typings
 import { Departament } from "../../../../typings/departament";
@@ -24,14 +23,14 @@ export function DepartamentsProduct({ departaments }: DepartamentsProductProps) 
       ]}
     >
       {departaments.map((item) => (
-        <Link key={item.name} href={`/${item.departament}/${item.slug}`}>
+        <S.Link key={item.name} href={`/${item.departament}/${item.slug}`}>
           <S.DepartamentGridCol>
             <div> {item.name}</div>
             <div>
               <S.Images src={item.image} alt={item.name} />
             </div>
           </S.DepartamentGridCol>
-        </Link>
+        </S.Link>
       ))}
     </SimpleGrid>
   );

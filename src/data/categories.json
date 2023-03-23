@@ -54,5 +54,12 @@
     "name": "Mesa",
     "departament": "escritorio",
     "image": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/d/t/dt3-f40-curvada-32142_1.jpg"
+  },
+  {
+    "id": 9,
+    "slug": "figure",
+    "name": "Figure",
+    "departament": "escritorio",
+    "image": "https://s.pacn.ws/1500/ym/berserk-16-scale-action-figure-guts-kyousenshi-armor-623371.1.jpg?v=qm8h7f&width=760"
   }
 ]

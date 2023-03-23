@@ -1,6 +1,13 @@
 // vendors
 import styled from "@emotion/styled";
 import { Image, ImageProps, createPolymorphicComponent } from "@mantine/core";
+import NextLink from "next/link";
+
+export const Link = styled(NextLink)`
+  &:last-of-type {
+    display: none;
+  }
+`;
 
 export const DepartamentGridCol = styled.div`
   font-weight: 700;
