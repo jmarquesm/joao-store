@@ -5,6 +5,7 @@ import { MantineProvider, ColorSchemeProvider, ColorScheme } from "@mantine/core
 import { useLocalStorage } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
 import { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
 
 // components
 import Layout from "../components/common/Layout/Layout";
@@ -60,6 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <NotificationsProvider position="bottom-left" limit={3} containerWidth={320}>
             <Layout items={items}>
               <Component {...pageProps} items={items} setItems={customSetItems} />
+              <Analytics />
             </Layout>
           </NotificationsProvider>
         </MantineProvider>
